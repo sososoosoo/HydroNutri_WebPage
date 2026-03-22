@@ -1,173 +1,138 @@
-import { useEffect, useRef } from 'react';
-import SubPageHero from '../components/SubPageHero';
-import '../styles/technology.css';
+import { motion } from 'framer-motion';
+import '../styles/about.css';
 
-const techSubNav = [
-  { label: 'Technology', path: '/technology' },
-  { label: 'Roadmap', path: '/technology/roadmap' },
+const crops = [
+  {
+    name: 'Centella Asiatica',
+    korean: '병풀',
+    compound: 'Madecassoside · Asiaticoside',
+    compoundKo: '마데카소사이드 · 아시아티코사이드',
+    description: 'One of the most clinically validated wound-healing compounds in modern dermatology. Centella-derived madecassoside accelerates collagen synthesis and reduces inflammation, making it a core ingredient in medical-grade skin repair formulations.',
+    industries: ['Medical Devices', 'Cosmeceuticals', 'Pharmaceuticals'],
+    accentColor: 'border-emerald-500/40',
+    tagColor: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
+  },
+  {
+    name: 'Bacopa monnieri',
+    korean: '바코파',
+    compound: 'Bacoside A & B',
+    compoundKo: '바코사이드 A & B',
+    description: 'A nootropic herb with a substantial body of clinical research supporting its role in synaptic communication and neuroprotection. Bacoside extracts are increasingly in demand as cognitive health and brain longevity supplements expand globally.',
+    industries: ['Pharmaceuticals', 'Health Functional Foods'],
+    accentColor: 'border-cyan-500/40',
+    tagColor: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
+  },
+  {
+    name: 'Panax Ginseng',
+    korean: '인삼',
+    compound: 'Ginsenoside · Saponin',
+    compoundKo: '진세노사이드 · 사포닌',
+    description: 'Ginseng saponins are among the most studied phytochemicals in East Asian medicine, with broad evidence across immune modulation, anti-fatigue, and adaptogenic applications. Precision cultivation allows consistent ginsenoside profiles unavailable in field-grown root.',
+    industries: ['Pharmaceuticals', 'Health Functional Foods', 'Cosmeceuticals'],
+    accentColor: 'border-amber-500/40',
+    tagColor: 'bg-amber-500/10 text-amber-400 border-amber-500/20',
+  },
+  {
+    name: 'Dendrobium',
+    korean: '덴드로비움',
+    compound: 'Polysaccharides · Flavonoids',
+    compoundKo: '폴리사카라이드 · 플라보노이드',
+    description: 'Dendrobium polysaccharides are valued in high-end cosmetics for their whitening and anti-aging activity. Controlled cultivation of this orchid genus — difficult to source at scale in the wild — is a key differentiator in premium cosmeceutical ingredient supply.',
+    industries: ['Cosmeceuticals'],
+    accentColor: 'border-purple-500/40',
+    tagColor: 'bg-purple-500/10 text-purple-400 border-purple-500/20',
+  },
+  {
+    name: 'Lemna (Duckweed)',
+    korean: '워터렌틸 (개구리밥)',
+    compound: 'Plant Protein · Omega-3',
+    compoundKo: '식물성 단백질 · 오메가-3',
+    description: 'Lemna is one of the fastest-growing aquatic plants on earth, capable of doubling its biomass in under 48 hours. Its protein density rivals soybean at a fraction of the land footprint, positioning it as a leading candidate for next-generation vegan food ingredients.',
+    industries: ['Food Tech', 'Health Functional Foods'],
+    accentColor: 'border-teal-500/40',
+    tagColor: 'bg-teal-500/10 text-teal-400 border-teal-500/20',
+  },
+  {
+    name: 'Stevia',
+    korean: '스테비아',
+    compound: 'Stevioside · Rebaudioside A',
+    compoundKo: '스테비오사이드 · 레바우디오사이드 A',
+    description: 'Rebaudioside A from Stevia is 200–350x sweeter than sucrose with zero glycemic impact, and has secured regulatory approval across major markets. Smart farm cultivation enables year-round stable supply with controlled glycoside ratios unachievable in open-field production.',
+    industries: ['Food Tech', 'Beverages'],
+    accentColor: 'border-lime-500/40',
+    tagColor: 'bg-lime-500/10 text-lime-400 border-lime-500/20',
+  },
 ];
 
-const roadmapPhases = [
-  {
-    number: '01',
-    period: '2024 H2 – 2025 H1',
-    title: '스마트팜 구축 & 팀 결성',
-    status: 'done',
-    statusLabel: '완료',
-    milestones: [
-      '연세대 창업보육센터 입주',
-      'CEO · CTO · CSO 핵심 팀 구성',
-      '기능성 작물 재배 연구 착수',
-      'COREX 법인 설립',
-    ],
-  },
-  {
-    number: '02',
-    period: '2025 H2',
-    title: 'AI 정밀 재배 시스템 고도화',
-    status: 'active',
-    statusLabel: '진행 중',
-    milestones: [
-      '병풀 · 바코파 · 특수인삼 정밀 재배',
-      'AI 생육 알고리즘 개발',
-      '환경 자동 제어 시스템 구축',
-      '생육 데이터 수집 · 분석 파이프라인',
-    ],
-  },
-  {
-    number: '03',
-    period: '2026 H1',
-    title: '추출 · 정제 공정 확립',
-    status: 'upcoming',
-    statusLabel: '예정',
-    milestones: [
-      '산업용 추출 농축 설비 도입',
-      '마데카소사이드 · 바코사이드 원료화',
-      'GMP 수준 품질 관리 체계',
-      '개별인정형 원료 등재 · 특허 출원',
-    ],
-  },
-  {
-    number: '04',
-    period: '2026 H2 –',
-    title: 'B2B 원료 공급 & 사업 확장',
-    status: 'future',
-    statusLabel: '목표',
-    milestones: [
-      '제약 · 화장품 · 의료기기 기업 납품',
-      '건강기능식품 원료 공급 체계',
-      'IP 포트폴리오 확대',
-      '글로벌 시장 진출 준비',
-    ],
-  },
-];
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+};
 
-const kpiTargets = [
-  { label: '타겟 작물', value: '6종', desc: '병풀 · 바코파 · 특수인삼 외' },
-  { label: '핵심 원료', value: '4+', desc: '마데카소사이드 · 바코사이드 등' },
-  { label: '특허 목표', value: '3건', desc: 'AI 알고리즘 · 추출 공정' },
-  { label: '응용 산업', value: '4개', desc: '의료 · 제약 · 뷰티 · 식품' },
-];
+const stagger = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
+};
 
 export default function Roadmap() {
-  const animRef = useRef([]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
-    );
-
-    animRef.current.forEach((el) => {
-      if (el) {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'all 0.8s ease';
-        observer.observe(el);
-      }
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
-  const addRef = (el) => {
-    if (el && !animRef.current.includes(el)) {
-      animRef.current.push(el);
-    }
-  };
-
   return (
-    <>
-      <SubPageHero
-        category="technology"
-        title="Technology"
-        currentPage="Roadmap"
-        breadcrumbParent={{ label: 'Technology', path: '/technology' }}
-        subNavItems={techSubNav}
-      />
+    <div className="bg-ultra-dark min-h-screen pb-20">
 
-      {/* Hero Statement */}
-      <section className="roadmap-statement section">
-        <div className="container">
-          <p className="tech-label" ref={addRef}>ROADMAP</p>
-          <h2 className="tech-headline" ref={addRef}>
-            재배에서 원료 공급까지,<br />
-            <span className="tech-highlight">단계별 성장</span> 전략
-          </h2>
-        </div>
+      <section className="premium-section pt-44 pb-16">
+        <motion.div className="max-w-4xl mx-auto px-6 text-center" initial="hidden" whileInView="visible" viewport={{ once: true }}>
+          <motion.span variants={fadeUp} className="premium-badge mb-6">Crop Portfolio</motion.span>
+          <motion.h2 variants={fadeUp} className="premium-heading mb-6">
+            What We Grow & Extract
+          </motion.h2>
+          <motion.p variants={fadeUp} className="premium-subtext">
+            Each crop is selected for its commercially validated active compounds.
+            Grown under AI-controlled conditions to maximize ingredient consistency and purity.
+          </motion.p>
+        </motion.div>
       </section>
 
-      {/* Timeline */}
-      <section className="roadmap-timeline-section section">
-        <div className="container">
-          <div className="rm-timeline">
-            {roadmapPhases.map((phase, i) => (
-              <div key={i} className={`rm-phase rm-${phase.status}`} ref={addRef}>
-                <div className="rm-indicator">
-                  <div className="rm-number">{phase.number}</div>
-                  {i < roadmapPhases.length - 1 && <div className="rm-line"></div>}
-                </div>
-                <div className="rm-card">
-                  <div className="rm-card-header">
-                    <span className="rm-period">{phase.period}</span>
-                    <span className={`rm-status rm-status-${phase.status}`}>{phase.statusLabel}</span>
-                  </div>
-                  <h3 className="rm-title">{phase.title}</h3>
-                  <ul className="rm-milestones">
-                    {phase.milestones.map((m, j) => (
-                      <li key={j}>{m}</li>
-                    ))}
-                  </ul>
-                </div>
+      <section className="premium-section py-8">
+        <motion.div
+          className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-6"
+          variants={stagger}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+        >
+          {crops.map((crop, i) => (
+            <motion.div
+              key={i}
+              variants={fadeUp}
+              className={`glass p-10 rounded-3xl border-l-4 ${crop.accentColor} flex flex-col gap-6`}
+            >
+              <div>
+                <p className="text-slate-500 text-xs font-mono uppercase tracking-widest mb-1">{crop.korean}</p>
+                <h3 className="text-2xl font-bold text-white">{crop.name}</h3>
               </div>
-            ))}
-          </div>
-        </div>
+
+              <div className="border-t border-slate-800 pt-6">
+                <p className="text-xs text-slate-500 uppercase tracking-widest mb-1">Key Compound</p>
+                <p className="text-white font-semibold">{crop.compound}</p>
+                <p className="text-slate-500 text-sm mt-0.5">{crop.compoundKo}</p>
+              </div>
+
+              <p className="text-slate-400 text-sm leading-relaxed">{crop.description}</p>
+
+              <div className="flex flex-wrap gap-2 mt-auto">
+                {crop.industries.map((ind, j) => (
+                  <span
+                    key={j}
+                    className={`px-3 py-1 rounded-full text-xs font-medium border ${crop.tagColor}`}
+                  >
+                    {ind}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
       </section>
 
-      {/* KPI Targets */}
-      <section className="roadmap-kpi section">
-        <div className="container">
-          <h2 className="section-title">핵심 목표 지표</h2>
-          <div className="kpi-grid">
-            {kpiTargets.map((kpi, i) => (
-              <div key={i} className="kpi-card" ref={addRef}>
-                <div className="kpi-value">{kpi.value}</div>
-                <div className="kpi-label">{kpi.label}</div>
-                <div className="kpi-desc">{kpi.desc}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    </>
+    </div>
   );
 }

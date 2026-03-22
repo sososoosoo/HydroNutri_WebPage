@@ -1,47 +1,11 @@
 import { Link } from 'react-router-dom';
 
 const footerLinks = [
-  {
-    label: 'Home',
-    path: '/',
-    children: [],
-  },
-  {
-    label: 'About',
-    path: '/about/vision-mission',
-    children: [
-      { label: 'Vision & Mission', path: '/about/vision-mission' },
-      { label: 'CI', path: '/about/ci' },
-      { label: 'History', path: '/about/history' },
-      { label: 'Organization', path: '/about/organization' },
-    ],
-  },
-  {
-    label: 'Technology',
-    path: '/technology',
-    children: [
-      { label: 'Technology', path: '/technology' },
-      { label: 'Roadmap', path: '/technology/roadmap' },
-    ],
-  },
-  {
-    label: 'Investment',
-    path: '/investment',
-    children: [
-      { label: 'Investment', path: '/investment' },
-      { label: 'News', path: '/investment/news' },
-      { label: 'Blog', path: '/investment/blog' },
-    ],
-  },
-  {
-    label: 'FAQ',
-    path: '/faq',
-    children: [
-      { label: 'FAQ', path: '/faq' },
-      { label: 'Contact', path: '/faq/contact' },
-      { label: 'Location', path: '/faq/location' },
-    ],
-  },
+  { label: 'Home', path: '/' },
+  { label: 'About', path: '/about' },
+  { label: 'Technology', path: '/technology' },
+  { label: 'Roadmap', path: '/roadmap' },
+  { label: 'Contact', path: '/contact' },
 ];
 
 export default function Footer() {
@@ -59,20 +23,20 @@ export default function Footer() {
               &copy; 2025 COREX Team. All rights reserved.
             </div>
           </div>
-          <div className="footer-links-container">
-            {footerLinks.map((section) => (
-              <div className="footer-main-link" key={section.label}>
-                <Link to={section.path}>{section.label}</Link>
-                {section.children.length > 0 && (
-                  <div className="footer-sub-links">
-                    {section.children.map((child) => (
-                      <Link to={child.path} key={child.path}>{child.label}</Link>
-                    ))}
-                  </div>
-                )}
-              </div>
+
+          {/* 하위메뉴 없으니 링크를 가로로 나열 */}
+          <nav style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', gap: '1.5rem 2.5rem', alignItems: 'flex-start', alignContent: 'flex-start' }}>
+            {footerLinks.map((link) => (
+              <Link
+                key={link.path}
+                to={link.path}
+                className="footer-nav-link"
+                style={{ color: 'white' }}
+              >
+                {link.label}
+              </Link>
             ))}
-          </div>
+          </nav>
         </div>
       </div>
     </footer>

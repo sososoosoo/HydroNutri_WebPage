@@ -9,43 +9,23 @@ const navData = [
   },
   {
     label: 'About',
-    path: '/about/vision-mission',
+    path: '/about',
     icon: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z',
-    children: [
-      { label: 'Vision & Mission', path: '/about/vision-mission' },
-      { label: 'CI', path: '/about/ci' },
-      { label: 'History', path: '/about/history' },
-      { label: 'Organization', path: '/about/organization' },
-    ],
   },
   {
     label: 'Technology',
     path: '/technology',
     icon: 'M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z',
-    children: [
-      { label: 'Technology', path: '/technology' },
-      { label: 'Roadmap', path: '/technology/roadmap' },
-    ],
   },
   {
-    label: 'Investment',
-    path: '/investment',
+    label: 'Ingredients',
+    path: '/roadmap',
     icon: 'M13 2L3 14h9l-1 8 10-12h-9l1-8z',
-    children: [
-      { label: 'Investment', path: '/investment' },
-      { label: 'News', path: '/investment/news' },
-      { label: 'Blog', path: '/investment/blog' },
-    ],
   },
   {
-    label: 'FAQ',
-    path: '/faq',
+    label: 'Contact',
+    path: '/contact',
     icon: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z',
-    children: [
-      { label: 'FAQ', path: '/faq' },
-      { label: 'Contact', path: '/faq/contact' },
-      { label: 'Location', path: '/faq/location' },
-    ],
   },
 ];
 
@@ -53,8 +33,20 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState(null);
   const [visibleMega, setVisibleMega] = useState(null);
+  const [isScrolled, setIsScrolled] = useState(false);
   const leaveTimeout = useRef(null);
   const location = useLocation();
+
+  // Handle scroll for dynamic header
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    // Check on initial load
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Close menu on route change
   useEffect(() => {
@@ -98,7 +90,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="header" id="header">
+    <header className={`header ${isScrolled ? 'glass-dark' : 'transparent'}`} id="header">
       <nav className="nav">
         {/* Logo */}
         <Link to="/" className="logo">

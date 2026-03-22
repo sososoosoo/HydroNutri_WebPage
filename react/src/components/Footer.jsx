@@ -4,7 +4,7 @@ const footerLinks = [
   { label: 'Home', path: '/' },
   { label: 'About', path: '/about' },
   { label: 'Technology', path: '/technology' },
-  { label: 'Roadmap', path: '/roadmap' },
+  { label: 'Ingredients', path: '/roadmap' },
   { label: 'Contact', path: '/contact' },
 ];
 

@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "postbuild": "cp dist/index.html dist/404.html",
-    "deploy": "npm run build && gh-pages -d dist --repo https://github.com/HydroNutri/Neuronic.git",
+    "deploy": "npm run build && gh-pages -d dist --repo https://github.com/sososoosoo/HydroNutri_WebPage.git",
     "lint": "eslint .",
     "preview": "vite preview"
   },

@@ -106,7 +106,7 @@ export default function Home() {
               </div>
               <div className="bento-content">
                 <div className="bento-icon-wrapper"><Leaf size={24} /></div>
-                <h3>Smart Farm Mastery</h3>
+                <h3>Smart Farm Precision</h3>
                 <p>Fully controlled plant factories utilizing advanced AI algorithms to maximize key compound yields year-round.</p>
               </div>
             </motion.div>
@@ -120,7 +120,7 @@ export default function Home() {
               <div className="bento-content">
                 <div className="bento-icon-wrapper"><FlaskConical size={24} /></div>
                 <h3>Advanced R&D Facility</h3>
-                <p>High purity refining to isolate Madecassoside and Ginsenosides.</p>
+                <p>High-purity extraction to isolate Madecassoside and Ginsenosides.</p>
               </div>
             </motion.div>
 

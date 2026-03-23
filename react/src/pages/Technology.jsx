@@ -170,7 +170,7 @@ export default function Technology() {
             </motion.h2>
             <motion.p variants={fadeUp} className="premium-subtext max-w-3xl mx-auto text-lg">
               Real-time visualization and precise control of secondary metabolite synthesis.
-              Fully custom-built interfaces guaranteeing 100% data ownership.
+              Fully custom-built interfaces that ensure 100% data ownership.
             </motion.p>
           </motion.div>
 

@@ -17,7 +17,7 @@ const timelineData = [
   {
     date: '2025.H1',
     title: 'Business Pivot & Incorporation',
-    description: 'Transitioned from aquaponics food production to a smart farm-based bio-material development company. COREX established.',
+    description: 'Transitioned from aquaponics food production to a smart farm-based bio-material development company. COREX officially incorporated.',
   },
   {
     date: '2024.H2',
@@ -31,7 +31,7 @@ const teamData = [
     name: '유동규',
     role: 'CEO & Founder',
     tagline: 'Designing the intersection of technology and market.',
-    description: 'Designs the overall business roadmap from smart farm cultivation to bio-extraction, driving strategic leadership and R&D direction.',
+    description: 'Designs the overall business roadmap from smart farm cultivation to bio-extraction, providing strategic leadership and guiding R&D direction.',
     iconText: 'CEO',
     gradientClass: 'from-cyan-500/20 to-blue-500/5',
     borderClass: 'group-hover:border-cyan-500/40',
@@ -49,7 +49,7 @@ const teamData = [
     name: '주혜우',
     role: 'CSO',
     tagline: 'Leading strategic funding and business planning.',
-    description: 'Executes funding strategies including government grants and private investments, while dedicating to IR and business planning.',
+    description: 'Executes funding strategies including government grants and private investments, while dedicated to IR and business planning.',
     iconText: 'CSO',
     gradientClass: 'from-emerald-500/20 to-teal-500/5',
     borderClass: 'group-hover:border-emerald-500/40',
@@ -75,7 +75,7 @@ export default function About() {
         <motion.div className="max-w-4xl mx-auto px-6" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
           <span className="premium-badge mb-6">Our Vision</span>
           <h2 className="premium-heading mb-8">
-            Starting from the Smart Farm,<br/>
+            Rooted in smart farming,<br/>
             shaping the future of <span className="highlight-glow">Bio-Materials</span>.
           </h2>
           <p className="premium-subtext">
@@ -123,7 +123,7 @@ export default function About() {
               <div className="relative z-20 flex flex-col h-full justify-between">
                 <div>
                   <h3 className="text-white text-3xl font-bold mb-4 drop-shadow-lg">B2B Supply</h3>
-                  <p className="text-slate-200 drop-shadow-md text-lg leading-relaxed">Supplying core raw materials securely to global medical, beauty, and food tech enterprises.</p>
+                  <p className="text-slate-200 drop-shadow-md text-lg leading-relaxed">Delivering core raw materials reliably to global medical, cosmetic, and food tech companies.</p>
                 </div>
               </div>
             </motion.div>
@@ -155,13 +155,13 @@ export default function About() {
         <motion.div className="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
            <motion.div variants={fadeUp}>
              <h2 className="premium-heading text-4xl mb-6">The COREX Solution</h2>
-             <p className="premium-subtext mb-8 text-left">The industry struggles with inconsistent natural raw materials and high reliance on imports. We solve this fundamentally.</p>
+             <p className="premium-subtext mb-8 text-left">The industry struggles with inconsistent natural raw materials and high reliance on imports. We address this from the ground up.</p>
              <ul className="space-y-6">
                <li className="flex items-start gap-4">
                  <div className="w-2 h-2 rounded-full bg-cyan-400 mt-2 shrink-0 shadow-[0_0_10px_rgba(34,211,238,0.5)]" />
                  <div>
                    <strong className="text-white block mb-1">Precision Smart Farming</strong>
-                   <span className="text-slate-400">Maximizing active compound yields cleanly via AI without seasonal limits.</span>
+                   <span className="text-slate-400">AI-driven maximization of active compound yields, free from seasonal constraints.</span>
                  </div>
                </li>
                <li className="flex items-start gap-4">
@@ -229,7 +229,7 @@ export default function About() {
           <motion.div className="text-center mb-16" initial="hidden" whileInView="visible" viewport={{ once: true }}>
             <motion.span variants={fadeUp} className="premium-badge mb-6">Leadership</motion.span>
             <motion.h2 variants={fadeUp} className="premium-heading mb-6">The Founding Team</motion.h2>
-            <motion.p variants={fadeUp} className="premium-subtext">Three people. Smart farm engineering, AI & data systems, and business development — built under one roof from day one.</motion.p>
+            <motion.p variants={fadeUp} className="premium-subtext">Three people. Smart farm engineering, AI & data systems, and business development — all under one roof from day one.</motion.p>
           </motion.div>
 
           <motion.div className="grid md:grid-cols-3 gap-8" variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }}>

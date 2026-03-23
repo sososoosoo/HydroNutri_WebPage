@@ -20,7 +20,7 @@ export default function Footer() {
               COREX CEO. 유동규<br />
               E-mail: 22qjsro@corexbiotech.com<br />
               Address: 강원특별자치도 춘천시 동산면 종자리로 33-7<br /><br />
-              &copy; 2025 COREX Team. All rights reserved.
+              &copy; 2026 COREX Team. All rights reserved.
             </div>
           </div>
 

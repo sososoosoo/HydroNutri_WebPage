@@ -19,7 +19,7 @@ export default function Contact() {
       <section className="premium-section pt-44 pb-24">
         <div className="max-w-5xl mx-auto px-6">
           <motion.div className="text-center mb-16" initial="hidden" animate="visible" variants={fadeUp}>
-             <h2 className="premium-heading mb-6">Get in touch</h2>
+             <h2 className="premium-heading mb-6">Get in Touch</h2>
              <p className="premium-subtext max-w-2xl mx-auto">Whether you are looking to secure high-purity raw materials, explore joint R&D, or invest in our vision, our team is ready to connect.</p>
           </motion.div>
 
@@ -41,7 +41,7 @@ export default function Contact() {
                 <div className="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-8 group-hover:bg-blue-500/20 transition-colors">
                    <Mail className="text-blue-400" size={24} />
                 </div>
-                <h4 className="text-2xl font-bold text-white mb-4">Email inquiries</h4>
+                <h4 className="text-2xl font-bold text-white mb-4">Email Inquiries</h4>
                 <a href="mailto:22qjsro@corexbiotech.com" className="text-cyan-400 text-lg hover:text-cyan-300 transition-colors font-mono mb-8 block">
                   22qjsro@corexbiotech.com
                 </a>

@@ -1,60 +1,7 @@
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
+import { tLines } from '../i18n/i18n';
 import '../styles/about.css';
-
-const applications = [
-  { index: '01', title: 'Medical Devices', desc: 'Hydrogels, stent coatings, bio-inks, and implant materials.' },
-  { index: '02', title: 'Pharmaceuticals', desc: 'Cognitive enhancers, immune boosters, and custom API.' },
-  { index: '03', title: 'Cosmeceuticals', desc: 'Whitening, anti-aging, and skin regeneration core ingredients.' },
-  { index: '04', title: 'Food Tech', desc: 'Plant-based proteins and natural sweeteners for vegan foods.' },
-];
-
-const timelineData = [
-  {
-    date: '2025.H2',
-    title: 'Smart Farm System Advancement',
-    description: 'Built precision cultivation systems for functional crops and developed AI-driven growth algorithms for active compound optimization.',
-  },
-  {
-    date: '2025.H1',
-    title: 'Business Pivot & Incorporation',
-    description: 'Transitioned from aquaponics food production to a smart farm-based bio-material development company. COREX officially incorporated.',
-  },
-  {
-    date: '2024.H2',
-    title: 'Core Team Formation & Research Start',
-    description: 'Incubated at Yonsei University. Founding team assembled and functional crop cultivation research initiated.',
-  },
-];
-
-const teamData = [
-  {
-    name: '유동규',
-    role: 'CEO & Founder',
-    tagline: 'Designing the intersection of technology and market.',
-    description: 'Designs the overall business roadmap from smart farm cultivation to bio-extraction, providing strategic leadership and guiding R&D direction.',
-    iconText: 'CEO',
-    gradientClass: 'from-cyan-500/20 to-blue-500/5',
-    borderClass: 'group-hover:border-cyan-500/40',
-  },
-  {
-    name: '김수찬',
-    role: 'CTO',
-    tagline: 'Architecting algorithms and data systems.',
-    description: 'Builds the server infrastructure for collecting growth data and develops core algorithms maximizing crop productivity.',
-    iconText: 'CTO',
-    gradientClass: 'from-indigo-500/20 to-purple-500/5',
-    borderClass: 'group-hover:border-indigo-500/40',
-  },
-  {
-    name: '주혜우',
-    role: 'CSO',
-    tagline: 'Leading strategic funding and business planning.',
-    description: 'Executes funding strategies including government grants and private investments, while dedicated to IR and business planning.',
-    iconText: 'CSO',
-    gradientClass: 'from-emerald-500/20 to-teal-500/5',
-    borderClass: 'group-hover:border-emerald-500/40',
-  },
-];
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -67,20 +14,77 @@ const stagger = {
 };
 
 export default function About() {
+  const { t } = useTranslation();
+
+  const applications = [
+    { index: '01', title: t('about.app1Title'), desc: t('about.app1Desc') },
+    { index: '02', title: t('about.app2Title'), desc: t('about.app2Desc') },
+    { index: '03', title: t('about.app3Title'), desc: t('about.app3Desc') },
+    { index: '04', title: t('about.app4Title'), desc: t('about.app4Desc') },
+  ];
+
+  const timelineData = [
+    {
+      date: t('about.timeline1Date'),
+      title: t('about.timeline1Title'),
+      description: t('about.timeline1Desc'),
+    },
+    {
+      date: t('about.timeline2Date'),
+      title: t('about.timeline2Title'),
+      description: t('about.timeline2Desc'),
+    },
+    {
+      date: t('about.timeline3Date'),
+      title: t('about.timeline3Title'),
+      description: t('about.timeline3Desc'),
+    },
+  ];
+
+  const teamData = [
+    {
+      name: '유동규',
+      role: t('about.member1Role'),
+      tagline: t('about.member1Tagline'),
+      description: t('about.member1Desc'),
+      iconText: 'CEO',
+      gradientClass: 'from-cyan-500/20 to-blue-500/5',
+      borderClass: 'group-hover:border-cyan-500/40',
+    },
+    {
+      name: '김수찬',
+      role: t('about.member2Role'),
+      tagline: t('about.member2Tagline'),
+      description: t('about.member2Desc'),
+      iconText: 'CTO',
+      gradientClass: 'from-indigo-500/20 to-purple-500/5',
+      borderClass: 'group-hover:border-indigo-500/40',
+    },
+    {
+      name: '주혜우',
+      role: t('about.member3Role'),
+      tagline: t('about.member3Tagline'),
+      description: t('about.member3Desc'),
+      iconText: 'CSO',
+      gradientClass: 'from-emerald-500/20 to-teal-500/5',
+      borderClass: 'group-hover:border-emerald-500/40',
+    },
+  ];
+
   return (
     <div className="bg-ultra-dark min-h-screen pb-20 overflow-hidden">
 
       {/* Vision & Mission */}
       <section className="premium-section text-center pt-44 pb-16">
         <motion.div className="max-w-4xl mx-auto px-6" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-          <span className="premium-badge mb-6">Our Vision</span>
-          <h2 className="premium-heading mb-8">
-            Rooted in smart farming,<br/>
-            shaping the future of <span className="highlight-glow">Bio-Materials</span>.
+          <span className="premium-badge mb-6">{t('about.visionBadge')}</span>
+          <h2 className="premium-heading mb-8 break-keep">
+            {t('about.visionHeading1')}<br/>
+            {t('about.visionHeading2')} <span className="highlight-glow">{t('about.visionHighlight')}</span>
+            <span className="whitespace-nowrap">{t('about.visionHeadingSuffix', '')}</span>
           </h2>
           <p className="premium-subtext">
-            COREX fuses AI precision agriculture with advanced bio-extraction technology
-            to develop the core ingredients for the medical, pharmaceutical, cosmetic, and food industries.
+            {tLines(t('about.visionDesc'))}
           </p>
         </motion.div>
       </section>
@@ -96,8 +100,8 @@ export default function About() {
               </div>
               <div className="relative z-20 flex flex-col h-full justify-between">
                 <div>
-                  <h3 className="text-white text-3xl font-bold mb-4 drop-shadow-lg">Smart Farm</h3>
-                  <p className="text-slate-200 drop-shadow-md text-lg leading-relaxed">AI-driven precision cultivation of functional crops including Centella, Bacopa, and Dendrobium.</p>
+                  <h3 className="text-white text-3xl font-bold mb-4 drop-shadow-lg">{t('about.pipelineCard1Title')}</h3>
+                  <p className="text-slate-200 drop-shadow-md text-lg leading-relaxed">{t('about.pipelineCard1Desc')}</p>
                 </div>
               </div>
             </motion.div>
@@ -109,8 +113,8 @@ export default function About() {
               </div>
               <div className="relative z-20 flex flex-col h-full justify-between">
                 <div>
-                  <h3 className="text-white text-3xl font-bold mb-4 drop-shadow-lg">Bio Extract</h3>
-                  <p className="text-slate-200 drop-shadow-md text-lg leading-relaxed">GMP-level industrial extraction and concentration to isolate Madecassoside and Ginsenoside.</p>
+                  <h3 className="text-white text-3xl font-bold mb-4 drop-shadow-lg">{t('about.pipelineCard2Title')}</h3>
+                  <p className="text-slate-200 drop-shadow-md text-lg leading-relaxed">{t('about.pipelineCard2Desc')}</p>
                 </div>
               </div>
             </motion.div>
@@ -122,8 +126,8 @@ export default function About() {
               </div>
               <div className="relative z-20 flex flex-col h-full justify-between">
                 <div>
-                  <h3 className="text-white text-3xl font-bold mb-4 drop-shadow-lg">B2B Supply</h3>
-                  <p className="text-slate-200 drop-shadow-md text-lg leading-relaxed">Delivering core raw materials reliably to global medical, cosmetic, and food tech companies.</p>
+                  <h3 className="text-white text-3xl font-bold mb-4 drop-shadow-lg">{t('about.pipelineCard3Title')}</h3>
+                  <p className="text-slate-200 drop-shadow-md text-lg leading-relaxed">{t('about.pipelineCard3Desc')}</p>
                 </div>
               </div>
             </motion.div>
@@ -135,8 +139,8 @@ export default function About() {
       <section className="premium-section py-20">
         <motion.div className="max-w-6xl mx-auto px-6" variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true }}>
           <motion.div variants={fadeUp} className="text-center mb-16">
-             <h2 className="premium-heading text-3xl md:text-5xl">Where Our Materials Go</h2>
-             <p className="premium-subtext mt-4">The active compounds we extract are used as core raw materials across four industries.</p>
+             <h2 className="premium-heading text-3xl md:text-5xl">{t('about.appHeading')}</h2>
+             <p className="premium-subtext mt-4">{t('about.appSubtext')}</p>
           </motion.div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -154,31 +158,29 @@ export default function About() {
       <section className="premium-section py-20 bg-[#060b17]/50 rounded-[4rem] mx-4 md:mx-10 my-10 border border-slate-800">
         <motion.div className="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
            <motion.div variants={fadeUp}>
-             <h2 className="premium-heading text-4xl mb-6">The COREX Solution</h2>
-             <p className="premium-subtext mb-8 text-left">The industry struggles with inconsistent natural raw materials and high reliance on imports. We address this from the ground up.</p>
+             <h2 className="premium-heading text-4xl mb-6">{t('about.solutionHeading')}</h2>
+             <p className="premium-subtext mb-8 text-left">{t('about.solutionDesc')}</p>
              <ul className="space-y-6">
                <li className="flex items-start gap-4">
                  <div className="w-2 h-2 rounded-full bg-cyan-400 mt-2 shrink-0 shadow-[0_0_10px_rgba(34,211,238,0.5)]" />
-                 <div>
-                   <strong className="text-white block mb-1">Precision Smart Farming</strong>
-                   <span className="text-slate-400">AI-driven maximization of active compound yields, free from seasonal constraints.</span>
-                 </div>
-               </li>
-               <li className="flex items-start gap-4">
-                 <div className="w-2 h-2 rounded-full bg-cyan-400 mt-2 shrink-0 shadow-[0_0_10px_rgba(34,211,238,0.5)]" />
-                 <div>
-                   <strong className="text-white block mb-1">Industrial Scale Extraction</strong>
-                   <span className="text-slate-400">GMP-level high purity refining ensuring consistent B2B supply.</span>
-                 </div>
+                  <div>
+                    <strong className="text-white block mb-2 text-lg whitespace-pre-wrap">{t('about.solution1Title')}</strong>
+                    <span className="text-slate-400 whitespace-pre-wrap">{tLines(t('about.solution1Desc'))}</span>
+                  </div>
+                </li>
+                <li className="flex items-start gap-4">
+                  <div className="w-2 h-2 rounded-full bg-cyan-400 mt-2 shrink-0 shadow-[0_0_10px_rgba(34,211,238,0.5)]" />
+                  <div>
+                    <strong className="text-white block mb-2 text-lg whitespace-pre-wrap">{t('about.solution2Title')}</strong>
+                    <span className="text-slate-400 whitespace-pre-wrap">{tLines(t('about.solution2Desc'))}</span>
+                  </div>
                </li>
              </ul>
            </motion.div>
            <motion.div variants={fadeUp} className="relative h-[500px] rounded-3xl overflow-hidden glass border border-slate-700/50 group">
              <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/30 to-transparent z-10 pointer-events-none"></div>
-             {/* Beautiful macro shot representing the core solution */}
              <img src="/image/회사전경.jpg" alt="COREX Solution" className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-all duration-1000 group-hover:scale-105" />
              
-             {/* Glowing technological accent lines */}
              <div className="absolute bottom-10 left-10 z-20 flex gap-4">
                 <div className="w-2 h-16 bg-cyan-500 rounded-full shadow-[0_0_15px_rgba(34,211,238,0.8)]"></div>
                 <div className="w-2 h-10 bg-indigo-500 rounded-full mt-auto shadow-[0_0_15px_rgba(99,102,241,0.8)]"></div>
@@ -191,9 +193,9 @@ export default function About() {
       <section className="premium-section pt-32 pb-16">
         <div className="max-w-4xl mx-auto px-6">
           <motion.div className="text-center mb-16" initial="hidden" whileInView="visible" viewport={{ once: true }}>
-            <motion.span variants={fadeUp} className="premium-badge mb-6">Our Journey</motion.span>
-            <motion.h2 variants={fadeUp} className="premium-heading mb-6">How We Got Here</motion.h2>
-            <motion.p variants={fadeUp} className="premium-subtext">From a university lab to a smart farm-based bio-material company — the steps that built COREX.</motion.p>
+            <motion.span variants={fadeUp} className="premium-badge mb-6">{t('about.journeyBadge')}</motion.span>
+            <motion.h2 variants={fadeUp} className="premium-heading mb-6">{t('about.journeyHeading')}</motion.h2>
+            <motion.p variants={fadeUp} className="premium-subtext">{t('about.journeyDesc')}</motion.p>
           </motion.div>
 
           <div className="relative border-l border-slate-800 ml-4 md:ml-12 mt-12 space-y-16 py-8">
@@ -206,7 +208,6 @@ export default function About() {
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
               >
-                {/* Timeline Node */}
                 <div className="absolute -left-3 w-6 h-6 rounded-full flex items-center justify-center border-4 border-[#030712] bg-cyan-500 shadow-[0_0_15px_rgba(34,211,238,0.5)] z-10">
                 </div>
 
@@ -227,9 +228,9 @@ export default function About() {
       <section className="premium-section pt-32 pb-16">
         <div className="max-w-6xl mx-auto px-6">
           <motion.div className="text-center mb-16" initial="hidden" whileInView="visible" viewport={{ once: true }}>
-            <motion.span variants={fadeUp} className="premium-badge mb-6">Leadership</motion.span>
-            <motion.h2 variants={fadeUp} className="premium-heading mb-6">The Founding Team</motion.h2>
-            <motion.p variants={fadeUp} className="premium-subtext">Three people. Smart farm engineering, AI & data systems, and business development — all under one roof from day one.</motion.p>
+            <motion.span variants={fadeUp} className="premium-badge mb-6">{t('about.leaderBadge')}</motion.span>
+            <motion.h2 variants={fadeUp} className="premium-heading mb-6">{t('about.leaderHeading')}</motion.h2>
+            <motion.p variants={fadeUp} className="premium-subtext">{t('about.leaderDesc')}</motion.p>
           </motion.div>
 
           <motion.div className="grid md:grid-cols-3 gap-8" variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }}>
@@ -257,9 +258,9 @@ export default function About() {
             <motion.div variants={fadeUp} className="glass border-slate-800 rounded-[2.5rem] p-12 text-center relative overflow-hidden group">
                <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/5 rounded-full blur-3xl group-hover:bg-cyan-500/10 transition-colors duration-700"></div>
                <div className="w-16 h-2 bg-gradient-to-r from-cyan-500 to-transparent rounded-full mx-auto mb-8 opacity-50"></div>
-               <h3 className="text-3xl font-bold text-white mb-4">How We Work</h3>
+               <h3 className="text-3xl font-bold text-white mb-4">{t('about.howWeWorkTitle')}</h3>
                <p className="text-slate-400 max-w-2xl mx-auto leading-relaxed">
-                 COREX runs lean. Smart farm engineering, AI data systems, and bio-process chemistry sit in the same room. Decisions move fast, and every layer of the pipeline — from cultivation data to extraction yield — is owned internally.
+                 {t('about.howWeWorkDesc')}
                </p>
             </motion.div>
          </motion.div>

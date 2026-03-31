@@ -1,54 +1,16 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import '../styles/about.css';
 
-const coreTech = [
-  {
-    index: '01',
-    title: 'AI Precision Agriculture',
-    subtitle: 'Smart Farm',
-    desc: 'AI algorithms automatically learn and control optimal growth conditions for each crop, maximizing functional ingredient content.',
-    tags: ['Growth Data Analytics', 'Auto-Learning', 'Environment Control', 'Ingredient Optimization'],
-    gradient: 'from-emerald-500/20 to-green-500/5',
-    border: 'group-hover:border-emerald-500/40',
-    textGradient: 'text-emerald-500/30',
-  },
-  {
-    index: '02',
-    title: 'Bio Extraction & Refining',
-    subtitle: 'Bio Extraction',
-    desc: 'Utilizing industrial extraction and concentration equipment to isolate and refine high-purity functional ingredients from natural products.',
-    tags: ['Extraction & Concentration', 'Ingredient Analysis', 'GMP Process', 'Quality Control'],
-    gradient: 'from-cyan-500/20 to-blue-500/5',
-    border: 'group-hover:border-cyan-500/40',
-    textGradient: 'text-cyan-500/30',
-  },
-  {
-    index: '03',
-    title: 'Data Platform',
-    subtitle: 'Data Platform',
-    desc: 'Continuously improving production quality and yield by collecting and analyzing data across the entire process from cultivation to extraction.',
-    tags: ['Real-time Monitoring', 'Data Pipeline', 'Quality Tracking', 'Predictive Models'],
-    gradient: 'from-indigo-500/20 to-purple-500/5',
-    border: 'group-hover:border-indigo-500/40',
-    textGradient: 'text-indigo-500/30',
-  },
-];
-
-const systemLayers = [
-  { title: 'AI / Analytics Layer', items: ['Growth Prediction Logic', 'Yield Optimization', 'Anomaly Detection'], color: 'from-cyan-500' },
-  { title: 'IoT / Control Layer', items: ['Sensor Networks', 'Automated HVAC', 'Data Harvesting'], color: 'from-indigo-500' },
-];
-
-// All UI images in carousel order
 const uiImages = [
-  { title: "Master Dashboard (G-Index)", img: "/image/G-Index UI.png" },
-  { title: "Metabolite Tracking", img: "/image/성분 데이터 UI.png" },
-  { title: "Synthesis Efficiency", img: "/image/합성 효율 UI.png" },
-  { title: "Predictive Analytics", img: "/image/성분 예측 UI.png" },
-  { title: "Harvest Yield Estimator", img: "/image/예상 수확 UI.png" },
-  { title: "Plant Stress Control", img: "/image/스트레스 UI.png" },
-  { title: "Optimization Index", img: "/image/성분 최적화 지수 UI.png" },
+  { key: 'uiTitle1', img: '/image/G-Index UI.png' },
+  { key: 'uiTitle2', img: '/image/성분 데이터 UI.png' },
+  { key: 'uiTitle3', img: '/image/합성 효율 UI.png' },
+  { key: 'uiTitle4', img: '/image/성분 예측 UI.png' },
+  { key: 'uiTitle5', img: '/image/예상 수확 UI.png' },
+  { key: 'uiTitle6', img: '/image/스트레스 UI.png' },
+  { key: 'uiTitle7', img: '/image/성분 최적화 지수 UI.png' },
 ];
 
 const fadeUp = {
@@ -62,6 +24,7 @@ const stagger = {
 };
 
 export default function Technology() {
+  const { t } = useTranslation();
   const [carouselIndex, setCarouselIndex] = useState(0);
 
   const goPrev = useCallback(() => setCarouselIndex(i => (i - 1 + uiImages.length) % uiImages.length), []);
@@ -76,7 +39,6 @@ export default function Technology() {
     return () => window.removeEventListener('keydown', handleKey);
   }, [goPrev, goNext]);
 
-  // Preload all images on mount so switching is instant
   useEffect(() => {
     uiImages.forEach(({ img }) => {
       const image = new Image();
@@ -84,18 +46,53 @@ export default function Technology() {
     });
   }, []);
 
+  const coreTech = [
+    {
+      subtitle: t('tech.core1Subtitle'),
+      title: t('tech.core1Title'),
+      desc: t('tech.core1Desc'),
+      tags: [t('tech.core1Tag1'), t('tech.core1Tag2'), t('tech.core1Tag3'), t('tech.core1Tag4')],
+      gradient: 'from-emerald-500/20 to-green-500/5',
+      border: 'group-hover:border-emerald-500/40',
+      textGradient: 'text-emerald-500/30',
+    },
+    {
+      subtitle: t('tech.core2Subtitle'),
+      title: t('tech.core2Title'),
+      desc: t('tech.core2Desc'),
+      tags: [t('tech.core2Tag1'), t('tech.core2Tag2'), t('tech.core2Tag3'), t('tech.core2Tag4')],
+      gradient: 'from-cyan-500/20 to-blue-500/5',
+      border: 'group-hover:border-cyan-500/40',
+      textGradient: 'text-cyan-500/30',
+    },
+    {
+      subtitle: t('tech.core3Subtitle'),
+      title: t('tech.core3Title'),
+      desc: t('tech.core3Desc'),
+      tags: [t('tech.core3Tag1'), t('tech.core3Tag2'), t('tech.core3Tag3'), t('tech.core3Tag4')],
+      gradient: 'from-indigo-500/20 to-purple-500/5',
+      border: 'group-hover:border-indigo-500/40',
+      textGradient: 'text-indigo-500/30',
+    },
+  ];
+
+  const systemLayers = [
+    { title: t('tech.archLayer1Title'), items: [t('tech.archLayer1Item1'), t('tech.archLayer1Item2'), t('tech.archLayer1Item3')], color: 'from-cyan-500' },
+    { title: t('tech.archLayer2Title'), items: [t('tech.archLayer2Item1'), t('tech.archLayer2Item2'), t('tech.archLayer2Item3')], color: 'from-indigo-500' },
+  ];
+
   return (
     <div className="bg-ultra-dark min-h-screen pb-20">
 
       {/* Hero Statement */}
       <section className="premium-section pt-44 pb-16">
          <motion.div className="max-w-4xl mx-auto px-6 text-center" initial="hidden" whileInView="visible" viewport={{ once: true }}>
-            <motion.span variants={fadeUp} className="premium-badge mb-6">Our Technology</motion.span>
+            <motion.span variants={fadeUp} className="premium-badge mb-6">{t('tech.heroBadge')}</motion.span>
             <motion.h2 variants={fadeUp} className="premium-heading mb-8 text-4xl md:text-5xl">
-              From Seed to <span className="highlight-glow">Extract</span>.<br/>Every Step, Controlled.
+              {t('tech.heroHeading1')} <span className="highlight-glow">{t('tech.heroHighlight')}</span><br/>{t('tech.heroHeading2')}
             </motion.h2>
             <motion.p variants={fadeUp} className="premium-subtext">
-              Three integrated systems — precision farming, bio-extraction, and data — built to work as one pipeline from cultivation to B2B supply.
+              {t('tech.heroDesc')}
             </motion.p>
          </motion.div>
       </section>
@@ -132,9 +129,9 @@ export default function Technology() {
       </section>
 
       {/* System Architecture */}
-      <section className="premium-section py-16">
+      <section className="premium-section" style={{ paddingTop: '8rem', paddingBottom: '4rem' }}>
         <motion.div className="max-w-5xl mx-auto px-6" variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-          <motion.h2 variants={fadeUp} className="text-3xl font-bold text-white mb-10 text-center">System Architecture</motion.h2>
+          <motion.h2 variants={fadeUp} className="text-3xl font-bold text-white mb-10 text-center">{t('tech.archHeading')}</motion.h2>
           <div className="grid md:grid-cols-2 gap-8">
             {systemLayers.map((layer, i) => (
               <motion.div key={i} variants={fadeUp} className="glass-dark p-10 rounded-3xl text-center border-t border-slate-700/50 relative overflow-hidden">
@@ -158,38 +155,33 @@ export default function Technology() {
       </section>
 
       {/* Farm OS Carousel */}
-      <section className="relative premium-section py-24 overflow-hidden bg-[#02050a]">
-        {/* Background glow */}
+      <section className="relative premium-section overflow-hidden bg-[#02050a]" style={{ paddingTop: '4rem', paddingBottom: '6rem' }}>
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[800px] bg-cyan-500/10 blur-[150px] rounded-full pointer-events-none z-0"></div>
 
         <div className="max-w-6xl mx-auto px-6 relative z-10">
-          {/* Header */}
           <motion.div className="text-center mb-16" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
             <motion.h2 variants={fadeUp} className="premium-heading text-4xl md:text-6xl mb-6 tracking-tighter">
-              Proprietary <span className="highlight-glow">Farm OS</span>
+              {t('tech.farmOsHeading')} <span className="highlight-glow">{t('tech.farmOsHighlight')}</span>
             </motion.h2>
             <motion.p variants={fadeUp} className="premium-subtext max-w-3xl mx-auto text-lg">
-              Real-time visualization and precise control of secondary metabolite synthesis.
-              Fully custom-built interfaces that ensure 100% data ownership.
+              {t('tech.farmOsDesc1')}
+              {' '}{t('tech.farmOsDesc2')}
             </motion.p>
           </motion.div>
 
-          {/* Carousel */}
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-            {/* Window chrome */}
             <div className="bg-slate-800/90 px-5 py-4 flex items-center gap-3 border border-b-0 border-slate-700/80 backdrop-blur-md" style={{ borderRadius: '1.5rem 1.5rem 0 0' }}>
               <div className="w-3.5 h-3.5 rounded-full bg-rose-500 border border-rose-600 shadow-sm"></div>
               <div className="w-3.5 h-3.5 rounded-full bg-amber-500 border border-amber-600 shadow-sm"></div>
               <div className="w-3.5 h-3.5 rounded-full bg-emerald-500 border border-emerald-600 shadow-sm"></div>
             </div>
 
-            {/* Image + Side Arrows — overflow-hidden clips image to radius; arrows use inline zIndex to stay above animated image */}
             <div className="relative border border-slate-700/80 overflow-hidden bg-[#02050a]" style={{ borderRadius: '0 0 1.5rem 1.5rem' }}>
               <AnimatePresence mode="wait">
                 <motion.img
                   key={carouselIndex}
                   src={uiImages[carouselIndex]?.img}
-                  alt={uiImages[carouselIndex]?.title}
+                  alt={t(`tech.${uiImages[carouselIndex]?.key}`)}
                   className="w-full h-auto block select-none"
                   draggable={false}
                   onContextMenu={(e) => e.preventDefault()}
@@ -201,7 +193,6 @@ export default function Technology() {
                 />
               </AnimatePresence>
 
-              {/* Left Arrow — dark slate bg + cyan icon, always visible on any image */}
               <button
                 onClick={goPrev}
                 aria-label="Previous"
@@ -213,7 +204,6 @@ export default function Technology() {
                 </svg>
               </button>
 
-              {/* Right Arrow — dark slate bg + cyan icon, always visible on any image */}
               <button
                 onClick={goNext}
                 aria-label="Next"
@@ -226,9 +216,8 @@ export default function Technology() {
               </button>
             </div>
 
-            {/* Dot indicators */}
             <div className="flex justify-center gap-2 mt-6">
-              {uiImages.map((_, i) => (
+              {uiImages.map((item, i) => (
                 <button
                   key={i}
                   onClick={() => setCarouselIndex(i)}
@@ -236,7 +225,7 @@ export default function Technology() {
                   className={`h-2 rounded-full transition-all duration-300 ${
                     i === carouselIndex ? 'bg-cyan-400' : 'bg-slate-600 hover:bg-slate-400'
                   }`}
-                  aria-label={uiImages[i].title}
+                  aria-label={t(`tech.${item.key}`)}
                 />
               ))}
             </div>
@@ -246,16 +235,16 @@ export default function Technology() {
       </section>
 
       {/* IP & R&D Strategy */}
-      <section className="premium-section py-16">
+      <section className="premium-section" style={{ paddingTop: '4rem', paddingBottom: '4rem' }}>
         <motion.div className="max-w-4xl mx-auto px-6" initial="hidden" whileInView="visible" viewport={{ once: true }}>
-          <motion.h2 variants={fadeUp} className="text-3xl font-bold text-white mb-10 text-center">IP &amp; R&amp;D Strategy</motion.h2>
+          <motion.h2 variants={fadeUp} className="text-3xl font-bold text-white mb-10 text-center">{t('tech.ipHeading')}</motion.h2>
           <motion.div variants={fadeUp} className="glass p-8 md:p-12 rounded-3xl group hover:border-cyan-500/30 transition-colors duration-500">
              <div className="flex flex-col md:flex-row items-center gap-8">
                <div className="text-cyan-500/20 text-7xl md:text-8xl font-light font-mono italic tracking-tighter shrink-0 group-hover:text-cyan-400/50 transition-colors duration-500">IP</div>
                <div>
-                  <h3 className="text-2xl font-bold text-white mb-4">Building a Proprietary Foundation</h3>
+                  <h3 className="text-2xl font-bold text-white mb-4">{t('tech.ipSubtitle')}</h3>
                   <p className="text-slate-400 leading-relaxed">
-                    The AI growth algorithms and extraction process protocols developed at COREX are being systematically documented and filed for IP protection through Korea's IP Stepping Stone program. Proprietary data and process ownership is a core part of how we build long-term B2B supply reliability.
+                    {t('tech.ipDesc')}
                   </p>
                </div>
              </div>

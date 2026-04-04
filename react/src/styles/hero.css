@@ -173,6 +173,7 @@
     color: #f8fafc;
     letter-spacing: -0.03em;
     margin-bottom: 1.5rem;
+    white-space: pre-wrap !important;
 }
 
 .premium-subtext {
@@ -181,6 +182,7 @@
     max-width: 700px;
     margin: 0 auto;
     line-height: 1.6;
+    white-space: pre-wrap !important;
 }
 
 .bento-grid {
@@ -306,7 +308,7 @@
 .cinematic-gradient {
     position: absolute;
     inset: 0;
-    background: linear-gradient(0deg, rgba(3,7,18,0.9) 0%, rgba(3,7,18,0.4) 100%);
+    background: linear-gradient(0deg, rgba(3,7,18,0.7) 0%, rgba(3,7,18,0.25) 100%);
 }
 
 .cinematic-content {

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { MapPin, Mail, Linkedin, Twitter, Instagram } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import '../styles/about.css';
 
 const fadeUp = {
@@ -13,14 +14,16 @@ const stagger = {
 };
 
 export default function Contact() {
+  const { t } = useTranslation();
+
   return (
     <div className="bg-ultra-dark min-h-screen pb-20">
 
       <section className="premium-section pt-44 pb-24">
         <div className="max-w-5xl mx-auto px-6">
           <motion.div className="text-center mb-16" initial="hidden" animate="visible" variants={fadeUp}>
-             <h2 className="premium-heading mb-6">Get in Touch</h2>
-             <p className="premium-subtext max-w-2xl mx-auto">Whether you are looking to secure high-purity raw materials, explore joint R&D, or invest in our vision, our team is ready to connect.</p>
+             <h2 className="premium-heading mb-6">{t('contact.heading')}</h2>
+             <p className="premium-subtext max-w-2xl mx-auto">{t('contact.desc')}</p>
           </motion.div>
 
           <motion.div className="grid md:grid-cols-2 gap-8" variants={stagger} initial="hidden" animate="visible">
@@ -29,10 +32,9 @@ export default function Contact() {
                 <div className="w-14 h-14 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center mb-8 group-hover:bg-cyan-500/20 transition-colors">
                    <MapPin className="text-cyan-400" size={24} />
                 </div>
-                <h4 className="text-2xl font-bold text-white mb-4">Headquarters</h4>
+                <h4 className="text-2xl font-bold text-white mb-4">{t('contact.hqTitle')}</h4>
                 <p className="text-slate-400 leading-relaxed text-lg">
-                  33-7, Jongjari-ro, Dongsan-myeon,<br/>
-                  Chuncheon-si, Gangwon-do, KR
+                  {t('contact.hqAddress1')}<br/>{t('contact.hqAddress2')}
                 </p>
              </motion.div>
 
@@ -41,7 +43,7 @@ export default function Contact() {
                 <div className="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-8 group-hover:bg-blue-500/20 transition-colors">
                    <Mail className="text-blue-400" size={24} />
                 </div>
-                <h4 className="text-2xl font-bold text-white mb-4">Email Inquiries</h4>
+                <h4 className="text-2xl font-bold text-white mb-4">{t('contact.emailTitle')}</h4>
                 <a href="mailto:22qjsro@corexbiotech.com" className="text-cyan-400 text-lg hover:text-cyan-300 transition-colors font-mono mb-8 block">
                   22qjsro@corexbiotech.com
                 </a>

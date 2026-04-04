@@ -61,6 +61,8 @@
     align-items: center;
     list-style: none;
     gap: var(--spacing-3xl);
+    margin-left: auto;
+    margin-right: 4rem;
 }
 
 .desktop-links .nav-link a {
@@ -78,6 +80,70 @@
 /* Dropdown Menu */
 .nav-link.has-dropdown {
     position: static;
+}
+
+/* Actions Group (Lang + Hamburger) */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/* Language Switch Group */
+.lang-switch-group {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.03));
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 9999px;
+    padding: 0.25rem;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.lang-switch-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 0.4rem 0.8rem;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
+    white-space: nowrap;
+}
+
+.lang-switch-btn:hover {
+    color: #fff;
+}
+
+.lang-switch-btn.active {
+    background: rgba(0, 191, 216, 0.15);
+    color: #00bfd8;
+    box-shadow: 0 0 12px rgba(0, 191, 216, 0.2);
+}
+
+.lang-switch-btn.active .lang-flag {
+    opacity: 1;
+    filter: grayscale(0%);
+}
+
+.lang-flag {
+    font-size: 1rem;
+    opacity: 0.5;
+    filter: grayscale(80%);
+    transition: all 0.3s ease;
+}
+
+.lang-switch-btn:hover .lang-flag {
+    opacity: 0.8;
+    filter: grayscale(30%);
 }
 
 /* Hamburger Button */
@@ -385,7 +451,25 @@
 
 /* Responsive */
 @media (max-width: 1024px) {
+    .nav-actions {
+        gap: 1.5rem;
+    }
+
+    .lang-switch-btn {
+        padding: 0.3rem 0.5rem;
+        font-size: 0.65rem;
+        gap: 0.25rem;
+    }
+
+    .lang-flag {
+        font-size: 0.8rem;
+    }
+
     .desktop-links {
+        display: none !important;
+    }
+
+    .hidden-on-mobile {
         display: none !important;
     }
 

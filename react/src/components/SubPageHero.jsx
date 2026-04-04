@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 export default function SubPageHero({ category, title, currentPage, breadcrumbParent, subNavItems }) {
+  const { t } = useTranslation();
+
   return (
     <section className={`premium-sub-hero ${category}`}>
       <div className="premium-hero-bg"></div>
@@ -15,7 +18,7 @@ export default function SubPageHero({ category, title, currentPage, breadcrumbPa
         >
           <h1 className="premium-hero-title">{title}</h1>
           <div className="premium-breadcrumb">
-            <Link to="/" className="home-link">Home</Link>
+            <Link to="/" className="home-link">{t('nav.home')}</Link>
             {breadcrumbParent && (
               <>
                 <span className="separator">/</span>

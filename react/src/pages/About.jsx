@@ -43,7 +43,7 @@ export default function About() {
 
   const teamData = [
     {
-      name: '유동규',
+      name: t('about.member1Name'),
       role: t('about.member1Role'),
       tagline: t('about.member1Tagline'),
       description: t('about.member1Desc'),
@@ -52,7 +52,7 @@ export default function About() {
       borderClass: 'group-hover:border-cyan-500/40',
     },
     {
-      name: '김수찬',
+      name: t('about.member2Name'),
       role: t('about.member2Role'),
       tagline: t('about.member2Tagline'),
       description: t('about.member2Desc'),
@@ -61,7 +61,7 @@ export default function About() {
       borderClass: 'group-hover:border-indigo-500/40',
     },
     {
-      name: '주혜우',
+      name: t('about.member3Name'),
       role: t('about.member3Role'),
       tagline: t('about.member3Tagline'),
       description: t('about.member3Desc'),
@@ -78,10 +78,9 @@ export default function About() {
       <section className="premium-section text-center pt-44 pb-16">
         <motion.div className="max-w-4xl mx-auto px-6" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
           <span className="premium-badge mb-6">{t('about.visionBadge')}</span>
-          <h2 className="premium-heading mb-8 break-keep">
+          <h2 className="premium-heading mb-8" style={{ wordBreak: 'keep-all' }}>
             {t('about.visionHeading1')}<br/>
-            {t('about.visionHeading2')} <span className="highlight-glow">{t('about.visionHighlight')}</span>
-            <span className="whitespace-nowrap">{t('about.visionHeadingSuffix', '')}</span>
+            {t('about.visionHeading2')}<span className="highlight-glow" style={{ whiteSpace: 'nowrap' }}>{t('about.visionHighlight')}</span>{t('about.visionHeadingSuffix', '')}
           </h2>
           <p className="premium-subtext">
             {tLines(t('about.visionDesc'))}
@@ -164,15 +163,15 @@ export default function About() {
                <li className="flex items-start gap-4">
                  <div className="w-2 h-2 rounded-full bg-cyan-400 mt-2 shrink-0 shadow-[0_0_10px_rgba(34,211,238,0.5)]" />
                   <div>
-                    <strong className="text-white block mb-2 text-lg whitespace-pre-wrap">{t('about.solution1Title')}</strong>
-                    <span className="text-slate-400 whitespace-pre-wrap">{tLines(t('about.solution1Desc'))}</span>
+                    <strong style={{ display: 'block', marginBottom: '0.5rem', marginTop: '0.5rem' }} className="text-white text-lg">{t('about.solution1Title')}</strong>
+                    <span className="text-slate-400">{tLines(t('about.solution1Desc'))}</span>
                   </div>
                 </li>
                 <li className="flex items-start gap-4">
                   <div className="w-2 h-2 rounded-full bg-cyan-400 mt-2 shrink-0 shadow-[0_0_10px_rgba(34,211,238,0.5)]" />
                   <div>
-                    <strong className="text-white block mb-2 text-lg whitespace-pre-wrap">{t('about.solution2Title')}</strong>
-                    <span className="text-slate-400 whitespace-pre-wrap">{tLines(t('about.solution2Desc'))}</span>
+                    <strong style={{ display: 'block', marginBottom: '0.5rem' }} className="text-white text-lg">{t('about.solution2Title')}</strong>
+                    <span className="text-slate-400">{tLines(t('about.solution2Desc'))}</span>
                   </div>
                </li>
              </ul>

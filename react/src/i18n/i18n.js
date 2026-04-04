@@ -10,16 +10,11 @@ i18n.use(initReactI18next).init({
     en: { translation: en },
     ko: { translation: ko },
   },
-  lng: localStorage.getItem('i18nextLng') || 'en',
-  fallbackLng: 'en',
+  lng: 'ko',
+  fallbackLng: 'ko',
   interpolation: {
     escapeValue: false,
   },
-});
-
-// 언어 변경 시 localStorage에 저장
-i18n.on('languageChanged', (lng) => {
-  localStorage.setItem('i18nextLng', lng);
 });
 
 export default i18n;

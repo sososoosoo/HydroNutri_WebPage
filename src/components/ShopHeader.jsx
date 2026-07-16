@@ -6,7 +6,6 @@ const navItems = [
   { key: 'company', path: '/shopHome/company' },
   { key: 'business', path: '/shopHome/business' },
   { key: 'products', path: '/shopHome/products' },
-  { key: 'notice', path: '/shopHome/notice' },
   { key: 'news', path: '/shopHome/news' },
   { key: 'quote', path: '/shopHome/quote' },
 ];

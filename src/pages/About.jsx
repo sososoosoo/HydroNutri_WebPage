@@ -56,18 +56,9 @@ export default function About() {
       role: t('about.member2Role'),
       tagline: t('about.member2Tagline'),
       description: t('about.member2Desc'),
-      iconText: 'CTO',
+      iconText: 'Research Engineer',
       gradientClass: 'from-indigo-500/20 to-purple-500/5',
       borderClass: 'group-hover:border-indigo-500/40',
-    },
-    {
-      name: t('about.member3Name'),
-      role: t('about.member3Role'),
-      tagline: t('about.member3Tagline'),
-      description: t('about.member3Desc'),
-      iconText: 'CSO',
-      gradientClass: 'from-emerald-500/20 to-teal-500/5',
-      borderClass: 'group-hover:border-emerald-500/40',
     },
   ];
 

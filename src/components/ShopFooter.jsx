@@ -19,10 +19,8 @@ export default function ShopFooter() {
             <Link to="/shopHome/company">{t('shopNav.company')}</Link>
             <Link to="/shopHome/business">{t('shopNav.business')}</Link>
             <Link to="/shopHome/products">{t('shopNav.products')}</Link>
-            <Link to="/shopHome/notice">{t('shopNav.notice')}</Link>
             <Link to="/shopHome/news">{t('shopNav.news')}</Link>
             <Link to="/shopHome/quote">{t('shopNav.quote')}</Link>
-            <Link to="/">{t('shop.toCorporate')}</Link>
           </nav>
         </div>
 
@@ -33,7 +31,6 @@ export default function ShopFooter() {
           <p>
             <a href={`mailto:${t('shop.footerEmail')}`}>{t('shop.footerEmail')}</a>
           </p>
-          <p className="shop-footer-notice">{t('shop.footerNotice')}</p>
           <p className="shop-footer-copy">{t('footer.copyright')}</p>
         </div>
       </div>

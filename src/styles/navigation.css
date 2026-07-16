@@ -26,6 +26,7 @@
 .logo {
     display: flex;
     align-items: center;
+    flex-shrink: 0;
     font-size: var(--fs-3xl);
     font-weight: 800;
     color: #0d1b2e;
@@ -60,9 +61,10 @@
     display: flex;
     align-items: center;
     list-style: none;
-    gap: var(--spacing-3xl);
+    gap: var(--spacing-xl);
     margin-left: auto;
-    margin-right: 4rem;
+    margin-right: var(--spacing-xl);
+    white-space: nowrap;
 }
 
 .desktop-links .nav-link a {
@@ -144,6 +146,7 @@
 .nav-actions {
     display: flex;
     align-items: center;
+    flex-shrink: 0;
     gap: 1.5rem;
 }
 
@@ -531,6 +534,27 @@
 }
 
 /* Responsive */
+/* 데스크톱 메뉴가 보이는 최소 폭 구간 — 로고와 겹치지 않도록 간격을 더 조인다 */
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .desktop-links {
+        gap: var(--spacing-md);
+        margin-right: var(--spacing-md);
+        font-size: 0.9rem;
+    }
+
+    .logo-img {
+        height: 52px;
+    }
+
+    .nav-actions {
+        gap: 0.85rem;
+    }
+
+    .store-link {
+        padding: 0.5rem 0.9rem;
+    }
+}
+
 @media (max-width: 1024px) {
     .nav-actions {
         gap: 1.5rem;

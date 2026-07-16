@@ -1,14 +1,12 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { cosmetics, ingredients, discountRate } from '../../data/products';
+import { cosmetics, ingredients } from '../../data/products';
 import ShopProductCard from '../../components/ShopProductCard';
 
 export default function ShopHome() {
   const { t } = useTranslation();
 
-  const deals = [...ingredients]
-    .sort((a, b) => discountRate(b.listPrice, b.price) - discountRate(a.listPrice, a.price))
-    .slice(0, 8);
+  const featured = ingredients.slice(0, 8);
 
   const newest = ingredients.slice(-8);
 
@@ -53,17 +51,14 @@ export default function ShopHome() {
         </div>
       </section>
 
-      {/* Best deals */}
+      {/* Featured */}
       <section className="shop-container shop-section">
         <div className="shop-section-head">
-          <h2>
-            <span className="shop-section-accent">{t('shop.sectionDealsAccent')}</span>{' '}
-            {t('shop.sectionDeals')}
-          </h2>
+          <h2>{t('shop.sectionDeals')}</h2>
           <Link to="/shopHome/ingredients">{t('shop.viewAll')}</Link>
         </div>
         <div className="sp-grid">
-          {deals.map((p) => (
+          {featured.map((p) => (
             <ShopProductCard key={p.id} product={p} />
           ))}
         </div>

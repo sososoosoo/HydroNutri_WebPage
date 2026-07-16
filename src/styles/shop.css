@@ -570,6 +570,14 @@
     margin-right: 0.1rem;
 }
 
+/* 가격 대신 표시하는 견적문의 라벨 (카드) */
+.sp-inquiry {
+    margin-top: 0.55rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--shop-primary);
+}
+
 /* 카드 전체가 상세 페이지 링크 */
 .sp-link {
     display: flex;
@@ -683,6 +691,21 @@
     border-radius: 0.85rem;
     background: var(--shop-bg-soft);
     border: 1px solid var(--shop-line);
+}
+
+/* 가격 대신 표시하는 견적문의 안내 (상세) */
+.sd-price-inquiry {
+    display: block;
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--shop-primary);
+}
+
+.sd-price-inquiry-note {
+    margin-top: 0.35rem;
+    font-size: 0.9rem;
+    color: #6b7280;
 }
 
 .sd-price-row {
@@ -1243,13 +1266,12 @@
     color: #9ca3af;
 }
 
-.shop-footer-notice {
-    margin-top: 0.75rem;
-    word-break: keep-all;
+.shop-footer-info p {
+    margin: 0;
 }
 
 .shop-footer-copy {
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     font-size: 0.75rem;
 }
 
@@ -1694,17 +1716,23 @@
     word-break: keep-all;
 }
 
-/* 뉴스 · 스토리 */
+/* 뉴스 · 스토리 — 한 줄에 2개 */
 .shop-news-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.25rem;
+}
+
+@media (max-width: 560px) {
+    .shop-news-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .shop-news-card {
     display: flex;
     flex-direction: column;
-    padding: 1.75rem;
+    overflow: hidden;
     border: 1px solid var(--shop-line);
     border-radius: 1rem;
     background: #fff;
@@ -1715,6 +1743,46 @@
     border-color: var(--shop-primary);
     box-shadow: 0 12px 28px rgba(15, 23, 42, 0.1);
     transform: translateY(-3px);
+}
+
+/* 모바일: 사진이 카드 위쪽에 꽉 차게 */
+.shop-news-thumb {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: var(--shop-bg-soft);
+}
+
+/* 데스크톱: 좌 글 / 우 사진 (사진 없으면 글만 꽉 차게) */
+@media (min-width: 768px) {
+    .shop-news-card.has-image {
+        flex-direction: row-reverse;
+        align-items: flex-start;
+    }
+
+    /* 카드 높이에 맞춰 늘이지 않고 4:3 로 고정한다.
+       기사 사진이 가로/세로 제각각이라, 늘이면 가로 사진이 세로 띠로 잘린다. */
+    .shop-news-card.has-image .shop-news-thumb {
+        width: 10.5rem;
+        flex-shrink: 0;
+        aspect-ratio: 4 / 3;
+        margin: 1.5rem 1.5rem 0 0;
+        border-radius: 0.6rem;
+    }
+}
+
+.shop-news-thumb img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.shop-news-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 1.5rem;
 }
 
 .shop-news-meta {
@@ -1746,7 +1814,12 @@
     margin-bottom: 0.7rem;
 }
 
+/* 카드 폭이 좁으므로 요약은 5줄에서 자른다 — 카드 높이를 고르게 유지 */
 .shop-news-summary {
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
     flex: 1;
     font-size: 0.88rem;
     line-height: 1.7;

@@ -1,12 +1,20 @@
-// 스토어 콘텐츠 데이터 — 뉴스/스토리, 공지사항
+// 스토어 콘텐츠 데이터 — 뉴스/스토리
 // 제품 데이터(products.js)와 동일한 패턴으로 한/영 필드를 함께 담아
 // 컴포넌트에서 i18n.language 에 따라 선택해 사용한다.
 
 // ── 뉴스 · 스토리 (외부 기사 링크) ──
+//
+// image: (선택) 기사 대표 이미지. 넣으면 카드 오른쪽에 사진이 붙고,
+//        생략하면 글만 표시된다. 파일이 없거나 경로가 틀려도 자동으로 글만 표시된다.
+//        public/image/news/ 에 파일을 저장한 뒤 '/image/news/파일명.png' 형태로 지정한다.
+//        파일명은 공백·한글 없이 영문으로 (URL 인코딩 문제를 피하기 위함).
+//        여러 기사가 같은 사진을 공유해도 된다 — n1, n2 가 AFPRO 사진 하나를 함께 쓴다.
+//        기사 사진은 언론사에 저작권이 있으므로, 직접 촬영·제공한 사진만 쓰는 것이 안전하다.
 export const newsItems = [
   {
     id: 'n1',
     date: '2026.06.23',
+    image: '/image/news/afpro2026-corex.png',
     source: '에이빙(AVING)',
     sourceEn: 'AVING',
     title: '코렉스, AFPRO 2026서 기능성 식물 표준 원료 공개… "K-Ingredient 표준화"',
@@ -20,6 +28,7 @@ export const newsItems = [
   {
     id: 'n2',
     date: '2026.06.23',
+    image: '/image/news/afpro2026-corex.png',
     source: '라이브뉴스',
     sourceEn: 'Live News',
     title: '코렉스, AFPRO 2026에 K-Ingredient 표준화 솔루션 선보인다',
@@ -33,6 +42,7 @@ export const newsItems = [
   {
     id: 'n3',
     date: '2026.06.11',
+    image: '/image/news/startupdaily-corex.png',
     source: '스타트업데일리',
     sourceEn: 'Startup Daily',
     title: "COREX, 한국 인삼·병풀을 '글로벌 표준 원료'로 바꾼다",
@@ -46,6 +56,7 @@ export const newsItems = [
   {
     id: 'n4',
     date: '2026.05.21',
+    image: '/image/news/kookmin-campustown-mou.jpg',
     source: '이투데이',
     sourceEn: 'Etoday',
     title: '국민대 캠퍼스타운, 국제공정무역기구와 창업생태계 조성 위한 MOU 체결',
@@ -55,49 +66,5 @@ export const newsItems = [
     summaryEn:
       'Kookmin University Campus Town signed an agreement with Fairtrade International Korea to support young startups going global and to weave ESG and fair-trade values into their business models.',
     url: 'https://v.daum.net/v/2nbK520HvV?f=p',
-  },
-];
-
-// ── 공지사항 ──
-export const notices = [
-  {
-    id: 'no1',
-    date: '2026.06.23',
-    category: '행사',
-    categoryEn: 'Event',
-    title: 'AFPRO 2026 참가 안내',
-    titleEn: 'COREX at AFPRO 2026',
-    body: '7월 15–17일 코엑스에서 열리는 제4회 농식품 스타트업 라이징 엑스포(AFPRO 2026)에 참가합니다. COREX 부스에서 K-Ingredient 표준화 솔루션과 Bioactive Passport를 직접 만나보실 수 있습니다.',
-    bodyEn: 'COREX is exhibiting at AFPRO 2026 (COEX, July 15–17). Visit our booth to see the K-Ingredient standardization solution and the Bioactive Passport in person.',
-  },
-  {
-    id: 'no2',
-    date: '2026.06.11',
-    category: '보도',
-    categoryEn: 'Press',
-    title: '언론 보도 — 표준화 기술 소개',
-    titleEn: 'In the press — our standardization technology',
-    body: '스타트업데일리에 COREX의 기능성 식물 표준화 기술과 성과가 소개되었습니다. 자세한 내용은 뉴스·스토리에서 확인하실 수 있습니다.',
-    bodyEn: 'Startup Daily featured COREX’s functional-plant standardization technology and results. Read more in the News & Stories section.',
-  },
-  {
-    id: 'no3',
-    date: '2026.02.01',
-    category: '안내',
-    categoryEn: 'Notice',
-    title: 'COREX 법인 설립',
-    titleEn: 'COREX founded',
-    body: '강원특별자치도 춘천에서 COREX가 사업을 시작했습니다. 기능성 식물을 기반으로 표준화된 바이오액티브 소재를 공급합니다.',
-    bodyEn: 'COREX began operations in Chuncheon, Gangwon. We supply standardized bioactive materials made from functional plants.',
-  },
-  {
-    id: 'no4',
-    date: '2026.07.01',
-    category: '스토어',
-    categoryEn: 'Store',
-    title: '온라인 결제 준비 안내',
-    titleEn: 'Online payment coming soon',
-    body: '현재 스토어는 문의 기반으로 운영됩니다. 온라인 결제 기능은 준비 중이며, 견적문의를 남겨주시면 결제·배송 일정을 안내해 드립니다.',
-    bodyEn: 'The store currently runs on an inquiry basis. Online payment is in preparation — leave a quote request and we will guide you through payment and delivery.',
   },
 ];

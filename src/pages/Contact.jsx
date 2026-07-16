@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { MapPin, FlaskConical, Mail, Linkedin, Twitter, Instagram } from 'lucide-react';
+import { MapPin, FlaskConical, Mail, Instagram } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import '../styles/about.css';
 
@@ -61,9 +61,15 @@ export default function Contact() {
 
                 {/* Social Links */}
                 <div className="flex gap-4 mt-auto pt-8 border-t border-slate-800">
-                   <a href="#" className="w-12 h-12 rounded-full glass flex items-center justify-center text-slate-400 hover:text-white border-slate-800 hover:border-cyan-500 hover:bg-cyan-500/10 transition-all"><Linkedin size={20} /></a>
-                   <a href="#" className="w-12 h-12 rounded-full glass flex items-center justify-center text-slate-400 hover:text-white border-slate-800 hover:border-cyan-500 hover:bg-cyan-500/10 transition-all"><Twitter size={20} /></a>
-                   <a href="#" className="w-12 h-12 rounded-full glass flex items-center justify-center text-slate-400 hover:text-white border-slate-800 hover:border-cyan-500 hover:bg-cyan-500/10 transition-all"><Instagram size={20} /></a>
+                   <a
+                     href="https://www.instagram.com/corexbiotech_official"
+                     target="_blank"
+                     rel="noopener noreferrer"
+                     aria-label="COREX Instagram"
+                     className="w-12 h-12 rounded-full glass flex items-center justify-center text-slate-400 hover:text-white border-slate-800 hover:border-cyan-500 hover:bg-cyan-500/10 transition-all"
+                   >
+                     <Instagram size={20} />
+                   </a>
                 </div>
              </motion.div>
           </motion.div>

@@ -1,6 +1,6 @@
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { findProduct, discountRate, formatKRW, cosmetics, ingredients } from '../../data/products';
+import { findProduct, cosmetics, ingredients } from '../../data/products';
 import ShopProductCard from '../../components/ShopProductCard';
 
 export default function ShopProduct() {
@@ -13,11 +13,9 @@ export default function ShopProduct() {
   }
 
   const isEn = i18n.language === 'en';
-  const { listPrice, price, category } = product;
-  const discount = discountRate(listPrice, price);
+  const { category } = product;
   const name = isEn && product.nameEn ? product.nameEn : product.name;
   const desc = isEn && product.descEn ? product.descEn : product.desc;
-  const saved = listPrice - price;
 
   // 같은 카테고리의 다른 상품 4개 추천
   const pool = category === 'cosmetics' ? cosmetics : ingredients;
@@ -42,7 +40,6 @@ export default function ShopProduct() {
           ) : (
             <div className="sd-thumb-placeholder">{t('shop.imagePending')}</div>
           )}
-          {discount > 0 && <span className="sd-badge">{discount}%</span>}
         </div>
 
         {/* 정보 */}
@@ -54,21 +51,8 @@ export default function ShopProduct() {
           {desc && <p className="sd-desc">{desc}</p>}
 
           <div className="sd-price-box">
-            {discount > 0 && (
-              <div className="sd-price-row">
-                <span className="sd-original">{formatKRW(listPrice)}{t('shop.won')}</span>
-                <span className="sd-off">{discount}%{t('shop.off')}</span>
-              </div>
-            )}
-            <div className="sd-final-row">
-              <strong className="sd-final">{formatKRW(price)}</strong>
-              <span className="sd-won">{t('shop.won')}</span>
-            </div>
-            {discount > 0 && (
-              <p className="sd-saved">
-                {t('shop.savedLabel')} {formatKRW(saved)}{t('shop.won')}
-              </p>
-            )}
+            <span className="sd-price-inquiry">{t('shop.priceInquiry')}</span>
+            <p className="sd-price-inquiry-note">{t('shop.priceInquiryNote')}</p>
           </div>
 
           {/* 스펙 표 */}
@@ -107,7 +91,6 @@ export default function ShopProduct() {
             <li>{t('shop.detailPoint2')}</li>
             <li>{t('shop.detailPoint3')}</li>
           </ul>
-          <p className="sd-detail-caution">{t('shop.detailCaution')}</p>
         </div>
       </div>
 

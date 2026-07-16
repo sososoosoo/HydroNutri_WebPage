@@ -6,6 +6,7 @@ const footerLinkKeys = [
   { key: 'about', path: '/about' },
   { key: 'technology', path: '/technology' },
   { key: 'ingredients', path: '/roadmap' },
+  { key: 'news', path: '/news' },
   { key: 'contact', path: '/contact' },
 ];
 

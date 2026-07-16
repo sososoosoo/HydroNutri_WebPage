@@ -6,10 +6,10 @@
     left: 0;
     width: 100%;
     height: 80px;
-    background: #0d1b2e;
+    background: #ffffff;
     z-index: var(--z-fixed);
     transition: var(--transition-normal);
-    border-bottom: 1px solid rgba(0, 191, 216, 0.15);
+    border-bottom: 1px solid rgba(13, 27, 46, 0.08);
 }
 
 .nav {
@@ -28,7 +28,7 @@
     align-items: center;
     font-size: var(--fs-3xl);
     font-weight: 800;
-    color: #ffffff;
+    color: #0d1b2e;
     text-decoration: none;
     z-index: var(--z-modal);
 }
@@ -49,7 +49,7 @@
 .logo-text {
     font-family: 'Montserrat', sans-serif;
     margin-left: var(--spacing-sm);
-    background: linear-gradient(to right, #ffffff, #00bfd8);
+    background: linear-gradient(to right, #0d1b2e, #00bfd8);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -66,7 +66,7 @@
 }
 
 .desktop-links .nav-link a {
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(13, 27, 46, 0.85);
     text-decoration: none;
     border-radius: var(--radius-md);
     transition: var(--transition-normal);
@@ -79,26 +79,107 @@
 
 /* Dropdown Menu */
 .nav-link.has-dropdown {
-    position: static;
+    position: relative;
 }
 
-/* Actions Group (Lang + Hamburger) */
+.nav-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, 8px);
+    min-width: 160px;
+    padding: 0.5rem;
+    margin-top: 0.75rem;
+    background: #ffffff;
+    border: 1px solid rgba(13, 27, 46, 0.08);
+    border-radius: 0.85rem;
+    box-shadow: 0 12px 32px rgba(13, 27, 46, 0.12);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+    z-index: 1000;
+}
+
+.nav-dropdown::before {
+    /* hover bridge so the pointer can travel from the link to the panel */
+    content: '';
+    position: absolute;
+    top: -0.75rem;
+    left: 0;
+    right: 0;
+    height: 0.75rem;
+}
+
+.nav-dropdown.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0);
+}
+
+.nav-dropdown ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.nav-dropdown a {
+    display: block;
+    padding: 0.6rem 0.9rem;
+    border-radius: 0.55rem;
+    color: rgba(13, 27, 46, 0.85);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: var(--transition-normal);
+}
+
+.nav-dropdown a:hover {
+    background: rgba(0, 191, 216, 0.12);
+    color: #00bfd8;
+}
+
+/* Actions Group (Store + Lang + Hamburger) */
 .nav-actions {
     display: flex;
     align-items: center;
     gap: 1.5rem;
 }
 
+/* 스토어 바로가기 — 고스트(아웃라인) 스타일 */
+.store-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 1.4rem;
+    border-radius: 0.5rem;
+    background: transparent;
+    border: 1.5px solid rgba(11, 122, 107, 0.55);
+    color: #0b7a6b;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: var(--transition-normal);
+}
+
+.store-link:hover {
+    border-color: #0b7a6b;
+    background: rgba(11, 122, 107, 0.07);
+}
+
 /* Language Switch Group */
 .lang-switch-group {
     display: flex;
     align-items: center;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.03));
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(13, 27, 46, 0.04);
+    border: 1px solid rgba(13, 27, 46, 0.12);
     border-radius: 9999px;
     padding: 0.25rem;
     backdrop-filter: blur(12px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 8px rgba(13, 27, 46, 0.06);
 }
 
 .lang-switch-btn {
@@ -107,7 +188,7 @@
     gap: 0.4rem;
     background: transparent;
     border: none;
-    color: #94a3b8;
+    color: #64748b;
     font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 0.05em;
@@ -164,7 +245,7 @@
     left: 0;
     width: 100%;
     height: 2px;
-    background: #ffffff;
+    background: #0d1b2e;
     border-radius: 1px;
     transition: var(--transition-normal);
     transform-origin: center;

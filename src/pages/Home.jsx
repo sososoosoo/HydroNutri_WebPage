@@ -81,6 +81,9 @@ export default function Home() {
             <Link to="/technology" className="premium-btn primary-glow">
               {t('home.heroCta')} <ArrowRight size={18} className="btn-icon" />
             </Link>
+            <Link to="/shopHome" className="premium-btn ghost-glow">
+              {t('home.storeCta')} <ArrowRight size={18} className="btn-icon" />
+            </Link>
           </motion.div>
         </motion.div>
       </section>
@@ -139,23 +142,18 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Narrative Section - Overlap Brutalism / Cinematic */}
+      {/* 스토어 유도 섹션 */}
       <section className="cinematic-section">
         <motion.div
           className="cinematic-wrapper"
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
+          transition={{ duration: 0.9, ease: "easeOut" }}
         >
-          <div className="cinematic-bg">
-            <img src={IMGS.rnd} alt="R&D Center" />
-            <div className="cinematic-gradient"></div>
-          </div>
           <div className="cinematic-content">
-            <h2>{t('home.cinematicHeading1')}<br /><span className="text-gradient-cyan">{t('home.cinematicHeading2')}</span></h2>
-            <Link to="/about" className="premium-btn ghost-glow mt-6">
-              {t('home.cinematicCta')}
+            <Link to="/shopHome" className="premium-btn primary-glow cinematic-store-btn">
+              {t('home.storeCta')} <ArrowRight size={20} className="btn-icon" />
             </Link>
           </div>
         </motion.div>

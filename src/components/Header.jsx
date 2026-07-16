@@ -45,6 +45,10 @@ export default function Header() {
   const navData = navKeys.map((item) => ({
     ...item,
     label: t(`nav.${item.key}`),
+    children: item.childKeys?.map((child) => ({
+      ...child,
+      label: t(`nav.${child.key}`),
+    })),
   }));
 
   // Handle scroll for dynamic header
@@ -120,28 +124,29 @@ export default function Header() {
               <Link to={item.path}>{item.label}</Link>
               {item.children && (
                 <div
-                  className={`mega-menu-container${visibleMega === i ? ' visible' : ''}`}
+                  className={`nav-dropdown${visibleMega === i ? ' visible' : ''}`}
                   onMouseEnter={() => clearTimeout(leaveTimeout.current)}
-                  onMouseLeave={() => setVisibleMega(null)}
+                  onMouseLeave={handleDropdownLeave}
                 >
-                  <div className="mega-menu-content">
-                    <div className="mega-menu-title">{item.label}</div>
-                    <ul className="mega-menu-links">
-                      {item.children.map((child) => (
-                        <li key={child.path}>
-                          <Link to={child.path}>{child.label}</Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  <ul>
+                    {item.children.map((child) => (
+                      <li key={child.path}>
+                        <Link to={child.path}>{child.label}</Link>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               )}
             </li>
           ))}
         </ul>
 
-        {/* Actions (Language Toggle + Hamburger) */}
+        {/* Actions (Store link + Language Toggle + Hamburger) */}
         <div className="nav-actions">
+          <Link to="/shopHome" className="store-link">
+            {t('nav.store')}
+          </Link>
+
           <div className="lang-switch-group">
             <button 
               className={`lang-switch-btn ${currentLang === 'en' ? 'active' : ''}`} 

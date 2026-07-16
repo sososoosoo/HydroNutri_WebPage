@@ -313,6 +313,27 @@ a:hover {
     color: var(--secondary-green);
 }
 
+/* 푸터 하단 네비게이션 */
+.footer-nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1.5rem 2.5rem;
+    align-items: flex-start;
+    align-content: flex-start;
+}
+
+.footer-nav-link {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition-normal);
+}
+
+.footer-nav-link:hover {
+    color: var(--secondary-green);
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
     html { font-size: 15px; }
@@ -360,6 +381,13 @@ a:hover {
 
     .footer-sub-links {
         justify-content: center;
+    }
+
+    .footer-nav {
+        justify-content: center;
+        gap: 1.1rem 1.75rem;
+        max-width: 22rem;
+        margin: 0 auto;
     }
 
     .footer-info {
@@ -597,9 +625,17 @@ a:hover {
 }
 
 .header.transparent {
-    background: transparent !important;
+    background: #ffffff !important;
     box-shadow: none !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(13, 27, 46, 0.08);
+}
+
+.header.glass-dark {
+    background: rgba(255, 255, 255, 0.85) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-bottom: 1px solid rgba(13, 27, 46, 0.08) !important;
+    box-shadow: 0 4px 30px rgba(13, 27, 46, 0.08) !important;
 }
 
 

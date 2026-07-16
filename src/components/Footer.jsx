@@ -22,19 +22,19 @@ export default function Footer() {
             <div className="footer-info" style={{ marginTop: '1rem', fontSize: '0.875rem', color: '#94a3b8', lineHeight: 1.6 }}>
               {t('footer.ceo')}<br />
               {t('footer.email')}<br />
-              {t('footer.address')}<br /><br />
+              {t('footer.hqAddress')}<br />
+              {t('footer.labAddress')}<br /><br />
               {t('footer.copyright')}
             </div>
           </div>
 
           {/* 하위메뉴 없으니 링크를 가로로 나열 */}
-          <nav style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', gap: '1.5rem 2.5rem', alignItems: 'flex-start', alignContent: 'flex-start' }}>
+          <nav className="footer-nav">
             {footerLinkKeys.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
                 className="footer-nav-link"
-                style={{ color: 'white' }}
               >
                 {t(`nav.${link.key}`)}
               </Link>

@@ -232,7 +232,7 @@ export default function About() {
             <motion.p variants={fadeUp} className="premium-subtext">{t('about.leaderDesc')}</motion.p>
           </motion.div>
 
-          <motion.div className="grid md:grid-cols-3 gap-8" variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }}>
+          <motion.div className="grid grid-cols-1 gap-8 max-w-3xl mx-auto" variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }}>
             {teamData.map((member, i) => (
               <motion.div key={i} variants={fadeUp} className={`glass p-10 rounded-3xl relative overflow-hidden group transition-all duration-500 ${member.borderClass}`}>
                 <div className={`absolute inset-0 bg-gradient-to-b ${member.gradientClass} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>

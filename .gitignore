@@ -25,6 +25,39 @@ dist-ssr
 
 # Windows
 nul
+Thumbs.db
+desktop.ini
 
 # Claude Code local settings
 .claude/settings.local.json
+
+# 환경 변수
+.env
+.env.*
+!.env.example
+
+# 루트에 두는 작업용 자료 (사업계획서, 가격표, 참고 이미지 등)
+# public/image 의 사이트 이미지가 걸리지 않도록 루트로만 한정한다
+/*.docx
+/*.doc
+/*.xlsx
+/*.xls
+/*.pptx
+/*.ppt
+/*.pdf
+/*.hwp
+/*.hwpx
+/*.png
+/*.jpg
+/*.jpeg
+/*.gif
+/*.webp
+/*.svg
+/*.zip
+/*.csv
+/*.txt
+/*.ai
+/*.psd
+/*.sketch
+/*.fig
+/~$*

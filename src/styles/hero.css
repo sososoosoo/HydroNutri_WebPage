@@ -275,8 +275,23 @@
 }
 
 /* ── CINEMATIC OVERLAP SECTION ── */
+.hero-cta-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+}
+
+@media (max-width: 640px) {
+    .hero-cta-group {
+        gap: 1rem;
+    }
+}
+
 .cinematic-section {
-    padding: 4rem 2rem 10rem 2rem;
+    padding: 2rem 2rem 8rem 2rem;
     background-color: #030712;
 }
 
@@ -284,13 +299,15 @@
     position: relative;
     max-width: 1200px;
     margin: 0 auto;
-    height: 600px;
-    border-radius: 32px;
-    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
+}
+
+.cinematic-store-btn {
+    font-size: 1.05rem;
+    padding: 1.1rem 2.75rem;
 }
 
 .cinematic-bg {

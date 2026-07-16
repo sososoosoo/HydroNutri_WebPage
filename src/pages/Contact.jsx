@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { MapPin, Mail, Linkedin, Twitter, Instagram } from 'lucide-react';
+import { MapPin, FlaskConical, Mail, Linkedin, Twitter, Instagram } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import '../styles/about.css';
 
@@ -26,7 +26,7 @@ export default function Contact() {
              <p className="premium-subtext max-w-2xl mx-auto">{t('contact.desc')}</p>
           </motion.div>
 
-          <motion.div className="grid md:grid-cols-2 gap-8" variants={stagger} initial="hidden" animate="visible">
+          <motion.div className="grid md:grid-cols-3 gap-8" variants={stagger} initial="hidden" animate="visible">
              {/* Headquarters Panel */}
              <motion.div variants={fadeUp} className="glass p-10 rounded-3xl border-t border-slate-700/50 hover:border-cyan-500/30 transition-colors group flex flex-col">
                 <div className="w-14 h-14 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center mb-8 group-hover:bg-cyan-500/20 transition-colors">
@@ -38,16 +38,27 @@ export default function Contact() {
                 </p>
              </motion.div>
 
+             {/* R&D Center Panel */}
+             <motion.div variants={fadeUp} className="glass p-10 rounded-3xl border-t border-slate-700/50 hover:border-cyan-500/30 transition-colors group flex flex-col">
+                <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-8 group-hover:bg-emerald-500/20 transition-colors">
+                   <FlaskConical className="text-emerald-400" size={24} />
+                </div>
+                <h4 className="text-2xl font-bold text-white mb-4">{t('contact.labTitle')}</h4>
+                <p className="text-slate-400 leading-relaxed text-lg">
+                  {t('contact.labAddress1')}<br/>{t('contact.labAddress2')}
+                </p>
+             </motion.div>
+
              {/* Email Panel */}
              <motion.div variants={fadeUp} className="glass p-10 rounded-3xl border-t border-slate-700/50 hover:border-cyan-500/30 transition-colors group flex flex-col">
                 <div className="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-8 group-hover:bg-blue-500/20 transition-colors">
                    <Mail className="text-blue-400" size={24} />
                 </div>
                 <h4 className="text-2xl font-bold text-white mb-4">{t('contact.emailTitle')}</h4>
-                <a href="mailto:22qjsro@corexbiotech.com" className="text-cyan-400 text-lg hover:text-cyan-300 transition-colors font-mono mb-8 block">
-                  22qjsro@corexbiotech.com
+                <a href="mailto:dyoo@corexbiotech.com" className="contact-email-link text-cyan-400 hover:text-cyan-300 transition-colors font-mono block">
+                  dyoo@corexbiotech.com
                 </a>
-                
+
                 {/* Social Links */}
                 <div className="flex gap-4 mt-auto pt-8 border-t border-slate-800">
                    <a href="#" className="w-12 h-12 rounded-full glass flex items-center justify-center text-slate-400 hover:text-white border-slate-800 hover:border-cyan-500 hover:bg-cyan-500/10 transition-all"><Linkedin size={20} /></a>
@@ -61,7 +72,7 @@ export default function Contact() {
           <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="mt-20 max-w-5xl mx-auto rounded-3xl overflow-hidden glass shadow-2xl p-4">
              <iframe
                key="native-google-map-clean"
-               src="https://maps.google.com/maps?q=%EA%B0%95%EC%9B%90%ED%8A%B9%EB%B3%84%EC%9E%90%EC%B9%98%EB%8F%84+%EC%B6%98%EC%B2%9C%EC%8B%9C+%EB%8F%99%EC%82%B0%EB%A9%B4+%EC%A2%85%EC%9E%90%EB%A6%AC%EB%A1%9C+33-7&t=&z=15&ie=UTF8&iwloc=&output=embed"
+               src="https://maps.google.com/maps?q=%EA%B0%95%EC%9B%90%ED%8A%B9%EB%B3%84%EC%9E%90%EC%B9%98%EB%8F%84%20%EC%B6%98%EC%B2%9C%EC%8B%9C%20%EC%8B%9C%EC%B2%AD%EA%B8%B8%2032&t=&z=16&ie=UTF8&iwloc=&output=embed"
                style={{ width: '100%', height: '750px' }}
                className="rounded-2xl border-0"
                allowFullScreen=""

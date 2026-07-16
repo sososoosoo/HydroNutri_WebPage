@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import '../styles/about.css';
@@ -133,6 +134,26 @@ export default function Roadmap() {
               </div>
             </motion.div>
           ))}
+        </motion.div>
+      </section>
+
+      {/* 스토어 유도 배너 */}
+      <section className="premium-section py-20">
+        <motion.div
+          className="store-cta-banner max-w-6xl mx-auto px-6"
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+        >
+          <div className="store-cta-text">
+            <span className="store-cta-eyebrow">{t('storeCta.eyebrow')}</span>
+            <h3 className="store-cta-title">{t('storeCta.title')}</h3>
+            <p className="store-cta-desc">{t('storeCta.desc')}</p>
+          </div>
+          <Link to="/shopHome" className="premium-btn primary-glow store-cta-btn">
+            {t('storeCta.button')}
+          </Link>
         </motion.div>
       </section>
 

@@ -4,13 +4,10 @@ import { useTranslation } from 'react-i18next';
 import '../styles/about.css';
 
 const uiImages = [
-  { key: 'uiTitle1', img: '/image/G-Index UI.png' },
-  { key: 'uiTitle2', img: '/image/성분 데이터 UI.png' },
-  { key: 'uiTitle3', img: '/image/합성 효율 UI.png' },
-  { key: 'uiTitle4', img: '/image/성분 예측 UI.png' },
-  { key: 'uiTitle5', img: '/image/예상 수확 UI.png' },
-  { key: 'uiTitle6', img: '/image/스트레스 UI.png' },
-  { key: 'uiTitle7', img: '/image/성분 최적화 지수 UI.png' },
+  { key: 'uiTitle1', img: '/image/1.png' },
+  { key: 'uiTitle2', img: '/image/2.png' },
+  { key: 'uiTitle3', img: '/image/3.png' },
+  { key: 'uiTitle4', img: '/image/4.png' },
 ];
 
 const fadeUp = {
@@ -100,7 +97,7 @@ export default function Technology() {
       {/* Core Technologies Bento */}
       <section className="premium-section py-16">
         <div className="max-w-6xl mx-auto px-6">
-          <motion.div className="grid md:grid-cols-3 gap-8" variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }}>
+          <motion.div className="grid grid-cols-1 gap-6 max-w-3xl mx-auto" variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }}>
             {coreTech.map((tech, i) => (
               <motion.div key={i} variants={fadeUp} className={`glass p-10 rounded-3xl relative overflow-hidden group transition-all duration-500 ${tech.border}`}>
                 <div className={`absolute inset-0 bg-gradient-to-b ${tech.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-700`}></div>

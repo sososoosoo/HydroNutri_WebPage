@@ -12,7 +12,6 @@ export default function ShopHome() {
 
   return (
     <>
-      {/* Hero banner */}
       <section className="shop-hero">
         <div className="shop-container shop-hero-inner">
           <div className="shop-hero-copy">
@@ -38,7 +37,6 @@ export default function ShopHome() {
         </div>
       </section>
 
-      {/* Cosmetics */}
       <section className="shop-container shop-section">
         <div className="shop-section-head">
           <h2>{t('shop.sectionCosmetics')}</h2>
@@ -51,7 +49,6 @@ export default function ShopHome() {
         </div>
       </section>
 
-      {/* Featured */}
       <section className="shop-container shop-section">
         <div className="shop-section-head">
           <h2>{t('shop.sectionDeals')}</h2>
@@ -64,7 +61,6 @@ export default function ShopHome() {
         </div>
       </section>
 
-      {/* New arrivals */}
       <section className="shop-container shop-section">
         <div className="shop-section-head">
           <h2>{t('shop.sectionNew')}</h2>

@@ -23,7 +23,6 @@ export default function ShopHeader() {
 
   return (
     <header className="shop-header">
-      {/* Utility bar */}
       <div className="shop-utility">
         <div className="shop-container shop-utility-inner" style={{ justifyContent: 'flex-end' }}>
           <div className="shop-utility-links">
@@ -37,7 +36,6 @@ export default function ShopHeader() {
         </div>
       </div>
 
-      {/* Main bar */}
       <div className="shop-main-bar">
         <div className="shop-container shop-main-inner">
           <Link to="/shopHome" className="shop-logo">
@@ -69,7 +67,6 @@ export default function ShopHeader() {
         </div>
       </div>
 
-      {/* Nav bar */}
       <nav className="shop-catbar">
         <div className="shop-container shop-catbar-inner">
           {navItems.map((item) => (

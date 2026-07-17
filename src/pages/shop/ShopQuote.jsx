@@ -2,9 +2,6 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import emailjs from '@emailjs/browser';
 
-// 기존 문의 폼(구 Contact 페이지)에서 사용하던 EmailJS 설정을 재사용.
-// 해당 템플릿은 {{name}}, {{email}}, {{category}}, {{message}} 변수를 사용하므로
-// 견적 내용 전체를 message 하나에 정리해서 전송한다.
 const EMAILJS_SERVICE_ID = 'service_4vvm5c1';
 const EMAILJS_TEMPLATE_ID = 'template_xcpd6t4';
 const EMAILJS_PUBLIC_KEY = '-kb7Dty1CCS7mnYzy';
@@ -123,7 +120,6 @@ export default function ShopQuote() {
         <p>{t('quote.desc')}</p>
       </div>
 
-      {/* Step 1 */}
       <div className="shop-step">
         <div className="shop-step-head">
           <span className="shop-step-num">STEP 01</span>
@@ -199,7 +195,6 @@ export default function ShopQuote() {
         </div>
       </div>
 
-      {/* Step 2 */}
       <div className="shop-step">
         <div className="shop-step-head">
           <span className="shop-step-num">STEP 02</span>

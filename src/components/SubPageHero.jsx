@@ -8,9 +8,9 @@ export default function SubPageHero({ category, title, currentPage, breadcrumbPa
   return (
     <section className={`premium-sub-hero ${category}`}>
       <div className="premium-hero-bg"></div>
-      
+
       <div className="premium-hero-overlay">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}

@@ -1,6 +1,3 @@
-/* Project Page Styles */
-
-/* Project Hero Section */
 .project-hero {
     position: relative;
     height: 100vh;
@@ -146,7 +143,6 @@
     opacity: 0.8;
 }
 
-/* Scroll Indicator */
 .scroll-indicator {
     position: absolute;
     bottom: var(--spacing-xl);
@@ -187,7 +183,6 @@
     transform: translateX(-50%) rotate(45deg);
 }
 
-/* Section Common Styles */
 .section-title {
     text-align: center;
     font-size: var(--fs-4xl);
@@ -209,7 +204,6 @@
     border-radius: 2px;
 }
 
-/* Project Overview */
 .project-overview {
     background: var(--bg-light);
 }
@@ -263,7 +257,6 @@
     line-height: 1.6;
 }
 
-/* System Diagram */
 .system-diagram {
     background: white;
     padding: var(--spacing-2xl);
@@ -320,7 +313,6 @@
     box-shadow: var(--shadow-light);
 }
 
-/* System Components */
 .system-components {
     background: white;
 }
@@ -385,7 +377,6 @@
     left: 0;
 }
 
-/* Key Features */
 .key-features {
     background: var(--bg-light);
 }
@@ -469,7 +460,6 @@
     border: 1px solid rgba(0, 191, 216, 0.2);
 }
 
-/* Technology Stack */
 .tech-stack {
     background: white;
 }
@@ -520,7 +510,6 @@
     transform: translateX(5px);
 }
 
-/* YOLOv8 특별 강조 */
 .tech-item.highlight-tech {
     background: linear-gradient(45deg, rgba(0, 191, 216, 0.1), rgba(59, 130, 246, 0.1));
     border: 2px solid var(--primary-green);
@@ -557,7 +546,6 @@
     color: var(--text-secondary);
 }
 
-/* Project Goals */
 .project-goals {
     background: var(--bg-light);
 }
@@ -648,7 +636,6 @@
     color: #6b7280;
 }
 
-/* Goals Metrics */
 .goals-metrics h3 {
     font-size: var(--fs-xl);
     font-weight: 600;
@@ -688,7 +675,6 @@
     opacity: 0.9;
 }
 
-/* Project CTA */
 .project-cta {
     background: var(--primary-gradient);
     color: white;
@@ -738,8 +724,6 @@
     color: var(--primary-green);
 }
 
-
-/* Responsive Design */
 @media (max-width: 1024px) {
     .overview-content {
         grid-template-columns: 1fr;
@@ -808,7 +792,6 @@
     }
 }
 
-/* Animations */
 @keyframes fadeInUp {
     from {
         opacity: 0;

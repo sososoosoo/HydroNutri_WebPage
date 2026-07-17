@@ -65,7 +65,6 @@ export default function About() {
   return (
     <div className="bg-ultra-dark min-h-screen pb-20 overflow-hidden">
 
-      {/* Vision & Mission */}
       <section className="premium-section text-center pt-44 pb-16">
         <motion.div className="max-w-4xl mx-auto px-6" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
           <span className="premium-badge mb-6">{t('about.visionBadge')}</span>
@@ -79,7 +78,6 @@ export default function About() {
         </motion.div>
       </section>
 
-      {/* The Pipeline */}
       <section className="bento-section pt-10">
         <motion.div className="bento-container" variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }}>
           <div className="bento-grid" style={{ gridTemplateRows: 'auto' }}>
@@ -125,14 +123,13 @@ export default function About() {
         </motion.div>
       </section>
 
-      {/* Application Areas */}
       <section className="premium-section py-20">
         <motion.div className="max-w-6xl mx-auto px-6" variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true }}>
           <motion.div variants={fadeUp} className="text-center mb-16">
              <h2 className="premium-heading text-3xl md:text-5xl">{t('about.appHeading')}</h2>
              <p className="premium-subtext mt-4">{t('about.appSubtext')}</p>
           </motion.div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {applications.map((app, i) => (
               <motion.div key={i} variants={fadeUp} className="glass p-8 rounded-3xl hover:border-cyan-500/30 transition-colors duration-500 group">
@@ -144,7 +141,6 @@ export default function About() {
         </motion.div>
       </section>
 
-      {/* Why Us / Solution */}
       <section className="premium-section py-20 bg-[#060b17]/50 rounded-[4rem] mx-4 md:mx-10 my-10 border border-slate-800">
         <motion.div className="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
            <motion.div variants={fadeUp}>
@@ -170,7 +166,7 @@ export default function About() {
            <motion.div variants={fadeUp} className="relative h-[500px] rounded-3xl overflow-hidden glass border border-slate-700/50 group">
              <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/30 to-transparent z-10 pointer-events-none"></div>
              <img src="/image/회사전경.jpg" alt="COREX Solution" className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-all duration-1000 group-hover:scale-105" />
-             
+
              <div className="absolute bottom-10 left-10 z-20 flex gap-4">
                 <div className="w-2 h-16 bg-cyan-500 rounded-full shadow-[0_0_15px_rgba(34,211,238,0.8)]"></div>
                 <div className="w-2 h-10 bg-indigo-500 rounded-full mt-auto shadow-[0_0_15px_rgba(99,102,241,0.8)]"></div>
@@ -179,7 +175,6 @@ export default function About() {
         </motion.div>
       </section>
 
-      {/* History Timeline */}
       <section className="premium-section pt-32 pb-16">
         <div className="max-w-4xl mx-auto px-6">
           <motion.div className="text-center mb-16" initial="hidden" whileInView="visible" viewport={{ once: true }}>
@@ -190,8 +185,8 @@ export default function About() {
 
           <div className="relative border-l border-slate-800 ml-4 md:ml-12 mt-12 space-y-16 py-8">
             {timelineData.map((item, i) => (
-              <motion.div 
-                key={i} 
+              <motion.div
+                key={i}
                 className="relative pl-10 md:pl-16 group"
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -214,7 +209,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Leadership */}
       <section className="premium-section pt-32 pb-16">
         <div className="max-w-6xl mx-auto px-6">
           <motion.div className="text-center mb-16" initial="hidden" whileInView="visible" viewport={{ once: true }}>
@@ -242,7 +236,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Organization Chart Bento */}
       <section className="premium-section pb-24">
          <motion.div className="max-w-5xl mx-auto px-6" initial="hidden" whileInView="visible" viewport={{ once: true }}>
             <motion.div variants={fadeUp} className="glass border-slate-800 rounded-[2.5rem] p-12 text-center relative overflow-hidden group">

@@ -6,7 +6,6 @@ export default function ShopNews() {
   const { t, i18n } = useTranslation();
   const isEn = i18n.language === 'en';
 
-  // 사진 파일이 없거나 경로가 틀린 기사는 글만 표시한다
   const [failedImages, setFailedImages] = useState(() => new Set());
   const markFailed = (id) => setFailedImages((prev) => new Set(prev).add(id));
 

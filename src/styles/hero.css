@@ -1,13 +1,8 @@
-/* ========================================================
-   Redesigned Hero & Home Sections (Premium B2B/Tech UI)
-======================================================== */
-
 .bg-ultra-dark {
-    background-color: #030712; /* Slate 950 */
+    background-color: #030712;
     color: #f8fafc;
 }
 
-/* ── HERO SECTION ── */
 .hero {
     position: relative;
     height: 100vh;
@@ -29,7 +24,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.7; /* Dim the video slightly */
+    opacity: 0.7;
 }
 
 .hero-gradient-overlay {
@@ -51,7 +46,6 @@
     max-width: 1000px;
 }
 
-/* Premium Badge */
 .premium-badge {
     display: inline-block;
     padding: 0.5rem 1rem;
@@ -68,7 +62,6 @@
     text-transform: uppercase;
 }
 
-/* Typography for Hero */
 .hero-brand-premium {
     font-size: clamp(4rem, 8vw, 7rem);
     font-weight: 800;
@@ -100,7 +93,6 @@
     text-shadow: 0 0 40px rgba(0, 242, 254, 0.4);
 }
 
-/* Buttons */
 .premium-btn {
     display: inline-flex;
     align-items: center;
@@ -149,7 +141,6 @@
 
 .mt-6 { margin-top: 1.5rem; }
 
-/* ── BENTO GRID SECTION ── */
 .bento-section {
     padding: 8rem 2rem;
     background-color: #030712;
@@ -274,7 +265,6 @@
     line-height: 1.6;
 }
 
-/* ── CINEMATIC OVERLAP SECTION ── */
 .hero-cta-group {
     display: flex;
     flex-wrap: wrap;
@@ -349,7 +339,6 @@
     -webkit-text-fill-color: transparent;
 }
 
-/* Responsive */
 @media (max-width: 900px) {
     .bento-grid {
         grid-template-columns: 1fr;

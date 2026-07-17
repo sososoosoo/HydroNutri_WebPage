@@ -64,7 +64,7 @@
     "itemCount": "{{count}} products",
     "emptyResult": "No results found. Try a different keyword.",
     "priceNote": "The store currently runs on a quote-request basis. Ask about the products you need and we will guide you through pricing and delivery.",
-    "footerTagline": "Smart farm extracts, in the amount you need.",
+    "footerTagline": "Supplying the same performance, every lot.",
     "footerCompany": "COREX | CEO: Donggyu Yoo",
     "footerHqAddress": "HQ: #302, 3F Haechan Bldg, 32 Sicheong-gil, Chuncheon-si, Gangwon-do, KR",
     "footerLabAddress": "R&D Center: #209, BIO Bldg 5, 32 Soyanggang-ro, Hupyeong-dong, Chuncheon-si, Gangwon-do, KR",
@@ -144,7 +144,6 @@
     "metric1Label": "higher asiaticoside content",
     "metric2Value": "6.7×",
     "metric2Label": "lower compound variation",
-    "metricNote": "※ Based on a specific pilot as reported by Startup Daily (2026); does not guarantee the performance of every lot or product.",
     "customerTitle": "Who we work with",
     "c1": "Cosmetics OEM/ODM",
     "c2": "Premium beauty brands",
@@ -175,7 +174,7 @@
   },
   "header": {
     "slogan": "\"Where Living Systems meet Thinking Systems\"",
-    "copyright": "© 2026 COREX Team. All rights reserved."
+    "copyright": "© 2026 COREX All rights reserved."
   },
   "footer": {
     "slogan": "Where Living Systems",
@@ -184,7 +183,7 @@
     "email": "E-mail: dyoo@corexbiotech.com",
     "hqAddress": "HQ: #302, 3F Haechan Bldg, 32 Sicheong-gil, Chuncheon-si, Gangwon-do, KR",
     "labAddress": "R&D Center: #209, BIO Bldg 5, 32 Soyanggang-ro, Hupyeong-dong, Chuncheon-si, Gangwon-do, KR",
-    "copyright": "© 2026 COREX Team. All rights reserved."
+    "copyright": "© 2026 COREX All rights reserved."
   },
   "home": {
     "heroBadge": "Precision Agriculture & Bio-Materials",

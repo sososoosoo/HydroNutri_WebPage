@@ -81,7 +81,6 @@ export default function Technology() {
   return (
     <div className="bg-ultra-dark min-h-screen pb-20">
 
-      {/* Hero Statement */}
       <section className="premium-section pt-44 pb-16">
          <motion.div className="max-w-4xl mx-auto px-6 text-center" initial="hidden" whileInView="visible" viewport={{ once: true }}>
             <motion.span variants={fadeUp} className="premium-badge mb-6">{t('tech.heroBadge')}</motion.span>
@@ -94,7 +93,6 @@ export default function Technology() {
          </motion.div>
       </section>
 
-      {/* Core Technologies Bento */}
       <section className="premium-section py-16">
         <div className="max-w-6xl mx-auto px-6">
           <motion.div className="grid grid-cols-1 gap-6 max-w-3xl mx-auto" variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }}>
@@ -110,7 +108,7 @@ export default function Technology() {
                   </div>
                   <h3 className="text-2xl font-bold text-white mb-4">{tech.title}</h3>
                   <p className="text-slate-400 text-sm leading-relaxed mb-8">{tech.desc}</p>
-                  
+
                   <div className="mt-auto flex flex-wrap gap-2">
                     {tech.tags.map((tag, j) => (
                       <span key={j} className="px-3 py-1 bg-slate-800/50 border border-slate-700 rounded-full text-xs text-slate-300 backdrop-blur-md">
@@ -125,7 +123,6 @@ export default function Technology() {
         </div>
       </section>
 
-      {/* System Architecture */}
       <section className="premium-section" style={{ paddingTop: '8rem', paddingBottom: '4rem' }}>
         <motion.div className="max-w-5xl mx-auto px-6" variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true }}>
           <motion.h2 variants={fadeUp} className="text-3xl font-bold text-white mb-10 text-center">{t('tech.archHeading')}</motion.h2>
@@ -151,7 +148,6 @@ export default function Technology() {
         </motion.div>
       </section>
 
-      {/* Farm OS Carousel */}
       <section className="relative premium-section overflow-hidden bg-[#02050a]" style={{ paddingTop: '4rem', paddingBottom: '6rem' }}>
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[800px] bg-cyan-500/10 blur-[150px] rounded-full pointer-events-none z-0"></div>
 
@@ -231,7 +227,6 @@ export default function Technology() {
         </div>
       </section>
 
-      {/* IP & R&D Strategy */}
       <section className="premium-section" style={{ paddingTop: '4rem', paddingBottom: '4rem' }}>
         <motion.div className="max-w-4xl mx-auto px-6" initial="hidden" whileInView="visible" viewport={{ once: true }}>
           <motion.h2 variants={fadeUp} className="text-3xl font-bold text-white mb-10 text-center">{t('tech.ipHeading')}</motion.h2>
@@ -248,7 +243,6 @@ export default function Technology() {
           </motion.div>
         </motion.div>
       </section>
-
 
     </div>
   );

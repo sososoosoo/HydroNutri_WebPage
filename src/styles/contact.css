@@ -1,5 +1,3 @@
-/* Contact Page Styles */
-
 .contact-main {
     background: var(--bg-light);
     padding: var(--spacing-4xl) 0;
@@ -81,7 +79,6 @@
     box-shadow: 0 6px 20px rgba(0, 191, 216, 0.4);
 }
 
-/* Contact Info */
 .contact-info {
     display: flex;
     flex-direction: column;
@@ -167,7 +164,6 @@
     text-decoration: none;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
     .contact-grid {
         grid-template-columns: 1fr;

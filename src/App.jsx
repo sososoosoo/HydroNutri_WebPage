@@ -20,7 +20,6 @@ import Placeholder from './pages/Placeholder';
 export default function App() {
   return (
     <Routes>
-      {/* 회사 사이트 */}
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -31,7 +30,6 @@ export default function App() {
         <Route path="*" element={<Placeholder />} />
       </Route>
 
-      {/* 스토어 (독립 레이아웃) */}
       <Route path="/shopHome" element={<ShopLayout />}>
         <Route index element={<ShopHome />} />
         <Route path="company" element={<ShopCompany />} />
@@ -43,7 +41,6 @@ export default function App() {
         <Route path=":category" element={<ShopCategory />} />
       </Route>
 
-      {/* 구 경로 리다이렉트 */}
       <Route path="/products" element={<Navigate to="/shopHome" replace />} />
       <Route path="/products/:category" element={<Navigate to="/shopHome" replace />} />
       <Route path="/quote" element={<Navigate to="/shopHome/quote" replace />} />

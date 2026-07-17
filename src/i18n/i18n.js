@@ -19,7 +19,6 @@ i18n.use(initReactI18next).init({
 
 export default i18n;
 
-// \n을 <br>로 렌더링하는 헬퍼
 export function tLines(str) {
   const parts = str.split('\n');
   return parts.map((line, i) =>

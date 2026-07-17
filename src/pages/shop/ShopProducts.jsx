@@ -14,7 +14,6 @@ export default function ShopProducts() {
         <p className="shop-lead">{t('products.desc')}</p>
       </section>
 
-      {/* BioResponse 완제품 */}
       <section className="shop-container shop-section">
         <div className="shop-section-head">
           <h2>{t('products.cosmeticTitle')}</h2>
@@ -27,7 +26,6 @@ export default function ShopProducts() {
         </div>
       </section>
 
-      {/* 원료 카탈로그 */}
       <section className="shop-container shop-section">
         <div className="shop-section-head">
           <h2>{t('products.ingredientTitle')}</h2>
@@ -40,7 +38,6 @@ export default function ShopProducts() {
         </div>
       </section>
 
-      {/* 개발 중인 소재 */}
       <section className="shop-container shop-section">
         <div className="shop-dev-card">
           <span className="shop-dev-status">{t('products.devStatus')}</span>
@@ -49,7 +46,6 @@ export default function ShopProducts() {
         </div>
       </section>
 
-      {/* CTA */}
       <section className="shop-container shop-section">
         <div className="shop-cta-band">
           <div>

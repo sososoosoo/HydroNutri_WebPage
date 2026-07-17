@@ -35,13 +35,11 @@ export default function Home() {
 
   return (
     <div className="home-container bg-ultra-dark">
-      {/* Premium Hero Section */}
       <section className="hero" id="hero">
         <div className="hero-background">
           <video className="hero-video" autoPlay muted loop playsInline>
             <source src="/background.mp4" type="video/mp4" />
           </video>
-          {/* Subtle vignette/gradient overlay instead of particle dots */}
           <div className="hero-gradient-overlay"></div>
         </div>
 
@@ -88,7 +86,6 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Bento Grid Layout */}
       <section className="bento-section">
         <motion.div
           className="bento-container"
@@ -103,7 +100,6 @@ export default function Home() {
           </motion.div>
 
           <div className="bento-grid">
-            {/* Main Big Card */}
             <motion.div variants={fadeUp} className="bento-card bento-large group">
               <div className="bento-img-wrap">
                 <img src={IMGS.smartfarm} alt="Smart Farm Automation" />
@@ -115,7 +111,6 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Top Right Card */}
             <motion.div variants={fadeUp} className="bento-card group">
               <div className="bento-img-wrap">
                 <img src={IMGS.lab} alt="Advanced Lab" />
@@ -127,7 +122,6 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Bottom Right Card */}
             <motion.div variants={fadeUp} className="bento-card group">
               <div className="bento-img-wrap">
                 <img src={IMGS.multiwell} alt="Cell Culture" />
@@ -142,7 +136,6 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* 스토어 유도 섹션 */}
       <section className="cinematic-section">
         <motion.div
           className="cinematic-wrapper"

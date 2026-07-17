@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { TrendingUp, Users, Award, ShieldCheck, ChevronRight } from 'lucide-react';
 import SubPageHero from '../components/SubPageHero';
-import '../styles/about.css'; // Utilizing premium classes
+import '../styles/about.css';
 
 const investmentSubNav = [
   { label: 'Investment', path: '/investment' },
@@ -69,7 +69,6 @@ export default function Investment() {
         subNavItems={investmentSubNav}
       />
 
-      {/* Hero Statement */}
       <section className="premium-section pt-24 pb-16">
         <motion.div className="max-w-4xl mx-auto px-6 text-center" initial="hidden" whileInView="visible" viewport={{ once: true }}>
           <motion.span variants={fadeUp} className="premium-badge mb-6">Invest in the Future</motion.span>
@@ -82,7 +81,6 @@ export default function Investment() {
         </motion.div>
       </section>
 
-      {/* Investment Highlights Grid */}
       <section className="premium-section pb-16">
         <motion.div className="max-w-6xl mx-auto px-6" variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true }}>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -97,11 +95,10 @@ export default function Investment() {
         </motion.div>
       </section>
 
-      {/* Funding Roadmap */}
       <section className="premium-section py-16">
         <motion.div className="max-w-5xl mx-auto px-6" variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true }}>
           <motion.h2 variants={fadeUp} className="text-3xl font-bold text-white mb-10 text-center">Funding Trajectory</motion.h2>
-          
+
           <div className="grid md:grid-cols-3 gap-8">
             {fundingStages.map((stage, i) => (
               <motion.div key={i} variants={fadeUp} className={`glass p-8 rounded-3xl relative overflow-hidden group transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(6,182,212,0.15)]`}>
@@ -114,10 +111,10 @@ export default function Investment() {
                     {stage.status}
                   </span>
                 </div>
-                
+
                 <h3 className="text-2xl font-bold text-white mb-2">{stage.stage}</h3>
                 <div className="text-cyan-400 font-mono text-sm mb-6">{stage.year}</div>
-                
+
                 <div className="space-y-4 mb-8">
                   <div>
                     <div className="text-slate-500 text-xs uppercase tracking-widest mb-1">Investors</div>
@@ -139,7 +136,6 @@ export default function Investment() {
         </motion.div>
       </section>
 
-      {/* Contact Prompt */}
       <section className="premium-section py-16">
          <motion.div className="max-w-3xl mx-auto px-6 text-center" initial="hidden" whileInView="visible" viewport={{ once: true }}>
            <motion.div variants={fadeUp} className="glass p-12 rounded-3xl border border-cyan-500/20 relative overflow-hidden">

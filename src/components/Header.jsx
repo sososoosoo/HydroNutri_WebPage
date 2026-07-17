@@ -46,7 +46,6 @@ export default function Header() {
 
   const currentLang = i18n.language;
 
-  // Build navData from translation keys
   const navData = navKeys.map((item) => ({
     ...item,
     label: t(`nav.${item.key}`),
@@ -56,24 +55,20 @@ export default function Header() {
     })),
   }));
 
-  // Handle scroll for dynamic header
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
-    // Check on initial load
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close menu on route change
   useEffect(() => {
     setIsMenuOpen(false);
     setOpenSubmenu(null);
   }, [location]);
 
-  // Close on Escape
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape' && isMenuOpen) setIsMenuOpen(false);
@@ -82,13 +77,11 @@ export default function Header() {
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [isMenuOpen]);
 
-  // Lock body scroll when menu open
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
   }, [isMenuOpen]);
 
-  // Close on resize
   useEffect(() => {
     const handleResize = () => { if (isMenuOpen) setIsMenuOpen(false); };
     window.addEventListener('resize', handleResize);
@@ -111,14 +104,12 @@ export default function Header() {
   return (
     <header className={`header ${isScrolled ? 'glass-dark' : 'transparent'}`} id="header">
       <nav className="nav">
-        {/* Logo */}
         <Link to="/" className="logo">
           <img src="/icons/LOGO.png" alt="COREX Logo" className="logo-img" />
           <span className="logo-text">COREX</span>
         </Link>
 
-        {/* Desktop Navigation */}
-        <ul className="nav-links desktop-links">
+        <ul className={`nav-links desktop-links${currentLang === 'ko' ? ' lang-ko' : ''}`}>
           {navData.map((item, i) => (
             <li
               key={item.key}
@@ -146,22 +137,21 @@ export default function Header() {
           ))}
         </ul>
 
-        {/* Actions (Store link + Language Toggle + Hamburger) */}
         <div className="nav-actions">
           <Link to="/shopHome" className="store-link">
             {t('nav.store')}
           </Link>
 
           <div className="lang-switch-group">
-            <button 
-              className={`lang-switch-btn ${currentLang === 'en' ? 'active' : ''}`} 
+            <button
+              className={`lang-switch-btn ${currentLang === 'en' ? 'active' : ''}`}
               onClick={() => i18n.changeLanguage('en')}
               aria-label="English"
             >
               <span className="lang-flag">🇺🇸</span> EN
             </button>
-            <button 
-              className={`lang-switch-btn ${currentLang === 'ko' ? 'active' : ''}`} 
+            <button
+              className={`lang-switch-btn ${currentLang === 'ko' ? 'active' : ''}`}
               onClick={() => i18n.changeLanguage('ko')}
               aria-label="Korean"
             >
@@ -182,13 +172,11 @@ export default function Header() {
         </div>
       </nav>
 
-      {/* Overlay */}
       <div
         className={`nav-overlay${isMenuOpen ? ' active' : ''}`}
         onClick={() => setIsMenuOpen(false)}
       />
 
-      {/* Mobile Menu */}
       <div className={`nav-menu${isMenuOpen ? ' active' : ''}`}>
         <button className="nav-close-btn" onClick={() => setIsMenuOpen(false)} aria-label="메뉴 닫기">
           &times;

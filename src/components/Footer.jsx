@@ -29,7 +29,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* 하위메뉴 없으니 링크를 가로로 나열 */}
           <nav className="footer-nav">
             {footerLinkKeys.map((link) => (
               <Link

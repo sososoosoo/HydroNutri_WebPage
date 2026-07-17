@@ -1,6 +1,3 @@
-/* Team Page Styles */
-
-/* Team Overview (Vision page) */
 .team-overview {
     background: var(--bg-light);
 }
@@ -74,7 +71,6 @@
     line-height: 1.5;
 }
 
-/* Team Intro */
 .team-intro {
     background: white;
     text-align: center;
@@ -102,7 +98,6 @@
     line-height: 1.7;
 }
 
-/* Team Cards */
 .team-cards-section {
     background: white;
 }
@@ -133,7 +128,6 @@
     border-top-color: var(--accent);
 }
 
-/* Avatar */
 .team-card-avatar {
     width: 100px;
     height: 100px;
@@ -153,7 +147,6 @@
     transform: scale(1.08);
 }
 
-/* Name, Role, Spec */
 .team-card-name {
     font-size: var(--fs-2xl);
     font-weight: 700;
@@ -199,7 +192,6 @@
     text-align: left;
 }
 
-/* Hover-reveal details */
 .team-card-details {
     max-height: 0;
     opacity: 0;
@@ -213,7 +205,6 @@
     opacity: 1;
 }
 
-/* Responsibilities */
 .team-card-responsibilities {
     text-align: left;
     margin-bottom: var(--spacing-lg);
@@ -252,7 +243,6 @@
     font-size: 1.2em;
 }
 
-/* Tech Stack Tags */
 .team-card-techstack {
     display: flex;
     flex-wrap: wrap;
@@ -278,7 +268,6 @@
     transform: scale(1.05);
 }
 
-/* Organization Chart */
 .organization-chart-section {
     background: var(--bg-light);
 }
@@ -491,7 +480,6 @@
     font-weight: 400;
 }
 
-/* Team Culture */
 .team-culture {
     background: white;
 }
@@ -535,7 +523,6 @@
     line-height: 1.6;
 }
 
-/* Responsive */
 @media (max-width: 1024px) {
     .overview-content {
         grid-template-columns: 1fr;

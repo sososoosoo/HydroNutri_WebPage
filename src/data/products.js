@@ -1,9 +1,3 @@
-// 제품 데이터
-// listPrice: 정가(시세 상한, 원) / price: 실제 판매가(권장 판매가, 원)
-// 할인율은 두 값에서 자동 계산됩니다 (discountRate 참고).
-// 원료 가격 출처: 원료_판매가격표.xlsx
-// image: public 폴더 기준 경로. 비워두면 카드에 기본 플레이스홀더가 표시됩니다.
-
 export const cosmetics = [
   {
     id: 'c1',
@@ -34,14 +28,14 @@ export const ingredients = [
   { id: 2, name: '병풀추출물', spec: '30g×3', listPrice: 8000, price: 6900, tier: '중가', note: '시카 인기 성분, 회전율 높음', image: '/image/products/병풀추출물.png' },
   { id: 3, name: '인삼추출물', spec: '30g×3', listPrice: 8000, price: 6900, tier: '중가', note: '안티에이징 소구', image: '/image/products/인삼추출물.png' },
   { id: 4, name: '카렌듈라추출물', spec: '30g×3', listPrice: 7000, price: 5900, tier: '중가', note: '진정·민감성', image: '/image/products/카렌듈라추출물.png' },
-  { id: 5, name: '캐모마일추출물', spec: '30g×3', listPrice: 7000, price: 5900, tier: '중가', note: '진정 스테디셀러', image: '/image/products/캐모마일추출물.png' },
+  { id: 5, name: '캐모마일추출물', spec: '30g×3', listPrice: 7000, price: 5900, tier: '중가', note: '진정 스테디셀러', image: '' },
   { id: 6, name: '운모생기추출물', spec: '30g×3', listPrice: 8000, price: 6900, tier: '중가', note: '특이 원료', image: '/image/products/윤모생기추출물.png' },
   { id: 7, name: '녹차추출물 (아주 진한)', spec: '30g×3', listPrice: 9000, price: 7500, tier: '중가', note: '고농축 프리미엄, 항산화', image: '/image/products/녹차추출물(아주 진한).png' },
   { id: 8, name: '어성초추출물 (아주 진한)', spec: '30g×3', listPrice: 9000, price: 7500, tier: '중가', note: '고농축, 트러블 진정', image: '/image/products/어성초추출물(아주 진한).png' },
   { id: 9, name: '녹소초추출물 (아주 진한)', spec: '30g×3', listPrice: 9000, price: 7500, tier: '중가', note: '고농축 추출물', image: '/image/products/녹소초 추출물(아주 진한).png' },
   { id: 10, name: '마치현 추출물', spec: '30g×3', listPrice: 7000, price: 5900, tier: '중가', note: '진정·항염', image: '/image/products/마치현 추출물.png' },
   { id: 11, name: '맥주효모추출물', spec: '30g×3', listPrice: 7000, price: 5900, tier: '중가', note: '모공·두피', image: '/image/products/맥주효모추출물.png' },
-  { id: 12, name: '슈퍼 시카', spec: '50g', listPrice: 12000, price: 8900, tier: '고가', note: '복합 시카 (진정 컴플렉스)', image: '/image/products/슈퍼 시카 4.png' },
+  { id: 12, name: '슈퍼 시카', spec: '50g', listPrice: 12000, price: 8900, tier: '고가', note: '복합 시카 (진정 컴플렉스)', image: '' },
   { id: 13, name: '황금 추출물', spec: '30g×3', listPrice: 7000, price: 5900, tier: '중가', note: '항염·진정', image: '/image/products/황금 추출물.png' },
   { id: 14, name: '아세틸헥사펩타이드', spec: '50g', listPrice: 14000, price: 11000, tier: '고가', note: '바르는 보톡스', image: '/image/products/아세틸헥사펩타이드.png' },
   { id: 15, name: '코엔자임Q10 (수용성)', spec: '50g', listPrice: 15000, price: 11000, tier: '고가', note: '항산화, 수용성 제형', image: '/image/products/코엔자임Q10(수용성).png' },
@@ -83,7 +77,6 @@ export const discountRate = (listPrice, price) =>
 
 export const formatKRW = (value) => value.toLocaleString('ko-KR');
 
-// 상세 페이지 조회용 — URL 파라미터는 항상 문자열이므로 String()으로 비교
 export const findProduct = (id) => {
   const key = String(id);
   const item =

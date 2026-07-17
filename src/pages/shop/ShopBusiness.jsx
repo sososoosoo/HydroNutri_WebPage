@@ -17,7 +17,6 @@ export default function ShopBusiness() {
         <p className="shop-lead">{t('business.lead')}</p>
       </section>
 
-      {/* 세 단계 원리 */}
       <section className="shop-container shop-section">
         <div className="shop-section-head">
           <h2>{t('business.principleTitle')}</h2>
@@ -34,7 +33,6 @@ export default function ShopBusiness() {
         </div>
       </section>
 
-      {/* 제품 라인업 */}
       <section className="shop-container shop-section">
         <div className="shop-section-head">
           <h2>{t('business.lineupTitle')}</h2>
@@ -52,7 +50,6 @@ export default function ShopBusiness() {
         </div>
       </section>
 
-      {/* Bioactive Passport */}
       <section className="shop-container shop-section">
         <div className="shop-passport">
           <span className="shop-passport-tag">Bioactive Passport</span>
@@ -61,7 +58,6 @@ export default function ShopBusiness() {
         </div>
       </section>
 
-      {/* 표준화 성과 */}
       <section className="shop-container shop-section">
         <div className="shop-section-head">
           <h2>{t('business.metricTitle')}</h2>
@@ -74,10 +70,8 @@ export default function ShopBusiness() {
             </div>
           ))}
         </div>
-        <p className="shop-note">{t('business.metricNote')}</p>
       </section>
 
-      {/* 고객군 */}
       <section className="shop-container shop-section">
         <div className="shop-section-head">
           <h2>{t('business.customerTitle')}</h2>

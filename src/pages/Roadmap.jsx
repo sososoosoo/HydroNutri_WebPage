@@ -137,7 +137,6 @@ export default function Roadmap() {
         </motion.div>
       </section>
 
-      {/* 스토어 유도 배너 */}
       <section className="premium-section py-20">
         <motion.div
           className="store-cta-banner max-w-6xl mx-auto px-6"

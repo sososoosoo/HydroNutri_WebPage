@@ -46,10 +46,10 @@ export default function Insights() {
         <div className="max-w-6xl mx-auto px-6">
           <motion.div className="grid md:grid-cols-3 gap-8" variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }}>
             {newsMeta.map((news) => (
-              <motion.a 
-                href={news.link} 
-                key={news.key} 
-                variants={fadeUp} 
+              <motion.a
+                href={news.link}
+                key={news.key}
+                variants={fadeUp}
                 className="glass rounded-3xl overflow-hidden group flex flex-col hover:border-cyan-500/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_10px_40px_rgba(6,182,212,0.15)]"
               >
                  <div className="h-48 overflow-hidden relative">

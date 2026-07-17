@@ -27,7 +27,6 @@ export default function Contact() {
           </motion.div>
 
           <motion.div className="grid md:grid-cols-3 gap-8" variants={stagger} initial="hidden" animate="visible">
-             {/* Headquarters Panel */}
              <motion.div variants={fadeUp} className="glass p-10 rounded-3xl border-t border-slate-700/50 hover:border-cyan-500/30 transition-colors group flex flex-col">
                 <div className="w-14 h-14 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center mb-8 group-hover:bg-cyan-500/20 transition-colors">
                    <MapPin className="text-cyan-400" size={24} />
@@ -38,7 +37,6 @@ export default function Contact() {
                 </p>
              </motion.div>
 
-             {/* R&D Center Panel */}
              <motion.div variants={fadeUp} className="glass p-10 rounded-3xl border-t border-slate-700/50 hover:border-cyan-500/30 transition-colors group flex flex-col">
                 <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-8 group-hover:bg-emerald-500/20 transition-colors">
                    <FlaskConical className="text-emerald-400" size={24} />
@@ -49,7 +47,6 @@ export default function Contact() {
                 </p>
              </motion.div>
 
-             {/* Email Panel */}
              <motion.div variants={fadeUp} className="glass p-10 rounded-3xl border-t border-slate-700/50 hover:border-cyan-500/30 transition-colors group flex flex-col">
                 <div className="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-8 group-hover:bg-blue-500/20 transition-colors">
                    <Mail className="text-blue-400" size={24} />
@@ -59,7 +56,6 @@ export default function Contact() {
                   dyoo@corexbiotech.com
                 </a>
 
-                {/* Social Links */}
                 <div className="flex gap-4 mt-auto pt-8 border-t border-slate-800">
                    <a
                      href="https://www.instagram.com/corexbiotech_official"
@@ -74,7 +70,6 @@ export default function Contact() {
              </motion.div>
           </motion.div>
 
-          {/* Native Map Embed Section */}
           <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="mt-20 max-w-5xl mx-auto rounded-3xl overflow-hidden glass shadow-2xl p-4">
              <iframe
                key="native-google-map-clean"

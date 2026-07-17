@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { findProduct, cosmetics, ingredients } from '../../data/products';
@@ -5,9 +6,25 @@ import ShopProductCard from '../../components/ShopProductCard';
 
 export default function ShopProduct() {
   const { id } = useParams();
+  return <ShopProductDetail key={id} id={id} />;
+}
+
+function ShopProductDetail({ id }) {
   const { t, i18n } = useTranslation();
 
   const product = findProduct(id);
+
+  const [related] = useState(() => {
+    if (!product) return [];
+    const pool = product.category === 'cosmetics' ? cosmetics : ingredients;
+    const others = pool.filter((p) => String(p.id) !== String(product.id));
+    for (let i = others.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [others[i], others[j]] = [others[j], others[i]];
+    }
+    return others.slice(0, 4);
+  });
+
   if (!product) {
     return <Navigate to="/shopHome/all" replace />;
   }
@@ -17,13 +34,8 @@ export default function ShopProduct() {
   const name = isEn && product.nameEn ? product.nameEn : product.name;
   const desc = isEn && product.descEn ? product.descEn : product.desc;
 
-  // 같은 카테고리의 다른 상품 4개 추천
-  const pool = category === 'cosmetics' ? cosmetics : ingredients;
-  const related = pool.filter((p) => String(p.id) !== String(product.id)).slice(0, 4);
-
   return (
     <section className="shop-container shop-section">
-      {/* breadcrumb */}
       <nav className="sd-crumb">
         <Link to="/shopHome">{t('shop.cat_all')}</Link>
         <span>/</span>
@@ -33,7 +45,6 @@ export default function ShopProduct() {
       </nav>
 
       <div className="sd-top">
-        {/* 이미지 */}
         <div className="sd-gallery">
           {product.image ? (
             <img src={product.image} alt={name} />
@@ -42,7 +53,6 @@ export default function ShopProduct() {
           )}
         </div>
 
-        {/* 정보 */}
         <div className="sd-info">
           <span className="sd-category">{t(`shop.cat_${category}`)}</span>
           <h1 className="sd-name">{name}</h1>
@@ -55,7 +65,6 @@ export default function ShopProduct() {
             <p className="sd-price-inquiry-note">{t('shop.priceInquiryNote')}</p>
           </div>
 
-          {/* 스펙 표 */}
           <dl className="sd-spec-table">
             <div className="sd-spec-row">
               <dt>{t('shop.specLabel')}</dt>
@@ -80,7 +89,6 @@ export default function ShopProduct() {
         </div>
       </div>
 
-      {/* 상세 설명 */}
       <div className="sd-detail">
         <h2 className="sd-detail-title">{t('shop.detailTitle')}</h2>
         <div className="sd-detail-body">
@@ -94,7 +102,6 @@ export default function ShopProduct() {
         </div>
       </div>
 
-      {/* 관련 상품 */}
       {related.length > 0 && (
         <div className="sd-related">
           <div className="shop-section-head">

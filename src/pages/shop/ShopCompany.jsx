@@ -16,7 +16,6 @@ export default function ShopCompany() {
         <p className="shop-lead">{t('company.lead')}</p>
       </section>
 
-      {/* 경영 철학 */}
       <section className="shop-container shop-section">
         <div className="shop-section-head">
           <h2>{t('company.philosophyTitle')}</h2>
@@ -32,7 +31,6 @@ export default function ShopCompany() {
         </div>
       </section>
 
-      {/* 두 개의 엔진 */}
       <section className="shop-container shop-section">
         <div className="shop-section-head">
           <h2>{t('company.engineTitle')}</h2>
@@ -49,7 +47,6 @@ export default function ShopCompany() {
         </div>
       </section>
 
-      {/* 회사 개요 */}
       <section className="shop-container shop-section">
         <div className="shop-section-head">
           <h2>{t('company.infoTitle')}</h2>
@@ -64,7 +61,6 @@ export default function ShopCompany() {
         </dl>
       </section>
 
-      {/* CTA */}
       <section className="shop-container shop-section">
         <div className="shop-cta-band">
           <div>

@@ -1,4 +1,3 @@
-/* Hero */
 .investment-hero {
     background: linear-gradient(135deg, #0d1b2e 0%, #0f2744 50%, #0a3d52 100%);
     color: white;
@@ -21,7 +20,6 @@
     opacity: 0.9;
 }
 
-/* Section */
 .investment-stats {
     padding: var(--spacing-4xl) 0;
     background: var(--bg-light);
@@ -32,7 +30,6 @@
     background: white;
 }
 
-/* Chart Container */
 .chart-container {
     max-width: 500px;
     margin: 0 auto;
@@ -45,7 +42,6 @@
     align-items: center;
 }
 
-/* CSS Doughnut Chart */
 .doughnut-chart {
     position: relative;
     width: 280px;
@@ -82,7 +78,6 @@
     color: var(--primary-green);
 }
 
-/* Chart Legend */
 .chart-legend {
     display: flex;
     flex-wrap: wrap;
@@ -105,7 +100,6 @@
     flex-shrink: 0;
 }
 
-/* Summary Cards */
 .summary-card {
     background: var(--bg-light);
     padding: var(--spacing-2xl);
@@ -136,7 +130,6 @@
     color: var(--text-primary);
 }
 
-/* Grid helper */
 .grid {
     display: grid;
     gap: var(--spacing-xl);
@@ -157,7 +150,6 @@
     }
 }
 
-/* Fade-in */
 .fade-in-scroll {
     opacity: 0;
     transform: translateY(30px);

@@ -2,7 +2,6 @@ export const newsItems = [
   {
     id: 'n5',
     date: '2026.06.23',
-    image: '/image/news/mt-ideathon-corex.avif',
     source: '머니투데이',
     sourceEn: 'Money Today',
     title: "코렉스, '로컬 아이디어톤: 농업X기술'서 최우수상 수상",
@@ -58,7 +57,6 @@ export const newsItems = [
   {
     id: 'n4',
     date: '2026.05.21',
-    image: '/image/news/kookmin-campustown-mou.jpg',
     source: '이투데이',
     sourceEn: 'Etoday',
     title: '국민대 캠퍼스타운, 국제공정무역기구와 창업생태계 조성 위한 MOU 체결',

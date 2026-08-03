@@ -97,6 +97,15 @@ export default function RouteMeta() {
       document.head.appendChild(tag);
     }
     tag.setAttribute('content', desc);
+
+    // canonical 도 현재 페이지를 가리키게 한다 (index.html 기본값은 홈)
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) {
+      canonical.setAttribute(
+        'href',
+        `https://corexbiotech.com${pathname === '/' ? '' : pathname}`,
+      );
+    }
   }, [pathname]);
 
   return null;

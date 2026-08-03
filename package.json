@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "postbuild": "node -e \"require('fs').copyFileSync('dist/index.html','dist/404.html')\"",
+    "postbuild": "node scripts/postbuild.mjs",
     "deploy": "npm run build && gh-pages -d dist --repo https://github.com/sososoosoo/HydroNutri_WebPage.git",
     "lint": "eslint .",
     "preview": "vite preview"

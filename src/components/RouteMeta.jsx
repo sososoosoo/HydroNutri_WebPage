@@ -98,13 +98,18 @@ export default function RouteMeta() {
     }
     tag.setAttribute('content', desc);
 
-    // canonical 도 현재 페이지를 가리키게 한다 (index.html 기본값은 홈)
-    const canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) {
-      canonical.setAttribute(
-        'href',
-        `https://corexbiotech.com${pathname === '/' ? '' : pathname}`,
-      );
+    // canonical·og 도 현재 페이지를 가리키게 한다 (index.html 기본값은 홈)
+    const url = `https://corexbiotech.com${pathname === '/' ? '' : pathname}`;
+    const set = (selector, attr, value) => {
+      const el = document.querySelector(selector);
+      if (el) el.setAttribute(attr, value);
+    };
+    set('link[rel="canonical"]', 'href', url);
+    set('meta[property="og:url"]', 'content', url);
+    // 홈은 index.html 에 작성해 둔 공유 문구(og)를 그대로 쓴다
+    if (pathname !== '/') {
+      set('meta[property="og:title"]', 'content', title);
+      set('meta[property="og:description"]', 'content', desc);
     }
   }, [pathname]);
 

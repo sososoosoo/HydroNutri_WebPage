@@ -1,29 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- 회사 소개 사이트 -->
   <url>
     <loc>https://corexbiotech.com/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://corexbiotech.com/about/vision-mission</loc>
+    <loc>https://corexbiotech.com/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://corexbiotech.com/about/ci</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://corexbiotech.com/about/history</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://corexbiotech.com/about/organization</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://corexbiotech.com/technology</loc>
@@ -31,38 +17,50 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://corexbiotech.com/technology/roadmap</loc>
+    <loc>https://corexbiotech.com/roadmap</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://corexbiotech.com/investment</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://corexbiotech.com/investment/news</loc>
+    <loc>https://corexbiotech.com/news</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://corexbiotech.com/investment/blog</loc>
+    <loc>https://corexbiotech.com/contact</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- 원료 스토어 -->
+  <url>
+    <loc>https://corexbiotech.com/shopHome</loc>
     <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://corexbiotech.com/shopHome/products</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://corexbiotech.com/shopHome/business</loc>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://corexbiotech.com/faq</loc>
+    <loc>https://corexbiotech.com/shopHome/company</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://corexbiotech.com/faq/contact</loc>
-    <changefreq>monthly</changefreq>
+    <loc>https://corexbiotech.com/shopHome/news</loc>
+    <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://corexbiotech.com/faq/location</loc>
+    <loc>https://corexbiotech.com/shopHome/quote</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.6</priority>
   </url>
 </urlset>

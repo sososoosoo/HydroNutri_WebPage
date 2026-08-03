@@ -1,4 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
+import RouteMeta from './components/RouteMeta';
 import Layout from './components/Layout';
 import ShopLayout from './components/ShopLayout';
 import Home from './pages/Home';
@@ -19,7 +20,9 @@ import Placeholder from './pages/Placeholder';
 
 export default function App() {
   return (
-    <Routes>
+    <>
+      <RouteMeta />
+      <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -44,6 +47,7 @@ export default function App() {
       <Route path="/products" element={<Navigate to="/shopHome" replace />} />
       <Route path="/products/:category" element={<Navigate to="/shopHome" replace />} />
       <Route path="/quote" element={<Navigate to="/shopHome/quote" replace />} />
-    </Routes>
+      </Routes>
+    </>
   );
 }

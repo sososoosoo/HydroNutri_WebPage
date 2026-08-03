@@ -1,5 +1,19 @@
 export const newsItems = [
   {
+    id: 'n5',
+    date: '2026.06.23',
+    image: '/image/news/mt-ideathon-corex.avif',
+    source: '머니투데이',
+    sourceEn: 'Money Today',
+    title: "코렉스, '로컬 아이디어톤: 농업X기술'서 최우수상 수상",
+    titleEn: "COREX wins top prize at the 'Local Ideathon: Agriculture × Technology'",
+    summary:
+      "사회적협동조합 멘토리가 개최한 3일간의 해커톤에서 코렉스가 '국내 천연물 원료 표준화 기술'로 최우수상(농기평 원장상)을 수상했다. 농림축산식품 R&D 기술을 활용해 농업 문제 해결 비즈니스 모델을 도출하는 행사였다.",
+    summaryEn:
+      "At a three-day hackathon hosted by the Mentory social cooperative, COREX won the top award (IPET President's Prize) for its domestic natural-material standardization technology, in an event that turned agri-food R&D into problem-solving business models.",
+    url: 'https://www.mt.co.kr/industry/2026/06/23/2026062313164157914',
+  },
+  {
     id: 'n1',
     date: '2026.06.23',
     image: '/image/news/afpro2026-corex.png',

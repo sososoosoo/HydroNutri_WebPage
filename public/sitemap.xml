@@ -39,14 +39,14 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://corexbiotech.com/shopHome/products</loc>
+    <loc>https://corexbiotech.com/shopHome/cosmetics</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://corexbiotech.com/shopHome/business</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://corexbiotech.com/shopHome/ingredients</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://corexbiotech.com/shopHome/company</loc>

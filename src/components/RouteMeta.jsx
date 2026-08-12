@@ -40,11 +40,11 @@ const META = {
     title: 'COREX 원료 스토어',
     desc: '코렉스(COREX) 원료 스토어 회사 소개.',
   },
-  '/shopHome/business': {
-    title: 'COREX 사업안내',
-    desc: '코렉스(COREX)의 원료 표준화 사업과 공급 방식을 안내합니다.',
+  '/shopHome/cosmetics': {
+    title: 'COREX 화장품',
+    desc: '코렉스(COREX) 코스메슈티컬 완제품 목록.',
   },
-  '/shopHome/products': {
+  '/shopHome/ingredients': {
     title: 'COREX 원료 목록',
     desc: '코렉스(COREX)가 공급하는 화장품·건강기능식품 표준화 원료 목록.',
   },

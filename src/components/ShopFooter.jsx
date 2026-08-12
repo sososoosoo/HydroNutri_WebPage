@@ -17,8 +17,8 @@ export default function ShopFooter() {
 
           <nav className="shop-footer-nav">
             <Link to="/shopHome/company">{t('shopNav.company')}</Link>
-            <Link to="/shopHome/business">{t('shopNav.business')}</Link>
-            <Link to="/shopHome/products">{t('shopNav.products')}</Link>
+            <Link to="/shopHome/cosmetics">{t('shopNav.cosmetics')}</Link>
+            <Link to="/shopHome/ingredients">{t('shopNav.ingredients')}</Link>
             <Link to="/shopHome/news">{t('shopNav.news')}</Link>
             <Link to="/shopHome/quote">{t('shopNav.quote')}</Link>
           </nav>

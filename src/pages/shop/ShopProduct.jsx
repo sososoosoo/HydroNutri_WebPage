@@ -2,7 +2,9 @@ import { useState } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { findProduct, cosmetics, ingredients } from '../../data/products';
+import { productStories } from '../../data/productStories';
 import ShopProductCard from '../../components/ShopProductCard';
+import ShopProductStory from '../../components/ShopProductStory';
 
 export default function ShopProduct() {
   const { id } = useParams();
@@ -89,18 +91,22 @@ function ShopProductDetail({ id }) {
         </div>
       </div>
 
-      <div className="sd-detail">
-        <h2 className="sd-detail-title">{t('shop.detailTitle')}</h2>
-        <div className="sd-detail-body">
-          {desc && <p>{desc}</p>}
-          <p>{t('shop.detailIntro', { name })}</p>
-          <ul className="sd-detail-list">
-            <li>{t('shop.detailPoint1')}</li>
-            <li>{t('shop.detailPoint2')}</li>
-            <li>{t('shop.detailPoint3')}</li>
-          </ul>
+      {productStories[product.id] ? (
+        <ShopProductStory story={productStories[product.id]} isEn={isEn} />
+      ) : (
+        <div className="sd-detail">
+          <h2 className="sd-detail-title">{t('shop.detailTitle')}</h2>
+          <div className="sd-detail-body">
+            {desc && <p>{desc}</p>}
+            <p>{t('shop.detailIntro', { name })}</p>
+            <ul className="sd-detail-list">
+              <li>{t('shop.detailPoint1')}</li>
+              <li>{t('shop.detailPoint2')}</li>
+              <li>{t('shop.detailPoint3')}</li>
+            </ul>
+          </div>
         </div>
-      </div>
+      )}
 
       {related.length > 0 && (
         <div className="sd-related">

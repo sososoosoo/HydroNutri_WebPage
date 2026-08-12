@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next';
 
 const navItems = [
   { key: 'company', path: '/shopHome/company' },
-  { key: 'business', path: '/shopHome/business' },
-  { key: 'products', path: '/shopHome/products' },
+  { key: 'cosmetics', path: '/shopHome/cosmetics' },
+  { key: 'ingredients', path: '/shopHome/ingredients' },
   { key: 'news', path: '/shopHome/news' },
   { key: 'quote', path: '/shopHome/quote' },
 ];

@@ -72,8 +72,8 @@
   },
   "shopNav": {
     "company": "About",
-    "business": "Business",
-    "products": "Products",
+    "cosmetics": "Cosmetics",
+    "ingredients": "Raw Materials",
     "news": "News",
     "quote": "Get a Quote"
   },
@@ -105,10 +105,7 @@
     "infoLocationLabel": "Location",
     "infoLocationValue": "Chuncheon, Gangwon, Korea",
     "infoFieldLabel": "Business",
-    "infoFieldValue": "Standardized bioactive materials from functional plants",
-    "ctaTitle": "Curious what COREX does?",
-    "ctaDesc": "Take a closer look at our business, products and standardization approach.",
-    "ctaDescQuote": "Tell us the materials and quantities you need and we'll follow up."
+    "infoFieldValue": "Standardized bioactive materials from functional plants"
   },
   "business": {
     "eyebrow": "OUR BUSINESS",
@@ -150,21 +147,7 @@
     "c3": "Ingredient distributors",
     "c4": "Inner beauty & health foods",
     "c5": "Agricultural partners",
-    "c6": "Medical & bio materials",
-    "ctaTitle": "Looking for a specific material?",
-    "ctaDesc": "Browse the product lineup, or start a conversation with a quote request."
-  },
-  "products": {
-    "eyebrow": "PRODUCTS",
-    "title": "COREX Products",
-    "desc": "From centella- and sprout-ginseng-based bioactive materials to small-batch raw materials — supplied in the form and quantity you need.",
-    "cosmeticTitle": "BioResponse Finished Goods",
-    "ingredientTitle": "Raw Material Catalog",
-    "devStatus": "In Development",
-    "devName": "Protect",
-    "devDesc": "We are developing a next-generation functional material that shields active compounds from oxidation, light and heat. Commercial timing and specs will be shared as development progresses.",
-    "ctaTitle": "The materials you need, in small quantities",
-    "ctaDesc": "Leave the materials and quantities you need as a quote request and we'll follow up."
+    "c6": "Medical & bio materials"
   },
   "news": {
     "eyebrow": "NEWS & STORIES",

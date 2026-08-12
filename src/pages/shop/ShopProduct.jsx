@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { findProduct, cosmetics, ingredients } from '../../data/products';
+import { findProduct, cosmetics, ingredients, discountRate, formatKRW } from '../../data/products';
 import { productStories } from '../../data/productStories';
 import ShopProductCard from '../../components/ShopProductCard';
 import ShopProductStory from '../../components/ShopProductStory';
@@ -15,6 +15,8 @@ function ShopProductDetail({ id }) {
   const { t, i18n } = useTranslation();
 
   const product = findProduct(id);
+
+  const [activeImage, setActiveImage] = useState(0);
 
   const [related] = useState(() => {
     if (!product) return [];
@@ -32,12 +34,19 @@ function ShopProductDetail({ id }) {
   }
 
   const isEn = i18n.language === 'en';
-  const { category } = product;
+  const { category, listPrice, price, showPrice } = product;
   const name = isEn && product.nameEn ? product.nameEn : product.name;
   const desc = isEn && product.descEn ? product.descEn : product.desc;
+  const discount = discountRate(listPrice, price);
+  const saved = listPrice - price;
+  const gallery = product.images?.length ? product.images : product.image ? [product.image] : [];
+  const mainImage = gallery[activeImage] || gallery[0];
+  // 화장품은 B2C라 '구매 문의', 원료는 kg·톤 단위라 '견적 문의'
+  const buyLabel = t(category === 'cosmetics' ? 'shop.buy' : 'shop.buyQuote');
+  const quotePath = `/shopHome/quote?product=${product.id}`;
 
   return (
-    <section className="shop-container shop-section">
+    <section className="shop-container shop-section sd-page">
       <nav className="sd-crumb">
         <Link to="/shopHome">{t('shop.cat_all')}</Link>
         <span>/</span>
@@ -47,11 +56,28 @@ function ShopProductDetail({ id }) {
       </nav>
 
       <div className="sd-top">
-        <div className="sd-gallery">
-          {product.image ? (
-            <img src={product.image} alt={name} />
-          ) : (
-            <div className="sd-thumb-placeholder">{t('shop.imagePending')}</div>
+        <div className="sd-gallery-wrap">
+          <div className="sd-gallery">
+            {mainImage ? (
+              <img src={mainImage} alt={name} />
+            ) : (
+              <div className="sd-thumb-placeholder">{t('shop.imagePending')}</div>
+            )}
+          </div>
+          {gallery.length > 1 && (
+            <div className="sd-thumbs">
+              {gallery.map((src, i) => (
+                <button
+                  key={src}
+                  type="button"
+                  className={`sd-thumb${i === activeImage ? ' active' : ''}`}
+                  onClick={() => setActiveImage(i)}
+                  aria-label={`${name} ${i + 1}`}
+                >
+                  <img src={src} alt="" loading="lazy" />
+                </button>
+              ))}
+            </div>
           )}
         </div>
 
@@ -63,8 +89,30 @@ function ShopProductDetail({ id }) {
           {desc && <p className="sd-desc">{desc}</p>}
 
           <div className="sd-price-box">
-            <span className="sd-price-inquiry">{t('shop.priceInquiry')}</span>
-            <p className="sd-price-inquiry-note">{t('shop.priceInquiryNote')}</p>
+            {showPrice ? (
+              <>
+                {discount > 0 && (
+                  <div className="sd-price-row">
+                    <span className="sd-original">{formatKRW(listPrice)}{t('shop.won')}</span>
+                    <span className="sd-off">{discount}%{t('shop.off')}</span>
+                  </div>
+                )}
+                <div className="sd-final-row">
+                  <strong className="sd-final">{formatKRW(price)}</strong>
+                  <span className="sd-won">{t('shop.won')}</span>
+                </div>
+                {discount > 0 && (
+                  <p className="sd-saved">
+                    {t('shop.savedLabel')} {formatKRW(saved)}{t('shop.won')}
+                  </p>
+                )}
+              </>
+            ) : (
+              <>
+                <span className="sd-price-inquiry">{t('shop.priceInquiry')}</span>
+                <p className="sd-price-inquiry-note">{t('shop.priceInquiryNote')}</p>
+              </>
+            )}
           </div>
 
           <dl className="sd-spec-table">
@@ -79,8 +127,8 @@ function ShopProductDetail({ id }) {
           </dl>
 
           <div className="sd-actions">
-            <Link to="/shopHome/quote" className="shop-btn primary sd-cta">
-              {t('shop.buy')}
+            <Link to={quotePath} className="shop-btn primary sd-cta">
+              {buyLabel}
             </Link>
             <Link to={`/shopHome/${category}`} className="shop-btn ghost sd-cta">
               {t('shop.backToList')}
@@ -108,6 +156,19 @@ function ShopProductDetail({ id }) {
         </div>
       )}
 
+      {/* 상세설명을 다 읽은(가장 관심 높은) 방문자를 위한 마무리 전환 밴드 */}
+      <div className="sd-story-cta">
+        <h2 className="sd-story-cta-name">{name}</h2>
+        <p className="sd-story-cta-meta">
+          {product.spec}
+          {showPrice ? ` · ${formatKRW(price)}${t('shop.won')}` : ` · ${t('shop.priceInquiry')}`}
+        </p>
+        <Link to={quotePath} className="shop-btn primary sd-story-cta-btn">
+          {buyLabel}
+        </Link>
+        <p className="sd-story-cta-note">{t('shop.storyCtaNote')}</p>
+      </div>
+
       {related.length > 0 && (
         <div className="sd-related">
           <div className="shop-section-head">
@@ -121,6 +182,22 @@ function ShopProductDetail({ id }) {
           </div>
         </div>
       )}
+
+      {/* 모바일 하단 고정 바 — 스크롤 어디서든 바로 문의 */}
+      <div className="sd-sticky-bar">
+        <div className="sd-sticky-info">
+          <strong>{name}</strong>
+          {showPrice && (
+            <span>
+              {formatKRW(price)}
+              {t('shop.won')}
+            </span>
+          )}
+        </div>
+        <Link to={quotePath} className="shop-btn primary sd-sticky-btn">
+          {buyLabel}
+        </Link>
+      </div>
     </section>
   );
 }

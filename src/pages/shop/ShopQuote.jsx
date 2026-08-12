@@ -1,45 +1,59 @@
 import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { X, Minus, Plus } from 'lucide-react';
 import emailjs from '@emailjs/browser';
+import { cosmetics, ingredients, findProduct } from '../../data/products';
 
 const EMAILJS_SERVICE_ID = 'service_4vvm5c1';
 const EMAILJS_TEMPLATE_ID = 'template_xcpd6t4';
 const EMAILJS_PUBLIC_KEY = '-kb7Dty1CCS7mnYzy';
 
-const materialsMeta = [
-  { id: 'centella', name: 'Centella Asiatica', korean: '병풀', compound: 'Madecassoside · Asiaticoside' },
-  { id: 'bacopa', name: 'Bacopa monnieri', korean: '바코파', compound: 'Bacoside A & B' },
-  { id: 'ginseng', name: 'Panax Ginseng', korean: '인삼', compound: 'Ginsenoside · Saponin' },
-  { id: 'dendrobium', name: 'Dendrobium', korean: '덴드로비움', compound: 'Polysaccharides · Flavonoids' },
-  { id: 'lemna', name: 'Lemna (Duckweed)', korean: '워터렌틸 (개구리밥)', compound: 'Plant Protein · Omega-3' },
-  { id: 'stevia', name: 'Stevia', korean: '스테비아', compound: 'Stevioside · Rebaudioside A' },
-];
-
-const formOptions = ['extract', 'powder', 'dried', 'raw'];
-const unitOptions = ['kg', 'g', 'ton', 'L'];
+const unitOptions = ['개', 'kg', 'g', 'L'];
 
 const emptyContact = { company: '', name: '', email: '', phone: '', message: '' };
 
 export default function ShopQuote() {
-  const { t } = useTranslation();
-  const [selected, setSelected] = useState({});
+  const { t, i18n } = useTranslation();
+  const isEn = i18n.language === 'en';
+  const [searchParams] = useSearchParams();
+
+  const [items, setItems] = useState(() => {
+    const initial = findProduct(searchParams.get('product'));
+    return initial ? [{ id: String(initial.id), qty: '1', unit: '개', checked: true }] : [];
+  });
   const [contact, setContact] = useState(emptyContact);
   const [status, setStatus] = useState('idle');
   const [errorMsg, setErrorMsg] = useState('');
 
-  const selectedMaterials = materialsMeta.filter((m) => selected[m.id]);
+  const productName = (p) => (isEn && p.nameEn ? p.nameEn : p.name);
+  const selectedItems = items.filter((it) => it.checked);
 
-  const toggleMaterial = (id) => {
-    setSelected((prev) => {
-      const next = { ...prev };
-      if (next[id]) delete next[id];
-      else next[id] = { form: 'extract', qty: '', unit: 'kg' };
-      return next;
-    });
+  const addItem = (id) => {
+    if (!id) return;
+    setItems((prev) =>
+      prev.some((it) => it.id === String(id))
+        ? prev
+        : [...prev, { id: String(id), qty: '1', unit: '개', checked: true }]
+    );
+  };
+
+  const removeItem = (id) => {
+    setItems((prev) => prev.filter((it) => it.id !== id));
   };
 
   const updateItem = (id, field, value) => {
-    setSelected((prev) => ({ ...prev, [id]: { ...prev[id], [field]: value } }));
+    setItems((prev) => prev.map((it) => (it.id === id ? { ...it, [field]: value } : it)));
+  };
+
+  const stepQty = (id, delta) => {
+    setItems((prev) =>
+      prev.map((it) => {
+        if (it.id !== id) return it;
+        const next = Math.max(1, (Number(it.qty) || 0) + delta);
+        return { ...it, qty: String(next) };
+      })
+    );
   };
 
   const updateContact = (field, value) => {
@@ -50,12 +64,17 @@ export default function ShopQuote() {
     e.preventDefault();
     if (status === 'sending') return;
 
-    if (selectedMaterials.length === 0) {
+    if (items.length === 0) {
       setStatus('idle');
       setErrorMsg(t('quote.errNoMaterial'));
       return;
     }
-    if (selectedMaterials.some((m) => !selected[m.id].qty || Number(selected[m.id].qty) <= 0)) {
+    if (selectedItems.length === 0) {
+      setStatus('idle');
+      setErrorMsg(t('quote.errNoChecked'));
+      return;
+    }
+    if (selectedItems.some((it) => !it.qty || Number(it.qty) <= 0)) {
       setStatus('idle');
       setErrorMsg(t('quote.errQty'));
       return;
@@ -71,10 +90,10 @@ export default function ShopQuote() {
       return;
     }
 
-    const quoteItems = selectedMaterials
-      .map((m) => {
-        const item = selected[m.id];
-        return `- ${m.name} (${m.korean}) / ${t(`quote.form_${item.form}`)} / ${item.qty} ${item.unit}`;
+    const quoteItems = selectedItems
+      .map((it) => {
+        const p = findProduct(it.id);
+        return `- ${p.name}${p.spec ? ` (${p.spec})` : ''} / ${it.qty} ${it.unit}`;
       })
       .join('\n');
 
@@ -84,7 +103,7 @@ export default function ShopQuote() {
       `이메일: ${contact.email}`,
       `연락처: ${contact.phone || '-'}`,
       '',
-      '[요청 원료]',
+      '[문의 상품]',
       quoteItems,
       '',
       '[추가 요청사항]',
@@ -106,7 +125,7 @@ export default function ShopQuote() {
         { publicKey: EMAILJS_PUBLIC_KEY }
       );
       setStatus('success');
-      setSelected({});
+      setItems([]);
       setContact(emptyContact);
     } catch {
       setStatus('error');
@@ -127,71 +146,109 @@ export default function ShopQuote() {
           <p>{t('quote.step1Desc')}</p>
         </div>
 
-        <div className="shop-material-grid">
-          {materialsMeta.map((m) => {
-            const item = selected[m.id];
-            return (
-              <div
-                key={m.id}
-                className={`shop-material-card${item ? ' selected' : ''}`}
-                onClick={() => toggleMaterial(m.id)}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    toggleMaterial(m.id);
-                  }
-                }}
-              >
-                <span className="shop-material-check">✓</span>
-                <p className="shop-material-ko">{m.korean}</p>
-                <h3>{m.name}</h3>
-                <p className="shop-material-compound">{m.compound}</p>
-
-                {item && (
-                  <div className="shop-material-controls" onClick={(e) => e.stopPropagation()}>
-                    <div className="shop-field">
-                      <label htmlFor={`form-${m.id}`}>{t('quote.formLabel')}</label>
-                      <select
-                        id={`form-${m.id}`}
-                        value={item.form}
-                        onChange={(e) => updateItem(m.id, 'form', e.target.value)}
-                      >
-                        {formOptions.map((f) => (
-                          <option key={f} value={f}>{t(`quote.form_${f}`)}</option>
-                        ))}
-                      </select>
-                    </div>
-                    <div className="shop-field">
-                      <label htmlFor={`qty-${m.id}`}>{t('quote.qtyLabel')}</label>
-                      <input
-                        id={`qty-${m.id}`}
-                        type="number"
-                        min="0"
-                        step="any"
-                        placeholder={t('quote.qtyPlaceholder')}
-                        value={item.qty}
-                        onChange={(e) => updateItem(m.id, 'qty', e.target.value)}
-                      />
-                    </div>
-                    <div className="shop-field">
-                      <label htmlFor={`unit-${m.id}`}>{t('quote.unitLabel')}</label>
-                      <select
-                        id={`unit-${m.id}`}
-                        value={item.unit}
-                        onChange={(e) => updateItem(m.id, 'unit', e.target.value)}
-                      >
-                        {unitOptions.map((u) => (
-                          <option key={u} value={u}>{u}</option>
-                        ))}
-                      </select>
-                    </div>
+        {items.length === 0 ? (
+          <p className="shop-cart-empty">{t('quote.cartEmpty')}</p>
+        ) : (
+          <ul className="shop-cart-list">
+            {items.map((it) => {
+              const p = findProduct(it.id);
+              if (!p) return null;
+              return (
+                <li key={it.id} className={`shop-cart-row${it.checked ? '' : ' off'}`}>
+                  <input
+                    type="checkbox"
+                    className="shop-cart-check"
+                    checked={it.checked}
+                    onChange={() => updateItem(it.id, 'checked', !it.checked)}
+                    aria-label={`${t('quote.includeItem')}: ${productName(p)}`}
+                  />
+                  <div className="shop-cart-thumb">
+                    {p.image ? (
+                      <img src={p.image} alt={productName(p)} loading="lazy" />
+                    ) : (
+                      <span className="shop-cart-thumb-empty">{t('shop.imagePending')}</span>
+                    )}
                   </div>
-                )}
-              </div>
-            );
-          })}
+                  <div className="shop-cart-info">
+                    <strong>{productName(p)}</strong>
+                    {p.spec && <span>{p.spec}</span>}
+                  </div>
+                  <div className="shop-cart-controls">
+                    <div className="shop-cart-stepper">
+                      <button
+                        type="button"
+                        className="shop-cart-step-btn"
+                        onClick={() => stepQty(it.id, -1)}
+                        aria-label={`${t('quote.qtyMinus')}: ${productName(p)}`}
+                      >
+                        <Minus size={14} />
+                      </button>
+                      <input
+                        className="shop-cart-qty"
+                        type="text"
+                        inputMode="numeric"
+                        aria-label={`${t('quote.qtyLabel')}: ${productName(p)}`}
+                        value={it.qty}
+                        onChange={(e) => updateItem(it.id, 'qty', e.target.value.replace(/\D/g, ''))}
+                        onBlur={() => {
+                          if (!it.qty || Number(it.qty) < 1) updateItem(it.id, 'qty', '1');
+                        }}
+                      />
+                      <button
+                        type="button"
+                        className="shop-cart-step-btn"
+                        onClick={() => stepQty(it.id, 1)}
+                        aria-label={`${t('quote.qtyPlus')}: ${productName(p)}`}
+                      >
+                        <Plus size={14} />
+                      </button>
+                    </div>
+                    <select
+                      className="shop-cart-unit"
+                      aria-label={`${t('quote.unitLabel')}: ${productName(p)}`}
+                      value={it.unit}
+                      onChange={(e) => updateItem(it.id, 'unit', e.target.value)}
+                    >
+                      {unitOptions.map((u) => (
+                        <option key={u} value={u}>{u}</option>
+                      ))}
+                    </select>
+                    <button
+                      type="button"
+                      className="shop-cart-remove"
+                      onClick={() => removeItem(it.id)}
+                      aria-label={`${t('quote.removeItem')}: ${productName(p)}`}
+                    >
+                      <X size={15} strokeWidth={2.5} />
+                    </button>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        )}
+
+        <div className="shop-cart-add">
+          <label htmlFor="quote-add">{t('quote.addLabel')}</label>
+          <select id="quote-add" value="" onChange={(e) => addItem(e.target.value)}>
+            <option value="" disabled>
+              {t('quote.addPlaceholder')}
+            </option>
+            <optgroup label={t('shop.cat_cosmetics')}>
+              {cosmetics.map((p) => (
+                <option key={p.id} value={p.id}>
+                  {productName(p)}{p.spec ? ` (${p.spec})` : ''}
+                </option>
+              ))}
+            </optgroup>
+            <optgroup label={t('shop.cat_ingredients')}>
+              {ingredients.map((p) => (
+                <option key={p.id} value={p.id}>
+                  {productName(p)}{p.spec ? ` (${p.spec})` : ''}
+                </option>
+              ))}
+            </optgroup>
+          </select>
         </div>
       </div>
 
@@ -263,23 +320,26 @@ export default function ShopQuote() {
 
           <div className="shop-summary">
             <p className="shop-summary-title">{t('quote.summaryTitle')}</p>
-            {selectedMaterials.length === 0 ? (
+            {items.length === 0 ? (
               <p className="shop-summary-empty">{t('quote.summaryEmpty')}</p>
+            ) : selectedItems.length === 0 ? (
+              <p className="shop-summary-empty">{t('quote.errNoChecked')}</p>
             ) : (
               <>
-                {selectedMaterials.map((m) => {
-                  const item = selected[m.id];
+                {selectedItems.map((it) => {
+                  const p = findProduct(it.id);
+                  if (!p) return null;
                   return (
-                    <div key={m.id} className="shop-summary-row">
-                      <span>{m.name} ({m.korean})</span>
+                    <div key={it.id} className="shop-summary-row">
+                      <span>{productName(p)}{p.spec ? ` (${p.spec})` : ''}</span>
                       <span className="shop-summary-detail">
-                        {t(`quote.form_${item.form}`)} · {item.qty || '?'} {item.unit}
+                        {it.qty || '?'} {it.unit}
                       </span>
                     </div>
                   );
                 })}
                 <p className="shop-summary-count">
-                  {t('quote.summaryCount', { count: selectedMaterials.length })}
+                  {t('quote.summaryCount', { count: selectedItems.length })}
                 </p>
               </>
             )}

@@ -1,34 +1,96 @@
 import { Link } from 'react-router-dom';
 
-export default function ShopProductStory({ story, isEn }) {
-  const pick = (obj, key) => (isEn && obj[`${key}En`] ? obj[`${key}En`] : obj[key]);
-
+// 섹션에 link: { to, label, labelEn } 이 있으면 본문 아래에 이동 링크를 붙인다
+// (예: 앰플 사용법 → 크림 페이지 상호 연결)
+function StoryLink({ link, pick }) {
+  if (!link) return null;
   return (
-    <div className="sps">
+    <Link className="sps-link" to={link.to}>
+      {pick(link, 'label')}
+    </Link>
+  );
+}
+
+function Figure({ src, alt }) {
+  if (!src) return null;
+  return (
+    <figure className="sps-figure">
+      <img src={src} alt={alt || ''} loading="lazy" />
+    </figure>
+  );
+}
+
+function FlowSteps({ steps, pick }) {
+  return (
+    <div className="sps-arch">
+      {steps.map((s, i) => (
+        <div key={s.name} className="sps-arch-item">
+          <div className="sps-arch-card">
+            {s.step && <em className="sps-arch-step">{s.step}</em>}
+            <strong>{s.name}</strong>
+            {s.volume && <span className="sps-arch-volume">{s.volume}</span>}
+            {pick(s, 'desc') && <span>{pick(s, 'desc')}</span>}
+          </div>
+          {i < steps.length - 1 && (
+            <span className="sps-arch-arrow" aria-hidden="true">↓</span>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function Section({ s, pick }) {
+  if (s.type === 'hero') {
+    return (
       <section className="sps-hero">
-        <span className="sps-eyebrow">{story.heroEyebrow}</span>
-        <span className="sps-volume">{story.heroVolume}</span>
-        <h2 className="sps-title">{pick(story, 'heroTitle')}</h2>
-        {pick(story, 'heroParas').map((p) => (
+        {s.kicker && <span className="sps-kicker">{s.kicker}</span>}
+        {pick(s, 'eyebrow') && <span className="sps-eyebrow">{pick(s, 'eyebrow')}</span>}
+        {pick(s, 'title') && <h2 className="sps-title">{pick(s, 'title')}</h2>}
+        {pick(s, 'subtitle') && <p className="sps-subtitle">{pick(s, 'subtitle')}</p>}
+        {s.tags && <p className="sps-tags">{s.tags}</p>}
+        {s.badge && <span className="sps-badge-line">{s.badge}</span>}
+        {s.volume && <span className="sps-volume">{s.volume}</span>}
+        {(pick(s, 'paras') || []).map((p) => (
           <p key={p} className="sps-para">{p}</p>
         ))}
+        <Figure src={s.image} alt={s.eyebrow || pick(s, 'title')} />
       </section>
+    );
+  }
 
-      {story.philosophy && (
-        <section className="sps-band">
-          <span className="sps-eyebrow">{story.philosophy.eyebrow}</span>
-          <h2 className="sps-title">{pick(story.philosophy, 'title')}</h2>
-          {pick(story.philosophy, 'paras').map((p) => (
-            <p key={p} className="sps-para">{p}</p>
-          ))}
-        </section>
-      )}
+  if (s.type === 'band') {
+    return (
+      <section className="sps-band">
+        {pick(s, 'eyebrow') && <span className="sps-eyebrow">{pick(s, 'eyebrow')}</span>}
+        {pick(s, 'subtitle') && <p className="sps-subtitle">{pick(s, 'subtitle')}</p>}
+        {pick(s, 'title') && <h2 className="sps-title">{pick(s, 'title')}</h2>}
+        {(pick(s, 'paras') || []).map((p) => (
+          <p key={p} className="sps-para">{p}</p>
+        ))}
+        {s.flowLine && <p className="sps-routine-flow">{s.flowLine}</p>}
+        {pick(s, 'lead') && <p className="sps-lead">{pick(s, 'lead')}</p>}
+        {pick(s, 'note') && <p className="sps-note">{pick(s, 'note')}</p>}
+        {pick(s, 'fineprint') && <p className="sps-fineprint">{pick(s, 'fineprint')}</p>}
+        <StoryLink link={s.link} pick={pick} />
+        <Figure src={s.image} alt={s.eyebrow || pick(s, 'title')} />
+      </section>
+    );
+  }
 
-      {story.ingredients && (
-        <section className="sps-ingredients">
-          {story.ingredients.map((ing) => (
-            <article key={ing.step} className="sps-ingredient">
-              <span className="sps-step">{ing.step}</span>
+  if (s.type === 'cards') {
+    return (
+      <section className="sps-cards">
+        {(s.eyebrow || pick(s, 'title')) && (
+          <div className="sps-cards-head">
+            {pick(s, 'eyebrow') && <span className="sps-eyebrow">{pick(s, 'eyebrow')}</span>}
+            {pick(s, 'title') && <h2 className="sps-title">{pick(s, 'title')}</h2>}
+          </div>
+        )}
+        <div className="sps-ingredients">
+          {s.items.map((ing) => (
+            <article key={pick(ing, 'name')} className="sps-ingredient">
+              {ing.step && <span className="sps-step">{ing.step}</span>}
               <h3 className="sps-ing-name">{pick(ing, 'name')}</h3>
               {pick(ing, 'meta') && <p className="sps-ing-meta">{pick(ing, 'meta')}</p>}
               {(pick(ing, 'paras') || []).map((p) => (
@@ -48,102 +110,108 @@ export default function ShopProductStory({ story, isEn }) {
                 </div>
               ))}
               {pick(ing, 'note') && <p className="sps-note">{pick(ing, 'note')}</p>}
+              <Figure src={ing.image} alt={pick(ing, 'name')} />
             </article>
           ))}
-        </section>
-      )}
+        </div>
+        {pick(s, 'note') && <p className="sps-note">{pick(s, 'note')}</p>}
+        <StoryLink link={s.link} pick={pick} />
+        <Figure src={s.image} alt={s.eyebrow} />
+      </section>
+    );
+  }
 
-      {story.architecture && (
-        <section className="sps-band">
-          <span className="sps-eyebrow">{story.architecture.eyebrow}</span>
-          <h2 className="sps-title">{pick(story.architecture, 'title')}</h2>
-          <div className="sps-arch">
-            {story.architecture.steps.map((s, i) => (
-              <div key={s.name} className="sps-arch-item">
-                <div className="sps-arch-card">
-                  {s.step && <em className="sps-arch-step">{s.step}</em>}
-                  <strong>{s.name}</strong>
-                  {s.volume && <span className="sps-arch-volume">{s.volume}</span>}
-                  <span>{pick(s, 'desc')}</span>
-                </div>
-                {i < story.architecture.steps.length - 1 && (
-                  <span className="sps-arch-arrow" aria-hidden="true">↓</span>
-                )}
+  if (s.type === 'flow') {
+    return (
+      <section className="sps-band">
+        {pick(s, 'eyebrow') && <span className="sps-eyebrow">{pick(s, 'eyebrow')}</span>}
+        {pick(s, 'title') && <h2 className="sps-title">{pick(s, 'title')}</h2>}
+        {(pick(s, 'paras') || []).map((p) => (
+          <p key={p} className="sps-para">{p}</p>
+        ))}
+        <FlowSteps steps={s.steps} pick={pick} />
+        {pick(s, 'note') && <p className="sps-note">{pick(s, 'note')}</p>}
+        {pick(s, 'fineprint') && <p className="sps-fineprint">{pick(s, 'fineprint')}</p>}
+        <StoryLink link={s.link} pick={pick} />
+        <Figure src={s.image} alt={s.eyebrow} />
+      </section>
+    );
+  }
+
+  if (s.type === 'stack') {
+    return (
+      <section className="sps-band">
+        {pick(s, 'eyebrow') && <span className="sps-eyebrow">{pick(s, 'eyebrow')}</span>}
+        {pick(s, 'title') && <h2 className="sps-title">{pick(s, 'title')}</h2>}
+        <div className="sps-stack">
+          {s.items.map((item, i) => (
+            <div key={item.name} className="sps-stack-item">
+              <div className="sps-stack-card">
+                <strong>{item.name}</strong>
+                {pick(item, 'desc') && <span>{pick(item, 'desc')}</span>}
               </div>
-            ))}
-          </div>
-          <p className="sps-note">{pick(story.architecture, 'note')}</p>
-        </section>
-      )}
-
-      {story.duo && (
-        <section className="sps-band">
-          <span className="sps-eyebrow">{story.duo.eyebrow}</span>
-          <h2 className="sps-title">{pick(story.duo, 'title')}</h2>
-          <div className="sps-arch">
-            {story.duo.steps.map((s, i) => (
-              <div key={s.name} className="sps-arch-item">
-                <div className="sps-arch-card">
-                  {s.step && <em className="sps-arch-step">{s.step}</em>}
-                  <strong>{s.name}</strong>
-                  {s.volume && <span className="sps-arch-volume">{s.volume}</span>}
-                  <span>{pick(s, 'desc')}</span>
-                </div>
-                {i < story.duo.steps.length - 1 && (
-                  <span className="sps-arch-arrow" aria-hidden="true">↓</span>
-                )}
-              </div>
-            ))}
-          </div>
-          <p className="sps-note">{pick(story.duo, 'note')}</p>
-        </section>
-      )}
-
-      {story.texture && (
-        <section className="sps-section">
-          <span className="sps-eyebrow">{story.texture.eyebrow}</span>
-          {pick(story.texture, 'paras').map((p) => (
-            <p key={p} className="sps-para">{p}</p>
+              {i < s.items.length - 1 && (
+                <span className="sps-stack-plus" aria-hidden="true">＋</span>
+              )}
+            </div>
           ))}
-        </section>
-      )}
+          <span className="sps-arch-arrow" aria-hidden="true">↓</span>
+          <p className="sps-stack-result">{s.result}</p>
+        </div>
+        {pick(s, 'note') && <p className="sps-note">{pick(s, 'note')}</p>}
+      </section>
+    );
+  }
 
-      {story.recommended && (
-        <section className="sps-section">
-          <span className="sps-eyebrow">{story.recommended.eyebrow}</span>
+  if (s.type === 'text') {
+    return (
+      <section className="sps-section">
+        {pick(s, 'eyebrow') && <span className="sps-eyebrow">{pick(s, 'eyebrow')}</span>}
+        {pick(s, 'title') && <h2 className="sps-title">{pick(s, 'title')}</h2>}
+        {(pick(s, 'paras') || []).map((p) => (
+          <p key={p} className="sps-para">{p}</p>
+        ))}
+        {pick(s, 'checkItems') && (
           <ul className="sps-check-list">
-            {pick(story.recommended, 'items').map((item) => (
+            {pick(s, 'checkItems').map((item) => (
               <li key={item}>{item}</li>
             ))}
           </ul>
-        </section>
-      )}
+        )}
+        <StoryLink link={s.link} pick={pick} />
+        <Figure src={s.image} alt={s.eyebrow} />
+      </section>
+    );
+  }
 
-      {story.spec && (
-        <section className="sps-spec">
-          <h3>{story.spec.title}</h3>
-          <dl>
-            {story.spec.rows.map((row) => (
-              <div key={row.label} className="sps-spec-row">
-                <dt>{pick(row, 'label')}</dt>
-                <dd>{pick(row, 'value')}</dd>
-              </div>
-            ))}
-          </dl>
-        </section>
-      )}
+  if (s.type === 'spec') {
+    return (
+      <section className="sps-spec">
+        <h3>{s.title}</h3>
+        <dl>
+          {s.rows.map((row) => (
+            <div key={row.label} className="sps-spec-row">
+              <dt>{pick(row, 'label')}</dt>
+              <dd>{pick(row, 'value')}</dd>
+            </div>
+          ))}
+        </dl>
+        <Figure src={s.image} alt={s.title} />
+      </section>
+    );
+  }
 
-      {story.routine && (
-        <section className="sps-routine">
-          <p className="sps-routine-flow">{story.routine.flow}</p>
-          <p className="sps-para">{pick(story.routine, 'text')}</p>
-          {story.routine.targetId && (
-            <Link to={`/shopHome/product/${story.routine.targetId}`} className="shop-btn ghost">
-              {isEn ? story.routine.targetLabelEn : story.routine.targetLabel}
-            </Link>
-          )}
-        </section>
-      )}
+  return null;
+}
+
+export default function ShopProductStory({ story, isEn }) {
+  const pick = (obj, key) => (isEn && obj[`${key}En`] ? obj[`${key}En`] : obj[key]);
+
+  return (
+    <div className="sps">
+      {story.sections.map((s, i) => (
+        <Section key={i} s={s} pick={pick} />
+      ))}
     </div>
   );
 }

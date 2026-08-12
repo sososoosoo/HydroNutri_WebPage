@@ -31,6 +31,11 @@ desktop.ini
 # Claude Code local settings
 .claude/settings.local.json
 
+# Impeccable 디자인 작업 문서 (내부 전략·제약 포함 — public 저장소에 올리지 않는다)
+/PRODUCT.md
+/DESIGN.md
+.impeccable/
+
 # 환경 변수
 .env
 .env.*

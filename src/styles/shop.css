@@ -991,80 +991,218 @@
     word-break: keep-all;
 }
 
-.shop-material-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1rem;
-}
-
-.shop-material-card {
-    position: relative;
-    padding: 1.5rem;
-    border: 1.5px solid var(--shop-line);
+/* ── 견적 문의: 장바구니 목록 ──
+   [체크박스] [작은 썸네일] [상품명·규격] ... [수량] [단위] [빼기] 한 줄 구성.
+   체크 해제 = 이번 견적에서 제외(행은 남아 다시 켤 수 있다). */
+.shop-cart-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: 1px solid var(--shop-line);
     border-radius: 1rem;
     background: #fff;
+    overflow: hidden;
+}
+
+.shop-cart-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.9rem 1.25rem;
+}
+
+.shop-cart-row + .shop-cart-row {
+    border-top: 1px solid var(--shop-line);
+}
+
+.shop-cart-row.off .shop-cart-thumb,
+.shop-cart-row.off .shop-cart-info {
+    opacity: 0.4;
+}
+
+.shop-cart-check {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    accent-color: var(--shop-primary);
     cursor: pointer;
-    transition: all 0.2s;
 }
 
-.shop-material-card:hover {
-    border-color: var(--shop-primary);
-}
-
-.shop-material-card.selected {
-    border-color: var(--shop-primary);
-    background: rgba(11, 122, 107, 0.04);
-    box-shadow: 0 8px 24px rgba(11, 122, 107, 0.1);
-}
-
-.shop-material-check {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
+.shop-cart-thumb {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    border: 1.5px solid var(--shop-line);
-    font-size: 0.7rem;
-    color: transparent;
-    transition: all 0.2s;
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
+    border: 1px solid var(--shop-line);
+    border-radius: 0.6rem;
+    background: var(--shop-bg-soft);
+    overflow: hidden;
+    transition: opacity 0.2s;
 }
 
-.shop-material-card.selected .shop-material-check {
-    background: var(--shop-primary);
+.shop-cart-thumb img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.shop-cart-thumb-empty {
+    padding: 0.2rem;
+    font-size: 0.55rem;
+    line-height: 1.3;
+    text-align: center;
+    color: var(--shop-sub);
+    word-break: keep-all;
+}
+
+.shop-cart-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    flex: 1;
+    min-width: 0;
+    transition: opacity 0.2s;
+}
+
+.shop-cart-info strong {
+    font-size: 0.95rem;
+    font-weight: 700;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.shop-cart-info span {
+    font-size: 0.8rem;
+    color: var(--shop-sub);
+}
+
+.shop-cart-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+/* 수량 스테퍼: [−] [숫자] [+] — 직접 입력은 숫자만 허용 */
+.shop-cart-stepper {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--shop-line);
+    border-radius: 0.5rem;
+    background: #fff;
+    overflow: hidden;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.shop-cart-stepper:focus-within {
     border-color: var(--shop-primary);
-    color: #fff;
+    box-shadow: 0 0 0 3px rgba(11, 122, 107, 0.1);
 }
 
-.shop-material-ko {
+.shop-cart-step-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 34px;
+    border: none;
+    background: transparent;
+    color: var(--shop-sub);
+    cursor: pointer;
+    transition: color 0.2s, background 0.2s;
+}
+
+.shop-cart-step-btn:hover {
+    color: var(--shop-primary);
+    background: rgba(11, 122, 107, 0.06);
+}
+
+.shop-cart-qty {
+    width: 2.8rem;
+    padding: 0.5rem 0.2rem;
+    border: none;
+    background: transparent;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--shop-ink);
+    font-family: inherit;
+    outline: none;
+}
+
+.shop-cart-unit {
+    width: 4.6rem;
+    padding: 0.5rem 0.6rem;
+    border: 1px solid var(--shop-line);
+    border-radius: 0.5rem;
+    background: #fff;
+    font-size: 0.85rem;
+    color: var(--shop-ink);
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.shop-cart-unit:focus {
+    border-color: var(--shop-primary);
+    box-shadow: 0 0 0 3px rgba(11, 122, 107, 0.1);
+}
+
+.shop-cart-remove {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--shop-sub);
+    cursor: pointer;
+    transition: color 0.2s, background 0.2s;
+}
+
+.shop-cart-remove:hover {
+    color: var(--shop-accent);
+    background: rgba(232, 64, 42, 0.08);
+}
+
+.shop-cart-empty {
+    padding: 1.5rem;
+    border: 1px dashed var(--shop-line);
+    border-radius: 1rem;
+    font-size: 0.9rem;
+    color: var(--shop-sub);
+    text-align: center;
+}
+
+.shop-cart-add {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    max-width: 22rem;
+    margin-top: 1rem;
+}
+
+.shop-cart-add label {
     font-size: 0.75rem;
     font-weight: 600;
     color: var(--shop-sub);
-    margin-bottom: 0.2rem;
 }
 
-.shop-material-card h3 {
-    font-size: 1.15rem;
-    font-weight: 700;
-    margin-bottom: 0.35rem;
-}
-
-.shop-material-compound {
-    font-size: 0.8rem;
-    color: var(--shop-primary);
-}
-
-.shop-material-controls {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 0.6rem;
-    margin-top: 1.25rem;
-    padding-top: 1.25rem;
-    border-top: 1px dashed var(--shop-line);
-    cursor: default;
+.shop-cart-add select {
+    padding: 0.65rem 0.75rem;
+    border: 1px solid var(--shop-line);
+    border-radius: 0.5rem;
+    background: #fff;
+    font-size: 0.9rem;
+    color: var(--shop-ink);
+    font-family: inherit;
+    outline: none;
 }
 
 .shop-field {
@@ -1692,6 +1830,17 @@
     .shop-news-grid {
         grid-template-columns: 1fr;
     }
+
+    /* 좁은 화면: 수량·단위 줄이 이름 아래로 내려간다 */
+    .shop-cart-row {
+        flex-wrap: wrap;
+    }
+
+    .shop-cart-controls {
+        width: 100%;
+        justify-content: flex-end;
+        margin-top: 0.25rem;
+    }
 }
 
 .shop-news-card {
@@ -1823,10 +1972,6 @@
         display: none;
     }
 
-    .shop-material-controls {
-        grid-template-columns: 1fr;
-    }
-
     .shop-form-grid {
         grid-template-columns: 1fr;
     }
@@ -1876,80 +2021,84 @@
     }
 }
 
+/* ── 상품 상세 스토리: 클린 뷰티 스타일 ──
+   흰 배경 ↔ 민트 라운드 블록이 교차하는 리듬, 큰 사진, 흰 카드.
+   콘텐츠(productStories.js)와 마크업은 그대로, 표현만 여기서 결정한다. */
 .sps {
-    margin-top: 4rem;
-    border-top: 1px solid #e5e7eb;
+    margin-top: 5rem;
 }
 
 .sps section {
-    padding: 3.5rem 0;
-    border-bottom: 1px solid #f1f3f5;
+    padding: 4.5rem 1.5rem;
+    text-align: center;
+}
+
+/* 교차 리듬: 짝수 섹션은 민트 톤 라운드 블록 */
+.sps section:nth-child(even) {
+    background: #f0f9f6;
+    border-radius: 1.75rem;
+}
+
+.sps section + section {
+    margin-top: 1.5rem;
 }
 
 .sps .sps-eyebrow {
     display: block;
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     font-weight: 700;
-    letter-spacing: 0.14em;
-    color: #0b7a6b;
+    letter-spacing: 0.22em;
+    color: var(--shop-primary);
     text-transform: uppercase;
-    margin-bottom: 0.9rem;
+    margin-bottom: 1rem;
 }
 
 .sps .sps-title {
-    font-size: 1.6rem;
+    font-size: clamp(1.45rem, 2.6vw, 1.9rem);
     font-weight: 800;
+    letter-spacing: -0.02em;
     color: #111827;
     line-height: 1.35;
     word-break: keep-all;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.3rem;
 }
 
 .sps .sps-para {
-    max-width: 46rem;
-    font-size: 0.98rem;
-    line-height: 1.85;
+    max-width: 41rem;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1rem;
+    line-height: 1.9;
     color: #4b5563;
     word-break: keep-all;
-    margin-bottom: 0.9rem;
+    margin-bottom: 0.95rem;
 }
 
 .sps-hero {
-    text-align: center;
-}
-
-.sps-hero .sps-para {
-    margin-left: auto;
-    margin-right: auto;
+    padding-top: 5rem;
 }
 
 .sps-volume {
     display: block;
     font-size: 0.85rem;
     color: #9ca3af;
-    margin-bottom: 1.4rem;
-}
-
-.sps-band {
-    text-align: center;
-}
-
-.sps-band .sps-para,
-.sps-band .sps-note {
-    margin-left: auto;
-    margin-right: auto;
+    margin-bottom: 1.6rem;
 }
 
 .sps-ingredients {
     display: grid;
-    gap: 1.5rem;
+    gap: 1.75rem;
+    max-width: 46rem;
+    margin: 0 auto;
+    text-align: left;
 }
 
 .sps-ingredient {
-    background: #f8fafb;
-    border: 1px solid #eceff1;
-    border-radius: 1rem;
-    padding: 2.2rem 2rem;
+    background: #fff;
+    border: 1px solid #eef2f1;
+    border-radius: 1.25rem;
+    padding: 2.5rem 2.25rem;
+    box-shadow: 0 14px 36px rgba(15, 23, 42, 0.06);
 }
 
 .sps-step {
@@ -1957,16 +2106,23 @@
     font-size: 0.72rem;
     font-weight: 700;
     letter-spacing: 0.16em;
-    color: #0b7a6b;
+    color: var(--shop-primary);
     background: rgba(11, 122, 107, 0.08);
     border-radius: 999px;
     padding: 0.35rem 0.9rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.1rem;
+}
+
+.sps-ingredient .sps-para {
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 0.95rem;
 }
 
 .sps-ing-name {
-    font-size: 1.25rem;
+    font-size: 1.3rem;
     font-weight: 800;
+    letter-spacing: -0.01em;
     color: #111827;
     margin-bottom: 0.35rem;
 }
@@ -1974,8 +2130,8 @@
 .sps-ing-meta {
     font-size: 0.85rem;
     font-weight: 600;
-    color: #6b7280;
-    margin-bottom: 1.1rem;
+    color: var(--shop-primary);
+    margin-bottom: 1.2rem;
 }
 
 .sps-block {
@@ -2025,27 +2181,32 @@
 }
 
 .sps-note {
-    max-width: 46rem;
-    margin-top: 1.6rem;
+    max-width: 41rem;
+    margin: 1.8rem auto 0;
     font-size: 0.88rem;
     line-height: 1.75;
     color: #6b7280;
     word-break: keep-all;
 }
 
+.sps-ingredient .sps-note {
+    margin-left: 0;
+    margin-right: 0;
+}
+
 .sps-arch {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.4rem;
-    margin: 2rem 0 0.5rem;
+    gap: 0.5rem;
+    margin: 2.25rem 0 0.5rem;
 }
 
 .sps-arch-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.5rem;
     width: 100%;
 }
 
@@ -2053,10 +2214,11 @@
     width: 100%;
     max-width: 30rem;
     background: #ffffff;
-    border: 1px solid #e5e7eb;
-    border-radius: 0.85rem;
-    padding: 1.2rem 1.5rem;
+    border: 1px solid #eef2f1;
+    border-radius: 1rem;
+    padding: 1.3rem 1.5rem;
     text-align: center;
+    box-shadow: 0 8px 22px rgba(15, 23, 42, 0.05);
 }
 
 .sps-arch-card strong {
@@ -2064,7 +2226,7 @@
     font-size: 0.92rem;
     font-weight: 800;
     letter-spacing: 0.08em;
-    color: #0b7a6b;
+    color: var(--shop-primary);
     margin-bottom: 0.3rem;
 }
 
@@ -2074,34 +2236,46 @@
     word-break: keep-all;
 }
 
+/* 글자 화살표 대신 그려진 연결선으로 */
 .sps-arch-arrow {
-    font-size: 1.1rem;
-    color: #9ca3af;
+    display: block;
+    width: 2px;
+    height: 24px;
+    border-radius: 2px;
+    background: rgba(11, 122, 107, 0.3);
+    font-size: 0;
 }
 
 .sps-check-list {
     list-style: none;
     display: grid;
     gap: 0.7rem;
-    max-width: 40rem;
+    max-width: 30rem;
+    margin: 0 auto;
+    text-align: left;
 }
 
 .sps-check-list li {
     position: relative;
-    padding-left: 1.7rem;
+    padding-left: 1.8rem;
     font-size: 0.97rem;
     line-height: 1.7;
     color: #374151;
     word-break: keep-all;
 }
 
+/* 체크 표시를 글자 대신 선으로 그린다 */
 .sps-check-list li::before {
-    content: '✓';
+    content: '';
     position: absolute;
-    left: 0;
-    top: 0;
-    font-weight: 700;
-    color: #0b7a6b;
+    left: 0.15rem;
+    top: 0.4em;
+    width: 0.55rem;
+    height: 0.3rem;
+    border-left: 2.5px solid var(--shop-primary);
+    border-bottom: 2.5px solid var(--shop-primary);
+    border-radius: 1px;
+    transform: rotate(-45deg);
 }
 
 .sps-spec h3 {
@@ -2114,62 +2288,69 @@
 
 .sps-spec dl {
     max-width: 34rem;
-    border-top: 2px solid #111827;
+    margin: 0 auto;
+    text-align: left;
+    background: #fff;
+    border: 1px solid #eef2f1;
+    border-radius: 1rem;
+    padding: 0.5rem 1.5rem;
+    box-shadow: 0 8px 22px rgba(15, 23, 42, 0.04);
 }
 
 .sps-spec-row {
     display: flex;
-    border-bottom: 1px solid #e5e7eb;
-    padding: 0.85rem 0.25rem;
+    gap: 1.25rem;
+    border-bottom: 1px solid #f1f3f5;
+    padding: 0.95rem 0.25rem;
 }
 
-.sps-spec-row dt {
-    flex: 0 0 7rem;
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: #111827;
-}
-
-.sps-spec-row dd {
-    font-size: 0.9rem;
-    color: #4b5563;
-}
-
-.sps-routine {
-    text-align: center;
+.sps-spec-row:last-child {
     border-bottom: none;
 }
 
-.sps-routine-flow {
-    font-size: 1.02rem;
+.sps-spec-row dt {
+    flex: 0 0 10.5rem;
+    font-size: 0.9rem;
     font-weight: 700;
     color: #111827;
-    margin-bottom: 0.7rem;
     word-break: keep-all;
 }
 
-.sps-routine .sps-para {
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 1.4rem;
+.sps-spec-row dd {
+    flex: 1;
+    font-size: 0.9rem;
+    color: #4b5563;
+    word-break: keep-all;
+}
+
+.sps-routine-flow {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 0.8rem;
+    word-break: keep-all;
 }
 
 @media (max-width: 640px) {
     .sps section {
-        padding: 2.5rem 0;
+        padding: 3rem 1.1rem;
     }
 
-    .sps .sps-title {
-        font-size: 1.3rem;
+    .sps-hero {
+        padding-top: 3.5rem;
     }
 
     .sps-ingredient {
-        padding: 1.6rem 1.25rem;
+        padding: 1.8rem 1.4rem;
     }
 
     .sps-spec-row {
         flex-direction: column;
         gap: 0.2rem;
+    }
+
+    .sps-spec dl {
+        padding: 0.4rem 1.1rem;
     }
 }
 
@@ -2188,4 +2369,424 @@
     font-size: 0.8rem;
     color: #9ca3af;
     margin-bottom: 0.25rem;
+}
+
+.sd-thumbs {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 0.75rem;
+}
+
+.sd-thumb {
+    width: 72px;
+    height: 72px;
+    padding: 0;
+    border: 2px solid var(--shop-line);
+    border-radius: 0.6rem;
+    overflow: hidden;
+    background: var(--shop-bg-soft);
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.sd-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.sd-thumb:hover {
+    border-color: #9ca3af;
+}
+
+.sd-thumb.active {
+    border-color: var(--shop-primary);
+}
+
+/* 섹션 하단 이동 링크 (앰플 ↔ 크림 상호 연결) */
+.sps-link {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.7rem 1.5rem;
+    border: 1.5px solid var(--shop-primary);
+    border-radius: 9999px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--shop-primary);
+    transition: background 0.2s, color 0.2s;
+}
+
+.sps-link:hover {
+    background: var(--shop-primary);
+    color: #fff;
+}
+
+/* 상세설명 완독자를 위한 마무리 전환 밴드 */
+.sd-story-cta {
+    margin-top: 1.5rem;
+    padding: 4rem 1.5rem;
+    text-align: center;
+    background: #f0f9f6;
+    border-radius: 1.75rem;
+}
+
+.sd-story-cta-name {
+    font-size: clamp(1.35rem, 2.4vw, 1.7rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: #111827;
+    word-break: keep-all;
+    margin-bottom: 0.5rem;
+}
+
+.sd-story-cta-meta {
+    font-size: 0.95rem;
+    color: var(--shop-sub);
+    margin-bottom: 1.75rem;
+}
+
+.sd-story-cta-btn {
+    min-width: 14rem;
+}
+
+.sd-story-cta-note {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: var(--shop-sub);
+    word-break: keep-all;
+}
+
+/* 모바일 하단 고정 문의 바 */
+.sd-sticky-bar {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .sd-sticky-bar {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 400;
+        display: flex;
+        align-items: center;
+        gap: 0.9rem;
+        padding: 0.7rem 1rem calc(0.7rem + env(safe-area-inset-bottom));
+        background: #fff;
+        border-top: 1px solid var(--shop-line);
+        box-shadow: 0 -6px 20px rgba(15, 23, 42, 0.08);
+    }
+
+    .sd-sticky-info {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        min-width: 0;
+    }
+
+    .sd-sticky-info strong {
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--shop-ink);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .sd-sticky-info span {
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: var(--shop-primary);
+    }
+
+    .sd-sticky-btn {
+        flex-shrink: 0;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.9rem;
+    }
+
+    /* 고정 바에 가려지지 않도록 페이지 하단 여백 확보 */
+    .sd-page {
+        padding-bottom: 6rem;
+    }
+}
+
+.sps-figure {
+    max-width: 32rem;
+    margin: 2.75rem auto 0;
+}
+
+.sps-figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 1.25rem;
+    box-shadow: 0 20px 45px rgba(11, 122, 107, 0.12);
+}
+
+.sps-kicker {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.3em;
+    color: #b7c9c4;
+    margin-bottom: 0.6rem;
+}
+
+.sps-subtitle {
+    max-width: 41rem;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--shop-primary);
+    margin-bottom: 0.9rem;
+    word-break: keep-all;
+}
+
+.sps-tags {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: #374151;
+    margin-bottom: 0.6rem;
+}
+
+.sps-badge-line {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    color: var(--shop-primary);
+    background: rgba(11, 122, 107, 0.08);
+    border-radius: 999px;
+    padding: 0.4rem 1.1rem;
+    margin-bottom: 0.9rem;
+}
+
+.sps-lead {
+    max-width: 40rem;
+    margin: 0.4rem auto 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.8;
+    color: #111827;
+    word-break: keep-all;
+}
+
+.sps-fineprint {
+    max-width: 41rem;
+    margin: 1.2rem auto 0;
+    font-size: 0.78rem;
+    line-height: 1.7;
+    color: #9ca3af;
+    word-break: keep-all;
+}
+
+.sps-cards-head {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.sps-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 2.25rem;
+}
+
+.sps-stack-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.sps-stack-card {
+    width: 100%;
+    max-width: 30rem;
+    background: #ffffff;
+    border: 1px solid #eef2f1;
+    border-radius: 1rem;
+    padding: 1.2rem 1.5rem;
+    text-align: center;
+    box-shadow: 0 8px 22px rgba(15, 23, 42, 0.05);
+}
+
+.sps-stack-card strong {
+    display: block;
+    font-size: 0.92rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: #111827;
+    margin-bottom: 0.25rem;
+}
+
+.sps-stack-card span {
+    font-size: 0.85rem;
+    color: #6b7280;
+    word-break: keep-all;
+}
+
+.sps-stack-plus {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: rgba(11, 122, 107, 0.1);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--shop-primary);
+}
+
+.sps-stack-result {
+    margin-top: 0.7rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: var(--shop-primary);
+    word-break: keep-all;
+}
+
+.shop-cart-empty {
+    padding: 2rem 1.5rem;
+    border: 1px dashed var(--shop-line);
+    border-radius: 0.85rem;
+    text-align: center;
+    font-size: 0.92rem;
+    color: var(--shop-sub);
+}
+
+.shop-cart-list {
+    list-style: none;
+    display: grid;
+    gap: 0.75rem;
+}
+
+.shop-cart-row {
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+    padding: 1rem 1.25rem;
+    background: #fff;
+    border: 1px solid var(--shop-line);
+    border-radius: 0.85rem;
+}
+
+.shop-cart-thumb {
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+    border-radius: 0.6rem;
+    border: 1px solid var(--shop-line);
+    background: var(--shop-bg-soft);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.shop-cart-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.shop-cart-thumb-empty {
+    font-size: 0.6rem;
+    color: #9ca3af;
+    text-align: center;
+    padding: 0 0.25rem;
+    word-break: keep-all;
+}
+
+.shop-cart-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.shop-cart-info strong {
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: var(--shop-ink);
+    word-break: keep-all;
+}
+
+.shop-cart-info span {
+    font-size: 0.8rem;
+    color: var(--shop-sub);
+}
+
+.shop-cart-controls {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.6rem;
+}
+
+.shop-cart-controls .shop-field input,
+.shop-cart-controls .shop-field select {
+    width: 6.5rem;
+}
+
+.shop-cart-remove {
+    align-self: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--shop-line);
+    border-radius: 50%;
+    background: #fff;
+    color: var(--shop-sub);
+    font-size: 1.1rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.shop-cart-remove:hover {
+    border-color: #ef4444;
+    color: #ef4444;
+}
+
+.shop-cart-add {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    max-width: 26rem;
+}
+
+.shop-cart-add label {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--shop-ink);
+}
+
+.shop-cart-add select {
+    height: 46px;
+    padding: 0 0.9rem;
+    border: 1.5px solid var(--shop-line);
+    border-radius: 0.6rem;
+    font-size: 0.92rem;
+    color: var(--shop-ink);
+    background: #fff;
+}
+
+@media (max-width: 640px) {
+    .shop-cart-row {
+        flex-wrap: wrap;
+    }
+
+    .shop-cart-controls {
+        width: 100%;
+        justify-content: flex-end;
+    }
 }

@@ -57,7 +57,7 @@ export const ROUTES = [
   },
   {
     path: '/shopHome/quote',
-    title: 'COREX 견적 문의',
-    desc: '코렉스(COREX) 원료 견적을 문의하세요.',
+    title: 'COREX 문의하기',
+    desc: '코렉스(COREX) 제품 구매·원료 견적을 문의하세요.',
   },
 ];

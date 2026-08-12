@@ -60,10 +60,6 @@ export default function ShopHeader() {
               </svg>
             </button>
           </form>
-
-          <Link to="/shopHome/quote" className="shop-quote-btn">
-            {t('shop.bulkQuote')}
-          </Link>
         </div>
       </div>
 

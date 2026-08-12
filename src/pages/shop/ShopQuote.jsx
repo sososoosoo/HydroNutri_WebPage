@@ -22,6 +22,13 @@ export default function ShopQuote() {
     const initial = findProduct(searchParams.get('product'));
     return initial ? [{ id: String(initial.id), qty: '1', unit: '개', checked: true }] : [];
   });
+  // 화장품(B2C)에서 오면 개인 구매, 원료(B2B)에서 오면 기업·대량 구매가 기본
+  const [inquiryType, setInquiryType] = useState(() => {
+    const initial = findProduct(searchParams.get('product'));
+    if (initial) return initial.category === 'cosmetics' ? 'personal' : 'business';
+    return 'business';
+  });
+  const isPersonal = inquiryType === 'personal';
   const [contact, setContact] = useState(emptyContact);
   const [status, setStatus] = useState('idle');
   const [errorMsg, setErrorMsg] = useState('');
@@ -79,9 +86,9 @@ export default function ShopQuote() {
       setErrorMsg(t('quote.errQty'));
       return;
     }
-    if (!contact.company.trim() || !contact.name.trim() || !contact.email.trim()) {
+    if (!contact.name.trim() || !contact.email.trim() || (!isPersonal && !contact.company.trim())) {
       setStatus('idle');
-      setErrorMsg(t('quote.errRequired'));
+      setErrorMsg(t(isPersonal ? 'quote.errRequiredPersonal' : 'quote.errRequired'));
       return;
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact.email.trim())) {
@@ -98,8 +105,9 @@ export default function ShopQuote() {
       .join('\n');
 
     const messageBody = [
-      `회사명: ${contact.company}`,
-      `담당자: ${contact.name}`,
+      `문의 유형: ${isPersonal ? '개인 구매 (B2C)' : '기업·대량 구매 (B2B)'}`,
+      ...(isPersonal ? [] : [`회사명: ${contact.company}`]),
+      `${isPersonal ? '성함' : '담당자'}: ${contact.name}`,
       `이메일: ${contact.email}`,
       `연락처: ${contact.phone || '-'}`,
       '',
@@ -119,7 +127,7 @@ export default function ShopQuote() {
         {
           name: contact.name,
           email: contact.email,
-          category: '견적문의 (Quote Request)',
+          category: isPersonal ? '구매 문의 (B2C)' : '견적 문의 (B2B)',
           message: messageBody,
         },
         { publicKey: EMAILJS_PUBLIC_KEY }
@@ -256,26 +264,48 @@ export default function ShopQuote() {
         <div className="shop-step-head">
           <span className="shop-step-num">STEP 02</span>
           <h2>{t('quote.step2Title')}</h2>
-          <p>{t('quote.step2Desc')}</p>
+          <p>{t(isPersonal ? 'quote.step2DescPersonal' : 'quote.step2Desc')}</p>
+        </div>
+
+        <div className="shop-quote-type" role="radiogroup" aria-label={t('quote.typeLabel')}>
+          <button
+            type="button"
+            className={isPersonal ? 'active' : ''}
+            aria-pressed={isPersonal}
+            onClick={() => setInquiryType('personal')}
+          >
+            {t('quote.typePersonal')}
+          </button>
+          <button
+            type="button"
+            className={isPersonal ? '' : 'active'}
+            aria-pressed={!isPersonal}
+            onClick={() => setInquiryType('business')}
+          >
+            {t('quote.typeBusiness')}
+          </button>
         </div>
 
         <form className="shop-quote-form" onSubmit={handleSubmit} noValidate>
           <div className="shop-form-grid">
-            <div className="shop-field">
-              <label htmlFor="quote-company">
-                {t('quote.company')} <span className="shop-required">*</span>
-              </label>
-              <input
-                id="quote-company"
-                type="text"
-                placeholder={t('quote.companyPlaceholder')}
-                value={contact.company}
-                onChange={(e) => updateContact('company', e.target.value)}
-              />
-            </div>
+            {!isPersonal && (
+              <div className="shop-field">
+                <label htmlFor="quote-company">
+                  {t('quote.company')} <span className="shop-required">*</span>
+                </label>
+                <input
+                  id="quote-company"
+                  type="text"
+                  placeholder={t('quote.companyPlaceholder')}
+                  value={contact.company}
+                  onChange={(e) => updateContact('company', e.target.value)}
+                />
+              </div>
+            )}
             <div className="shop-field">
               <label htmlFor="quote-name">
-                {t('quote.name')} <span className="shop-required">*</span>
+                {t(isPersonal ? 'quote.namePersonal' : 'quote.name')}{' '}
+                <span className="shop-required">*</span>
               </label>
               <input
                 id="quote-name"
@@ -311,7 +341,7 @@ export default function ShopQuote() {
               <label htmlFor="quote-message">{t('quote.message')}</label>
               <textarea
                 id="quote-message"
-                placeholder={t('quote.messagePlaceholder')}
+                placeholder={t(isPersonal ? 'quote.messagePlaceholderPersonal' : 'quote.messagePlaceholder')}
                 value={contact.message}
                 onChange={(e) => updateContact('message', e.target.value)}
               />

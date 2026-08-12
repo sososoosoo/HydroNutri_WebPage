@@ -366,7 +366,14 @@
     "includeItem": "견적에 포함",
     "qtyMinus": "수량 줄이기",
     "qtyPlus": "수량 늘리기",
-    "errNoChecked": "견적에 포함할 상품을 선택해 주세요."
+    "errNoChecked": "견적에 포함할 상품을 선택해 주세요.",
+    "typeLabel": "문의 유형",
+    "typePersonal": "개인 구매",
+    "typeBusiness": "기업·대량 구매",
+    "namePersonal": "성함",
+    "step2DescPersonal": "연락받으실 정보를 입력해 주세요.",
+    "messagePlaceholderPersonal": "배송·수령 관련 요청이나 궁금한 점을 자유롭게 적어주세요.",
+    "errRequiredPersonal": "성함과 이메일은 필수 입력 항목입니다."
   },
   "insights": {
     "heroTitle": "인사이트",

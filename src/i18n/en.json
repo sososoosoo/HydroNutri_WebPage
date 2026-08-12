@@ -365,7 +365,14 @@
     "includeItem": "Include in quote",
     "qtyMinus": "Decrease quantity",
     "qtyPlus": "Increase quantity",
-    "errNoChecked": "Please select at least one product to include."
+    "errNoChecked": "Please select at least one product to include.",
+    "typeLabel": "Inquiry type",
+    "typePersonal": "Personal purchase",
+    "typeBusiness": "Business & bulk",
+    "namePersonal": "Name",
+    "step2DescPersonal": "Enter the contact details we should reply to.",
+    "messagePlaceholderPersonal": "Any questions or delivery requests — feel free to write here.",
+    "errRequiredPersonal": "Name and email are required."
   },
   "insights": {
     "heroTitle": "Insights",

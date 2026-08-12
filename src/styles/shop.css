@@ -1248,6 +1248,36 @@
     color: var(--shop-accent);
 }
 
+/* 문의 유형 전환: 개인 구매(B2C) / 기업·대량 구매(B2B) */
+.shop-quote-type {
+    display: inline-flex;
+    gap: 4px;
+    padding: 4px;
+    margin-bottom: 1.25rem;
+    background: var(--shop-bg-soft);
+    border: 1px solid var(--shop-line);
+    border-radius: 9999px;
+}
+
+.shop-quote-type button {
+    padding: 0.55rem 1.4rem;
+    border: none;
+    border-radius: 9999px;
+    background: transparent;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--shop-sub);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.shop-quote-type button.active {
+    background: #fff;
+    color: var(--shop-primary);
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.1);
+}
+
 .shop-quote-form {
     padding: 2rem;
     border: 1px solid var(--shop-line);
@@ -2023,8 +2053,10 @@
 
 /* ── 상품 상세 스토리: 클린 뷰티 스타일 ──
    흰 배경 ↔ 민트 라운드 블록이 교차하는 리듬, 큰 사진, 흰 카드.
-   콘텐츠(productStories.js)와 마크업은 그대로, 표현만 여기서 결정한다. */
+   콘텐츠(productStories.js)와 마크업은 그대로, 표현만 여기서 결정한다.
+   제목·리드는 상세설명 전용 세리프(브로슈어 톤) — 사이트 나머지에는 쓰지 않는다. */
 .sps {
+    --sps-serif: 'Noto Serif KR', 'Nanum Myeongjo', serif;
     margin-top: 5rem;
 }
 
@@ -2054,11 +2086,12 @@
 }
 
 .sps .sps-title {
-    font-size: clamp(1.45rem, 2.6vw, 1.9rem);
-    font-weight: 800;
-    letter-spacing: -0.02em;
+    font-family: var(--sps-serif);
+    font-size: clamp(1.5rem, 2.7vw, 2rem);
+    font-weight: 700;
+    letter-spacing: -0.01em;
     color: #111827;
-    line-height: 1.35;
+    line-height: 1.4;
     word-break: keep-all;
     margin-bottom: 1.3rem;
 }
@@ -2120,8 +2153,9 @@
 }
 
 .sps-ing-name {
-    font-size: 1.3rem;
-    font-weight: 800;
+    font-family: var(--sps-serif);
+    font-size: 1.35rem;
+    font-weight: 700;
     letter-spacing: -0.01em;
     color: #111827;
     margin-bottom: 0.35rem;
@@ -2568,9 +2602,10 @@
 .sps-lead {
     max-width: 40rem;
     margin: 0.4rem auto 0;
-    font-size: 1.1rem;
-    font-weight: 700;
-    line-height: 1.8;
+    font-family: var(--sps-serif);
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.85;
     color: #111827;
     word-break: keep-all;
 }
